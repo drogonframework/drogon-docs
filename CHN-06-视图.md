@@ -42,7 +42,7 @@ static HttpResponsePtr newHttpViewResponse(const std::string &viewName,
 
 ```c++
 drogon::HttpAppFramework::instance()
- .registerHttpMethod
+ .registerHandler
   ("/list_para",
    [=](const HttpRequestPtr &req,
        std::function<void (const HttpResponsePtr &)> &&callback)

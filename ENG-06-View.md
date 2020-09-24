@@ -41,17 +41,17 @@ This time we directly define the handler with the HttpAppFramework interface. In
 
 ```c++
 drogon::HttpAppFramework::instance()
-        .registerHttpMethod("/list_para",
-                               [=](const HttpRequestPtr &req,
-                                   std::function<void (const HttpResponsePtr &)> &&callback)
-                               {
-                                    auto para=req->getParameters();
-                                    HttpViewData data;
-                                    data.insert("title","ListParameters");
-                                    data.insert("parameters",para);
-                                    auto resp=HttpResponse::newHttpViewResponse("ListParameters.csp",data);
-                                    callback(resp);
-                               });
+        .registerHandler("/list_para",
+                        [=](const HttpRequestPtr &req,
+                            std::function<void (const HttpResponsePtr &)> &&callback)
+                        {
+                            auto para=req->getParameters();
+                            HttpViewData data;
+                            data.insert("title","ListParameters");
+                            data.insert("parameters",para);
+                            auto resp=HttpResponse::newHttpViewResponse("ListParameters.csp",data);
+                            callback(resp);
+                        });
 ```
 
 The above code registers a lambda expression handler on the `/list_para` path, passing the requested parameters to the view display.

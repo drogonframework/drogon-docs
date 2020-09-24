@@ -70,7 +70,7 @@ void TimeFilter::doFilter(const HttpRequestPtr &req,
 
 ```c++
 drogon::HttpAppFramework::instance()
-    .registerHttpMethod
+    .registerHandler
      ("/slow",
       [=](const HttpRequestPtr &req,
           std::function<void (const HttpResponsePtr &)> &&callback)

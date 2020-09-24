@@ -71,16 +71,16 @@ We then register a lambda expression to the `/slow` path and attach the TimeFilt
 
 ```c++
 drogon::HttpAppFramework::instance()
-            .registerHttpMethod("/slow",
-                                   [=](const HttpRequestPtr &req,
-                                       std::function<void (const HttpResponsePtr &)> &&callback)
-                                   {
-                                       Json::Value json;
-                                       json["result"]="ok";
-                                       auto resp=HttpResponse::newHttpJsonResponse(json);
-                                       callback(resp);
-                                   },
-                                   {Get,"TimeFilter"});
+            .registerHandler("/slow",
+                            [=](const HttpRequestPtr &req,
+                                std::function<void (const HttpResponsePtr &)> &&callback)
+                            {
+                                Json::Value json;
+                                json["result"]="ok";
+                                auto resp=HttpResponse::newHttpJsonResponse(json);
+                                callback(resp);
+                            },
+                            {Get,"TimeFilter"});
 ```
 
 
