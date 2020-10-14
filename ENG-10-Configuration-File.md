@@ -93,7 +93,7 @@ This option is used to configure the database client. It is a JSON array type. E
 Among them:
 
 * `name`: string type, client name, the default value is "default", name is the application developer to get the database client's markup from the framework, if there are multiple clients, the name field must be different;
-* `rdbms`：A string indicating the type of database server. Currently supports "postgresql" and "mysql", which is not case sensitive;
+* `rdbms`：A string indicating the type of database server. Currently supports "postgresql","mysql" and "sqlite3", which is not case sensitive;
 * `host`：String, database server address, `localhost` is the default value;
 * `port`：An integer representing the port number of the database server;
 * `dbname`：String, database name;
