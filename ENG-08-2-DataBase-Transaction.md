@@ -1,10 +1,10 @@
 **Transactions** are an important feature of relational databases, and Drogon provides transaction support with the `Transaction` class.
 
-Objects of the `Transaction` class are created by `DbClien`t, and many transaction-related operations are performed automatically:
+Objects of the `Transaction` class are created by `DbClient`, and many transaction-related operations are performed automatically:
 
 * At the beginning of the `Transaction` object creation, the begin statement is automatically executed to `start` the transaction;
 * When the `Transaction` object is destructed, the `commit` statement is automatically executed to end the transaction;
-* If there is an exception that causes the transaction to fail, the `rollback` statement is automatically executed to `roll back the transaction;
+* If there is an exception that causes the transaction to fail, the `rollback` statement is automatically executed to roll back the transaction;
 * If the transaction has been rolled back, then the sql statement will return an exception (throw an exception or perform an exception callback);
 
 ### Transaction Creation
