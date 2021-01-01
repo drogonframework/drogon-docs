@@ -32,6 +32,7 @@
 * [AOP](ENG-12-AOP-Aspect-Oriented-Programming)
 * [Benchmarks](ENG-13-Benchmarks)
 * [Coz profiling](ENG-14-Coz)
+* [Brotli info](ENG-15-Brotli)
 
 ## 中文文档
 
