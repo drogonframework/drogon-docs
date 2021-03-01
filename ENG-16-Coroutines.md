@@ -26,8 +26,8 @@ For example, querying the number of users exists in the database:
 
 ```c++
 app.registerHandler("/num_users",
-    [](HttpRequestPtr req, std::function<void(const HttpRespons/ePtr&)> callback) -> Task<>)
-    //                                          Must mark the return type as an _awaitable_ ^^^
+    [](HttpRequestPtr req, std::function<void(const HttpResponsePtr&)> callback) -> Task<>
+    //                                     Must mark the return type as an _awaitable_ ^^^
 {
     auto sql = app().getDbClient();
     auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
