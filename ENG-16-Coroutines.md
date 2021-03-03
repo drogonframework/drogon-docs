@@ -6,11 +6,11 @@ Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a wa
 
 This page isn't intended to explain what is a coroutine nor how it works. But to show how to use coroutines in drogon. The usual vocabulary tends get messy as subroutines (functions) uses the same terminology as coroutine does, yet they have slightly different meanings. C++ coroutines could act as they are functions doesn't help either. To reduce confusion, these are the termiology we'll use - they are by no means perfect, but good enough.
 
-**Coroutine** is a function that can suspend execution then resume.
-**Return** means a function finishing execution and gives a return value to it caller. Or a coroutine generating an _awaitable_ object. Which can be used to resume the coroutine.
-**Yield**ing is when a coroutine generates a result for the caller.
-**co-return** means a coroutine yields and then exit.
-**(co-)await**ing means the thread is waiting a coroutine to yield. The framework is free to use the thread for other purpose while awaiting.
+**Coroutine** is a function that can suspend execution then resume.<br/> 
+**Return** means a function finishing execution and gives a return value to it caller. Or a coroutine generating an _awaitable_ object. Which can be used to resume the coroutine.<br/>
+**Yield**ing is when a coroutine generates a result for the caller.<br/>
+**co-return** means a coroutine yields and then exit.<br/>
+**(co-)await**ing means the thread is waiting a coroutine to yield. The framework is free to use the thread for other purpose while awaiting.<br/>
 
 ### Enabling coroutines
 
