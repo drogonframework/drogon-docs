@@ -53,7 +53,7 @@ An _awaitable_ is an object following the coroutine standard. Don't worry too mu
 
 Passing most parameters by value is a direct consequence of coroutines being asynchronous. It's impossible to track when a reference goes out of scope as the object may destruct while the coroutine is waiting. Or the reference may live on another thread. Thus, may destruct while the coroutine is executing.
 
-It makes sense to not have the callback but use the straightforward `co_return`. Which is supported, but may cause up to 8% of throughput under certain conditions. Please consider the performance drop and weather if it's too great for the use case. Again, the same example:
+It makes sense to not have the callback but use the straightforward `co_return`. Which is supported, but may cause up to 8% of throughput under certain conditions. Please consider the performance drop and whether it's too great for the use case. Again, the same example:
 
 ```c++
 app.registerHandler("/num_users",

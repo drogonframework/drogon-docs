@@ -32,7 +32,7 @@ cmake .. -DCMAKE_CXX_FLAGS="-fcoroutines"
 ```c++
 app.registerHandler("/num_users",
     [](HttpRequestPtr req, std::function<void(const HttpResponsePtr&)> callback) -> Task<>
-    // 返回值必须是某种resumable类型（框架已封装好）。
+    //                                       返回值必须是某种resumable类型（框架已封装好） ^^^
 {
     auto sql = app().getDbClient();
     auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
@@ -51,16 +51,18 @@ app.registerHandler("/num_users",
  2. 普通函数中的`return`在协程中必须换成`co_return`。
  3. 协程的参数要用值传递。不能是引用。
 
-An _awaitable_ is an object following the coroutine standard. Don't worry too much about the detail. Just know that if you want the coroutine to yield something typed `T`. Then the return type will be `Task<T>`.
+Task<T>模板遵循了c++ coroutine标准，用户不要太关心它的细节，只需要知道如果希望协程生成T类型的结果，那么返回的类型就是`Task<T>`。
 
-Passing most parameters by value is a direct consequence of coroutines being asynchronous. It's impossible to track when a reference goes out of scope as the object may destruct while the coroutine is waiting. Or the reference may live on another thread. Thus, may destruct while the coroutine is executing.
+通过值传递参数是协程作为异步执行的一个约束，编译器会自动值拷贝（或者move）这些参数到协程帧上，以便协程恢复时可以正常使用，对于引用参数，协程帧只拷贝它的引用（地址），所以除非确知该参数的生命周期在整个协程执行的期间都有效，请使用值类型作为参数类型。
 
 It makes sense to not have the callback but use the straightforward `co_return`. Which is supported, but may cause up to 8% of throughput under certain conditions. Please consider the performance drop and weather if it's too great for the use case. Again, the same example:
+
+有的用户可能更希望返回response而不是使用callback，这在使用协程的时候是可以使用`co_return`简单做到的。Drogon支持使用`co_return`返回response对象，不过这可能导致最多8%左右的性能损失（和callback方案相比），请根据自己的应用特点考虑是否容忍这种性能损失。上面的例子可以改写如下：
 
 ```c++
 app.registerHandler("/num_users",
     [](HttpRequestPtr req) -> Task<HttpResponsePtr>)
-    //               Now returning a response ^^^
+    //               这里返回response对象 ^^^
 {
     auto sql = app().getDbClient();
     auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
@@ -72,7 +74,7 @@ app.registerHandler("/num_users",
 }
 ```
 
-Calling coroutines from websocket controllers aren't supported yet. Feel free to open an issue if you need the feature.
+目前websocket控制器还不支持协程，如果您有需求，请在github上发issue。
 
 [1]: https://en.cppreference.com/w/cpp/language/coroutines
 
