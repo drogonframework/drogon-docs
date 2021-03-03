@@ -14,7 +14,7 @@ This page isn't intended to explain what is a coroutine nor how it works. But to
 
 ### Enabling coroutines
 
-The coroutine feature in drogon is header only. So the application can use coroutines even if drogon is built without coroutine support. How to enable coroutines depends on which compiler is used. GCC >= 8 enables it by setting `-std=c++20 -fcoroutines` while MSVC (tested on MSVC 16.8) does by `/std:c++latest`.
+The coroutine feature in drogon is header only. So the application can use coroutines even if drogon is built without coroutine support. How to enable coroutines depends on the compiler used. GCC >= 8 enables it by setting `-std=c++20 -fcoroutines` while MSVC (tested on MSVC 19.25) does by `/std:c++latest` and `/await` must not be set.
 
 Note that drogon's implementation of coroutines won't work on clang (as of clang 12.0). And GCC 11 enables coroutines by default when C++20 is enabled.
 
