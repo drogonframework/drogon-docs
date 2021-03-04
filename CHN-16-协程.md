@@ -25,7 +25,7 @@ cmake .. -DCMAKE_CXX_FLAGS="-fcoroutines"
 
 ### 使用协程
 
-协程的性能和内在逻辑和异步接口相当，不过它的接口确是同步形式的，所以基本上，Drogon中的每个协程函数（或者可以在协程中被co_await的函数）接口均相当于对应的同步接口改成了`Coro`后缀。 比如`db->execSqlSync()`对应于 `db->execSqlCoro()`，而`client->sendRequestSync()`对应于`client->sendRequestCoro()`，等等。所有上述函数均返回一个_awaitable_对象，`co_await`它将马上或者将来恢复协程时得到一个结果，等待结果的过程中，当前线程将被框架用于执行其它处理IO等操作，这就是协程的美妙之处，它的代码看起来是同步的，但实际上它是异步的。
+协程的性能和内在逻辑和异步接口相当，不过它的接口确是同步形式的，所以基本上，Drogon中的每个协程函数（或者可以在协程中被co_await的函数）接口均相当于对应的同步接口改成了`Coro`后缀。 比如`db->execSqlSync()`对应于 `db->execSqlCoro()`，而`client->sendRequestSync()`对应于`client->sendRequestCoro()`，等等。所有上述函数均返回一个_resumable_对象，`co_await`它将马上或者将来恢复协程时得到一个结果，等待结果的过程中，当前线程将被框架用于执行其它处理IO等操作，这就是协程的美妙之处，它的代码看起来是同步的，但实际上它是异步的。
 
 比如，我们想返回数据库中用户的个数：
 
