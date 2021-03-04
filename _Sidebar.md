@@ -33,6 +33,7 @@
 * [Benchmarks](ENG-13-Benchmarks)
 * [Coz profiling](ENG-14-Coz)
 * [Brotli info](ENG-15-Brotli)
+* [Coroutines](ENG-16-Coroutines)
 
 ## 中文文档
 
@@ -67,3 +68,4 @@
 * [drogon_ctl命令](CHN-11-drogon_ctl命令)
 * [AOP面向切面编程](CHN-12-AOP面向切面编程)
 * [性能测试](CHN-13-性能测试)
+* [协程](CHN-16-协程)
