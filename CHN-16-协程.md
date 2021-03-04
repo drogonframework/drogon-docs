@@ -1,13 +1,13 @@
 ## 协程
 
-从1.4版本开始，Drogon支持[C++ coroutines][1]（协程）。 它提供了扁平化异步调用控制流的方法, 比如，避免著名的`callback hell`. 通过协程, 异步编程将像同步编程一样简单（同时保持了异步程序的高性能）。
+Drogon从1.4版本开始支持[C++ coroutines][1]（协程）。 它提供了扁平化异步执行控制流的方法, 比如，避免著名的`callback hell`. 通过协程, 异步编程将像同步编程一样简单（同时保持了异步程序的高性能）。
 
 ### 术语
 
 本文无意于解释什么是协程或它是如何工作的，而是向大家介绍如何在Drogon中使用协程。有很多术语，普通的例程也使用，但是在协程里，意义稍有不同，为了避免引起不必要的混淆，我们列举了一些常用术语。
 
 **协程（Coroutine）** 是能暂停执行以在之后恢复的函数.<br/> 
-**Return** 对普通函数来说意味着结束执行并返回一个值。 而协程需要返回一个包含`promise_type`类型的对象，用来恢复这个协程的执行。<br/>
+**Return** 对普通函数来说意味着结束执行并返回一个值。 而协程需要返回一个包含`promise_type`类型的对象（本文中称作_resumable_类型），用来恢复这个协程的执行。<br/>
 **(co_)yield**意思是协程暂停执行并返回一个值。<br/>
 **co_return**意思是协程结束并返回一个值（如果有值的话）。<br/>
 **(co_)await**意思是当前的协程正在等待一个结果，如果结果没有立即准备好，比如需要发起网络请求，则当前协程被暂停执行，当前线程将执行其它任务。当结果准备好时，当前协程将被恢复执行（不一定在当前线程恢复）<br/>
@@ -54,8 +54,6 @@ app.registerHandler("/num_users",
 Task<T>模板遵循了c++ coroutine标准，用户不要太关心它的细节，只需要知道如果希望协程生成T类型的结果，那么返回的类型就是`Task<T>`。
 
 通过值传递参数是协程作为异步执行的一个约束，编译器会自动值拷贝（或者move）这些参数到协程帧上，以便协程恢复时可以正常使用，对于引用参数，协程帧只拷贝它的引用（地址），所以除非确知该参数的生命周期在整个协程执行的期间都有效，请使用值类型作为参数类型。
-
-It makes sense to not have the callback but use the straightforward `co_return`. Which is supported, but may cause up to 8% of throughput under certain conditions. Please consider the performance drop and weather if it's too great for the use case. Again, the same example:
 
 有的用户可能更希望返回response而不是使用callback，这在使用协程的时候是可以使用`co_return`简单做到的。Drogon支持使用`co_return`返回response对象，不过这可能导致最多8%左右的性能损失（和callback方案相比），请根据自己的应用特点考虑是否容忍这种性能损失。上面的例子可以改写如下：
 
