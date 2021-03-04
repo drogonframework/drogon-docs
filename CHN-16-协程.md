@@ -35,13 +35,21 @@ app.registerHandler("/num_users",
     //                                       返回值必须是某种resumable类型（框架已封装好） ^^^
 {
     auto sql = app().getDbClient();
-    auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
-    size_t num_users = result[0][0].as<size_t>();
-
-    auto resp = HttpResponse::newHttpResponse();
-    resp->setBody(std::to_string(num_users));
-    callback(resp);
-
+    try
+    {
+        auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
+        size_t num_users = result[0][0].as<size_t>();
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(std::to_string(num_users));
+        callback(resp);
+    }
+    catch(const DrogonDbException &err)
+    {
+        // 异常也可以像同步接口那样正常工作
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(err.base().what());
+        callback(resp);
+    }
     co_return; // 该语句不是必须的，因为它位于协程的结束处。因为返回值是Task<void>类型，这里不需要返回任何值
 }
 ```
@@ -63,12 +71,21 @@ app.registerHandler("/num_users",
     //               这里返回response对象 ^^^
 {
     auto sql = app().getDbClient();
-    auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
-    size_t num_users = result[0][0].as<size_t>();
-
-    auto resp = HttpResponse::newHttpResponse();
-    resp->setBody(std::to_string(num_users));
-    co_return resp;
+    try
+    {
+        auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
+        size_t num_users = result[0][0].as<size_t>();
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(std::to_string(num_users));
+        co_return resp;
+    }
+    catch(const DrogonDbException &err)
+    {
+        // 异常也可以像同步接口那样正常工作
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(err.base().what());
+        co_return resp;
+    }
 }
 ```
 

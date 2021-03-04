@@ -27,16 +27,24 @@ For example, querying the number of users exists in the database:
 ```c++
 app.registerHandler("/num_users",
     [](HttpRequestPtr req, std::function<void(const HttpResponsePtr&)> callback) -> Task<>
-    //                                     Must mark the return type as an _resumable_ ^^^
+    //                                    Must mark the return type as an _resumable_ ^^^
 {
     auto sql = app().getDbClient();
-    auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
-    size_t num_users = result[0][0].as<size_t>();
-
-    auto resp = HttpResponse::newHttpResponse();
-    resp->setBody(std::to_string(num_users));
-    callback(resp);
-
+    try
+    {
+        auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
+        size_t num_users = result[0][0].as<size_t>();
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(std::to_string(num_users));
+        callback(resp);
+    }
+    catch(const DrogonDbException &err)
+    {
+        // Exception works as sync interfaces.
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(err.base().what());
+        callback(resp);
+    }
     // No need to return anything! This is a coroutine that yields `void`. Which is
     // indicated by the return type of Task<void>
     co_return; // If want to (not required), use co_return
@@ -58,15 +66,24 @@ It makes sense to not have the callback but use the straightforward `co_return`.
 ```c++
 app.registerHandler("/num_users",
     [](HttpRequestPtr req) -> Task<HttpResponsePtr>)
-    //               Now returning a response ^^^
+    //          Now returning a response ^^^
 {
     auto sql = app().getDbClient();
-    auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
-    size_t num_users = result[0][0].as<size_t>();
-
-    auto resp = HttpResponse::newHttpResponse();
-    resp->setBody(std::to_string(num_users));
-    co_return resp;
+    try
+    {
+        auto result = co_await sql->execSqlCoro("SELECT COUNT(*) FROM users;");
+        size_t num_users = result[0][0].as<size_t>();
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(std::to_string(num_users));
+        co_return resp;
+    }
+    catch(const DrogonDbException &err)
+    {
+        // Exception works as sync interfaces.
+        auto resp = HttpResponse::newHttpResponse();
+        resp->setBody(err.base().what());
+        co_return resp;
+    }
 }
 ```
 
