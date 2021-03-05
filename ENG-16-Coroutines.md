@@ -20,7 +20,7 @@ Note that drogon's implementation of coroutines won't work on clang (as of clang
 
 ### Using coroutines
 
-Each and every coroutine in drogon is suffixed with `Coro`. E,g. `db->execSqlSync()` becomes `db->execSqlCoro()`. `client->sendRequestSync()`  becomes `client->sendRequestCoro()`, so on and so forth. All coroutines return an _resumable_ object. Then `co_await` on the object results in a value. The framework is free to use the thread to process IO and tasks when it's awaiting results to arrive - that's the beauty of coroutines. The code looks syncrynous; but it's in fact asyncrynously.
+Each and every coroutine in drogon is suffixed with `Coro`. E,g. `db->execSqlSync()` becomes `db->execSqlCoro()`. `client->sendRequest()`  becomes `client->sendRequestCoro()`, so on and so forth. All coroutines return an _resumable_ object. Then `co_await` on the object results in a value. The framework is free to use the thread to process IO and tasks when it's awaiting results to arrive - that's the beauty of coroutines. The code looks syncrynous; but it's in fact asyncrynously.
 
 For example, querying the number of users exists in the database:
 
