@@ -15,7 +15,7 @@ Drogon从1.4版本开始支持[C++ coroutines][1]（协程）。 它提供了扁
 ### 使能协程
 
 协程特性在Drogon中是header-only的，这意味着即使构建drogon库的编译器不支持协程，用户也可以
-使用协程。如何使能协程和编译器有关，对版本>=8.0的GCC来说，可以通过`-std=c++20 -fcoroutines`编译参数使能协程。对MSVC来说(MSVC 19.25测试通过)需要设置`/std:c++latest`并且不能设置`/await`。例如可以通过如下cmake命令使能drogon的协程(GCC)：
+使用协程。如何使能协程和编译器有关，对版本>=10.0的GCC来说，可以通过`-std=c++20 -fcoroutines`编译参数使能协程。对MSVC来说(MSVC 19.25测试通过)需要设置`/std:c++latest`并且不能设置`/await`。例如可以通过如下cmake命令使能drogon的协程(GCC)：
 
 ```shell
 cmake .. -DCMAKE_CXX_FLAGS="-fcoroutines"
