@@ -28,14 +28,6 @@ The configured parameters are the same as the application's configuration file. 
 
 The `tables` configuration option is unique to the model configuration. It is an array of strings. Each string represents the name of the table to be converted into a model class. If this option is empty, all tables will be used to generate model classes.
 
-The `convert`configuration option is unique to the model configuration. It adds a convert layer before or after a value is read from or written to database.  The object consists of a boolean key `enabled` to use this function or not. The array of `ìtems` objects consists of following keys:
-* `table`: name of the table, which holds the column
-* `column`: name of the column
-* `method`: object
-  * `after_db_read`: string, name of the method, signature: void(std::shared_ptr<type>)
-  * `before_db_write`: string, name of the method, signature: void(std::shared_ptr<type>)
-* `includes`: array of strings, name of the include files surrounded by the \" or <,>
-
 The models directory and the corresponding model.json file have been created in advance in the project directory created with the `drogon_ctl create project` command. The user can edit the configuration file and create model classes with the drogon_ctl command.
 
 ### Model Class Interface
@@ -114,6 +106,16 @@ This program is to select the user list from the `users` table, return the first
 
 Basically, the name of the chain interface expresses its function, so I won't go into details here. Please refer to the Mapper.h header file.
 
+### Convert
+
+The `convert` configuration option is unique to the model configuration. It adds a convert layer before or after a value is read from or written to database.  The object consists of a boolean key `enabled` to use this function or not. The array of `ìtems` objects consists of following keys:
+
+* `table`: name of the table, which holds the column
+* `column`: name of the column
+* `method`: object
+  * `after_db_read`: string, name of the method which is called after reading from database, signature: void([const] std::shared_ptr<type> [&])
+  * `before_db_write`: string, name of the method which is called before writing to database, signature: void([const] std::shared_ptr<type> [&])
+* `includes`: array of strings, name of the include files surrounded by the \" or <,>
 
 ### Relationships
 

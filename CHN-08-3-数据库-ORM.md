@@ -106,6 +106,17 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
 
 链式接口基本可以望文生义，这里不再一一赘述，请参考Mapper.h头文件。
 
+### 转换
+
+`convert`配置选项是模型配置所独有的。在从数据库读取值或将值写入数据库之前或之后，它将添加一个转换层。该选项包含一个布尔值`enabled`组成，以使用此功能或不使用此功能。 `ìtems`数组中的对象由以下键组成：
+
+* `table`: 包含需要转换字段的表的名字
+* `column`: 需要转换的字段的名字
+* `method`: 转换的方法对象
+  * `after_db_read`: 从数据库读出后调用的方法的名字, 签名为: void([const] std::shared_ptr<type> [&])
+  * `before_db_write`: 写入数据库前调用的方法的名字, 签名为: void([const] std::shared_ptr<type> [&])
+* `includes`: 字符串数组, 表示需要包含的文件，首尾为`"`或`< >`
+
 ### 关系
 
 数据库的表与表之间的关系，可以通过model.json配置文件中的relationships选项进行配置，我们采用了手动配置的方式而不是自动探测表的外键是因为现实工程中不使用外键的情况也非常常见。
