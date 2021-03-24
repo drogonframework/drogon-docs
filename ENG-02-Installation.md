@@ -203,6 +203,77 @@ Or
 vcpkg.exe install drogon:x64-windows
 ```
 
+__if you haven't install vcpkg:__
+
+0. [Lazzy to read](https://www.youtube.com/watch?v=0ojHvu0Is6A)
+
+1. Assuming that you don't have `cmake.exe`, `make.exe` and `vcpkg.exe`
+
+2. Make it sure you're already install `git` for windows too
+
+3. First, go to where you want to install `vcpkg`.
+    - In this case, we're gonna use `C:/Dev` directory.
+    - If you don't have that directory yet, open your __*powershell*__ as administrator:
+        - type and enter:
+            - `cd c:/`
+            - `mkdir Dev;cd Dev;` mean you will create __dev__ and go to __dev__ directory
+            - `git clone https://github.com/microsoft/vcpkg`
+            - `cd vcpkg`
+            - `./bootstrap-vcpkg.bat` this will install `vcpkg.exe`
+            - note: to update your vcpkg, you just need to type `git pull`
+            - to make it sure that vcpkg directory always able to access:
+                - add `C:/dev/vpckg` to your windows __*environment variables*__.
+            - restart/re-open your __*powershell*__
+
+4. Now check if vcpkg already installed properly, just type `vcpkg` or `vcpkg.exe`
+
+5. To install drogon framework. Type:
+    - 32-Bit: `vcpkg install drogon`
+    - 64-Bit: `vcpkg install drogon:x64-windows`
+    - wait till all dependencies are installed.
+    - note:
+        - if there's any package is/are uninstalled and you got error, just install that package. e.g.:
+            - zlib : `vcpkg install zlib` or `vcpkg install zlib:x64-windows` for 64-Bit
+        - to check what already installed:
+            - `vcpkg list`
+
+6. To add __*drogon_ctl*__ command and dependencies, you need to add some variables. By following this guide, you just need to add:
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\tools\drogon
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\bin
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\lib
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\include
+    ```
+    to your windows __*environment variables*__.
+
+7. reload/re-open your __*powershell*__, then type:
+    - `drogon_ctl` or `drogon_ctl.exe`
+    - press __enter__
+    - if:
+    ```
+    usage: drogon_ctl [-v | --version] [-h | --help] <command> [<args>]
+    commands list:
+    create                  create some source files(Use 'drogon_ctl help create' for more information)
+    help                    display this message
+    press                   Do stress testing(Use 'drogon_ctl help press' for more information)
+    version                 display version of this tool
+    ```
+    showed up, you are good to go.
+
+8. Note:
+    - you need to be familiar with building cpp libraries by using:
+        - independent `gcc` or `g++`
+        <br>or
+        - Microsoft Visual Studio compiler
+
+<br>
+
 ## Use Docker Image
 
 We also provide a pre-build docker image on the [docker hub](https://hub.docker.com/r/drogonframework/drogon). All dependencies of Drogon and Drogon itself are already installed in the docker environment, where users can build Drogon-based applications directly.
