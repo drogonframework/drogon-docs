@@ -33,13 +33,18 @@ The ssl option is to configure SSL files of the https service as follows:
 ```json
   "ssl": {
     "cert": "../../trantor/trantor/tests/server.pem",
-    "key": "../../trantor/trantor/tests/server.pem"
+    "key": "../../trantor/trantor/tests/server.pem",
+    "conf":[
+      ["Options", "Compression"],
+      ["min_protocol", "TLSv1.2"]
+    ]
   }
 ```
 
-Where `cert` is the path of the certificate file and `key` is the path of the private key file. If a file contains both a certificate and a private key, the two paths can be made the same.
+Where `cert` is the path of the certificate file and `key` is the path of the private key file. If a file contains both a certificate and a private key, the two paths can be made the same. The file is in PEM encoding format. 
 
-The file is in PEM encoding format.
+`conf` are optional SSL options that are directly passed into [SSL_CONF_cmd](https://www.openssl.org/docs/manmaster/man3/SSL_CONF_cmd.html) to allow low level configuration of the encryption. The options must be one or two element arrays.
+
 
 ### listeners
 
