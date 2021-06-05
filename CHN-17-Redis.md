@@ -1,0 +1,73 @@
+Drogon 支持 Redis，Redis是一种非常快速的内存数据存储。 可以用作数据库缓存或消息代理。 与 Drogon 中其他原建一樣，Redis的操作是异步的。 这确保了 Drogon 即使在重负载下也能以非常高的并发性运行。 
+
+Redis 支持依赖于hiredis 库。 如果在构建 Drgon 时hiredis 不可用，则Redis支持将不可用。 
+
+### 创建客户端
+
+Redis 客户端可以通过以下方式以方式创建：
+
+```c++
+app().createRedisClient("127.0.0.1", 6379);
+...
+// After app.run()
+RedisClientPtr redisClient = app().getRedisClient();
+``` 
+
+### 使用Redis
+
+execCommandAsync 以异步方式执行 Redis 命令。 它至少需要3个参数，第一个和第二个是在Redis命令成功或失败时调用的回调。 第三是命令本身。 该命令可以是C风格的格式字符串。 其余部分是格式字符串的参数。 例如，要设置 `name` 為 `drogon`： 
+
+```c++
+redisClient->execCommandAsync(
+    [](const drogon::nosql::RedisResult &r) {}
+    [](const std::exception &err) {
+        LOG_ERROR << "something failed!!! " << e.what();
+    },
+    "set name drogon");
+```
+
+或者将 `myid` 设置为 `587d-4709-86e4` 
+
+```c++
+redisClient->execCommandAsync(
+    [](const drogon::nosql::RedisResult &r) {}
+    [](const std::exception &err) {
+        LOG_ERROR << "something failed!!! " << e.what();
+    },
+    "set myid %s", "587d-4709-86e4");
+```
+
+同样的 execCommandAsync 也可以从 Redis 取得数据。 
+
+```c++
+redisClient->execCommandAsync(
+    [](const drogon::nosql::RedisResult &r) {
+        if (r.type() == RedisResultType::kNull)
+            LOG_INFO << "Cannot find variable associated with the key 'name'";
+        else
+            LOG_INFO << "Name is " << r.asString();
+    }
+    [](const std::exception &err) {
+        LOG_ERROR << "something failed!!! " << e.what();
+    },
+    "get name");
+```
+
+### Redis 事务
+
+Redis 事务允许在一个步骤中执行多个命令。 事务中的所有命令都按顺序执行，其他客户端的命令不会在事务**中间**执行。 并且事务是原子操作。 这意味着要么执行所有操作，要么出现问题并且在执行事务之前回滚所有内容。
+
+newTransactionAsync 方法创建一个新事务。 然后就可以像普通的 RedisClient 一样使用事务。 最后，RedisTransaction::execute 方法执行事务。 
+
+```c++
+redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
+    transPtr->execCommandAsync(
+        [](const drogon::nosql::RedisResult &r) { /* this command works */ }
+        [](const std::exception &err) { /* this command failed */ },
+    "set name drogon");
+
+    transPtr->execute(
+        [](const drogon::nosql::RedisResult &r) { /* transaction worked */ },
+        [](const std::exception &err) { /* transaction failed */ });
+});
+```
