@@ -31,11 +31,15 @@ ssl项是为了配置https服务的加密配置文件，如下：
 ```json
   "ssl": {
     "cert": "../../trantor/trantor/tests/server.pem",
-    "key": "../../trantor/trantor/tests/server.pem"
+    "key": "../../trantor/trantor/tests/server.pem",
+    "conf":[
+      ["Options", "Compression"],
+      ["min_protocol", "TLSv1.2"]
+    ]
   }
 ```
 
-其中，cert是证书文件路径，key是私钥文件路径，如果一个文件既包含证书也包含私钥，则两个路径可以配制成相同的。
+其中，cert是证书文件路径，key是私钥文件路径，如果一个文件既包含证书也包含私钥，则两个路径可以配制成相同的。conf则是可选的SSL选项。他们会直接被传入[SSL_CONF_cmd](https://www.openssl.org/docs/manmaster/man3/SSL_CONF_cmd.html)裡，用来客製化SSL连线。这些选项必须是一个或是两个元素的字串数组。
 
 文件的编码格式PEM。
 
