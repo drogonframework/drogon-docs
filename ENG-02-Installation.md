@@ -280,7 +280,7 @@ We also provide a pre-build docker image on the [docker hub](https://hub.docker.
 
 ## Use Nix Package
 
-There is a Nix package offered for Drogon.  Currently, if you wish to use this package you must use the unstable channel.  You can add this channel with the alias "unstable" by running:
+There is a Nix package offered for Drogon. Currently, if you wish to use this package you must use the unstable channel. You can add this channel with the alias "unstable" by running:
 
 ```
 sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
@@ -301,9 +301,8 @@ pkgs.mkShell {
 }
 ```
 
-Enter the shell by running `nix-shell` in the root of your project.  This will install Drogon and enter you into an environment with all its dependancies.
+Enter the shell by running `nix-shell`. This will install Drogon and enter you into an environment with all its dependancies.
 
-__if you haven't installed Nix:__
-To install Nix, you can follow the instructions on the [NixOS website](https://nixos.org/download.html).
+__if you haven't installed Nix:__ You can follow the instructions on the [NixOS website](https://nixos.org/download.html).
 
 # 03 [Quick Start](ENG-03-Quick-Start)
