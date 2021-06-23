@@ -284,6 +284,7 @@ There is a Nix package offered for Drogon. Currently, if you wish to use this pa
 
 ```
 sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+sudo nix-channel --update
 ```
 
 You can use the package by adding the following `shell.nix` to your project root:
