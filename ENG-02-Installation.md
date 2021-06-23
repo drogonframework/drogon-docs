@@ -278,4 +278,51 @@ __if you haven't install vcpkg:__
 
 We also provide a pre-build docker image on the [docker hub](https://hub.docker.com/r/drogonframework/drogon). All dependencies of Drogon and Drogon itself are already installed in the docker environment, where users can build Drogon-based applications directly.
 
+## Use Nix Package
+
+There is a Nix package offered for Drogon. Currently, if you wish to use this package you must use the unstable channel. You can add this channel with the alias "unstable" by running:
+
+```
+sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+sudo nix-channel --update
+```
+
+You can use the package by adding the following `shell.nix` to your project root:
+
+```
+{ pkgs ? import <unstable> {} }:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs; [
+    cmake
+  ];
+
+  buildInputs = with pkgs; [
+    drogon
+  ];
+}
+```
+
+Enter the shell by running `nix-shell`. This will install Drogon and enter you into an environment with all its dependancies.
+
+The Nix package has a few options which you can configure according to your needs:
+
+| option | default value |
+| --- | --- |
+| sqliteSupport | true |
+| postgresSupport | false |
+| redisSupport | false |
+| mysqlSupport | false |
+
+Here is an example of how you can change their values:
+
+```
+  buildInputs = with pkgs; [
+    (drogon.override {
+      sqliteSupport = false;
+    })
+  ];
+```
+
+__if you haven't installed Nix:__ You can follow the instructions on the [NixOS website](https://nixos.org/download.html).
+
 # 03 [Quick Start](ENG-03-Quick-Start)
