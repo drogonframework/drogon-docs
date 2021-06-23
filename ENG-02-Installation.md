@@ -303,6 +303,25 @@ pkgs.mkShell {
 
 Enter the shell by running `nix-shell`. This will install Drogon and enter you into an environment with all its dependancies.
 
+The Nix package has a few options which you can configure according to your needs:
+
+| option | default value |
+| --- | --- |
+| sqliteSupport | true |
+| postgresSupport | false |
+| redisSupport | false |
+| mysqlSupport | false |
+
+Here is an example of how you can change their values:
+
+```
+  buildInputs = with pkgs; [
+    (drogon.override {
+      sqliteSupport = false;
+    })
+  ];
+```
+
 __if you haven't installed Nix:__ You can follow the instructions on the [NixOS website](https://nixos.org/download.html).
 
 # 03 [Quick Start](ENG-03-Quick-Start)
