@@ -1,5 +1,7 @@
 DrogonTest is a minimal testing framework built into drogon to enable easy asynchronous testing as well as synchronous ones. It is used for Drogon's own unittests adn integration tests. But could also be used for testing applications built with Drogon. The syntax of DrogonTest is enspired by both [GTest](https://github.com/google/googletest) and [Catch2](https://github.com/catchorg/Catch2).
 
+You don't have to use DrogonTest for your application. Use whatever you are comfortable with. But it is an option.
+
 ### Basic testing
 
 Let's start with a simple example. You have a synchronous function that computes the sum of natural numbers up to a given value. And you want to test it for correctness.
@@ -89,7 +91,7 @@ DROGON_TEST(TestContent)
 }
 ```
 
-Likewise, `CO_REQUIRE` is like REQUIRE. But for coroutines. And `DEMAND` can be used when an operation failed to modify an unrecoverable global state. Which the only logical thing to do is to stop testing competely.
+Likewise, `CO_REQUIRE` is like REQUIRE. But for coroutines. And `DEMAND` can be used when an operation failed and it modifies an unrecoverable global state. Which the only logical thing to do is to stop testing completely.
 
 ### Asynchronous testing
 
@@ -163,7 +165,7 @@ int main()
 
 ### CMake integration
 
-Like most testing frmaeworks, DrogonTest can integrate itself into CMMake. The `ParseAndAddDrogonTest` function adds tests it sees in the source file to CMake's CTest framework.
+Like most testing frmaeworks, DrogonTest can integrate itself into CMake. The `ParseAndAddDrogonTest` function adds tests it sees in the source file to CMake's CTest framework.
 
 ```cmake
 include(ParseAndAddDrogonTest)
