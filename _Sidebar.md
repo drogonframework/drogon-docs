@@ -34,7 +34,8 @@
 * [Coz profiling](ENG-14-Coz)
 * [Brotli info](ENG-15-Brotli)
 * [Coroutines](ENG-16-Coroutines)
-* [redis](ENG-17-Redis)
+* [Redis](ENG-17-Redis)
+* [Testing Framework](ENG-18-Testing-Framework)
 
 ## 中文文档
 
@@ -70,4 +71,5 @@
 * [AOP面向切面编程](CHN-12-AOP面向切面编程)
 * [性能测试](CHN-13-性能测试)
 * [协程](CHN-16-协程)
-* [redis](CHN-17-redis)
+* [Redis](CHN-17-Redis)
+* [测试框架](CHN-18-测试框架)
