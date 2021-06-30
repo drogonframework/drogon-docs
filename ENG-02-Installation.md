@@ -119,7 +119,7 @@ yum install zlib-devel
 
 **Note: These libraries below are not mandatory. You could choose to install one or more database according to your actual needs.**
 
-**Note: If you want to develop you webapp with database, please install the database develop environment first, then install drogon, otherwise you will encounter a `NO DATABASE FOUND` issue.**
+**Note: If you want to develop your webapp with database, please install the database develop environment first, then install drogon, otherwise you will encounter a `NO DATABASE FOUND` issue.**
 
 
 
