@@ -73,7 +73,7 @@ DrogonTest 带有各种类型的测试和操作。 基本的 `CHECK()` 只检查
 | 不做任何事                 | CHECK      | CHECK_THROWS      | CHECK_NOTHROW      | CHECK_THROWS_AS      | 
 | 返回                      | REQUIRE    | REQUIRE_THROWS    | REQUIRE_NOTHROW    | REQUIRE_THROWS_AS    | 
 | 自协程返回                 | CO_REQUIRE | CO_REQUIRE_THROWS | CO_REQUIRE_NOTHROW | CO_REQUIRE_THROWS_AS | 
-| 杀死进程                   | DEMAND     | DEMAND_THROWS     | DEMAND_NOTHROW     | DEMAND_THROWS_AS     | 
+| 杀死进程                   | MANDATE     | MANDATE_THROWS     | MANDATE_NOTHROW     | MANDATE_THROWS_AS     | 
 
 让我们尝试一个稍微实际的例子。 假设我们正在测试文件的内容是否符合预期。 若程序无法打开文件则没有必要进一步检查。 因此，我们可以使用 REQUIRE 来缩短和减少重复代码。 
 
@@ -91,7 +91,7 @@ DROGON_TEST(TestContent)
 }
 ```
 
-同样，`CO_REQUIRE` 就像 REQUIRE。 但是用于协程。 当操作修改且不可恢复的全局状态时，可以使用`DEMAND`。 唯一合乎逻辑的做法是停止测试。 
+同样，`CO_REQUIRE` 就像 REQUIRE。 但是用于协程。 当操作修改且不可恢复的全局状态时，可以使用`MANDATE`。 唯一合乎逻辑的做法是停止测试。 
 
 ### 异步测试
 

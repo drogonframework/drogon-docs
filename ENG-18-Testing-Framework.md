@@ -73,7 +73,7 @@ DrogonTest comes with a variety of assertions and actions. The basic `CHECK()` s
 | nothing                   | CHECK      | CHECK_THROWS      | CHECK_NOTHROW      | CHECK_THROWS_AS      | 
 | return                    | REQUIRE    | REQUIRE_THROWS    | REQUIRE_NOTHROW    | REQUIRE_THROWS_AS    | 
 | co_return                 | CO_REQUIRE | CO_REQUIRE_THROWS | CO_REQUIRE_NOTHROW | CO_REQUIRE_THROWS_AS | 
-| kill process              | DEMAND     | DEMAND_THROWS     | DEMAND_NOTHROW     | DEMAND_THROWS_AS     | 
+| kill process              | MANDATE     | MANDATE_THROWS     | MANDATE_NOTHROW     | MANDATE_THROWS_AS     | 
 
 Let's try a slightly practical example. Let's say you're testing if the content of a file is what you're expecting. There's no point to further test if the program failed to open the file. So, we can use `REQUIRE` to shorten and reduce duplicated code.
 
@@ -91,7 +91,7 @@ DROGON_TEST(TestContent)
 }
 ```
 
-Likewise, `CO_REQUIRE` is like REQUIRE. But for coroutines. And `DEMAND` can be used when an operation failed and it modifies an unrecoverable global state. Which the only logical thing to do is to stop testing completely.
+Likewise, `CO_REQUIRE` is like REQUIRE. But for coroutines. And `MANDATE` can be used when an operation failed and it modifies an unrecoverable global state. Which the only logical thing to do is to stop testing completely.
 
 ### Asynchronous testing
 
