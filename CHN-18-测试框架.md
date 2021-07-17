@@ -148,7 +148,7 @@ int main()
     // Start the main loop on another thread
     std::thread thr([&]() {
         // Queues the promis to be fulfilled after starting the loop
-        app().getLoop()->queueInLoop([]() { p1.set_value(); });
+        app().getLoop()->queueInLoop([&p1]() { p1.set_value(); });
         app().run();
     });
 
@@ -165,13 +165,13 @@ int main()
 
 ### CMake 集成
 
-与大多数测试框架一样，DrgonTest 可以将自身集成到 CMake 中。 `ParseAndAddDrogonTest` 函数将它在源文件中看到的测试添加到 CMake 的 CTest 框架中。
+与大多数测试框架一样，DrgonTest 可以将自身集成到 CMake 中。 `ParseAndAddDrogonTests` 函数将它在源文件中看到的测试添加到 CMake 的 CTest 框架中。
 
 ```cmake
-include(ParseAndAddDrogonTest)
+include(ParseAndAddDrogonTest) # Also loads ParseAndAddDrogonTests
 add_executable(mytest main.cpp)
-target_link_libraries(mytest PRIVATE drogon)
-ParseAndAddDrogonTest(mytest)
+target_link_libraries(mytest PRIVATE Drogon::Drogon)
+ParseAndAddDrogonTests(mytest)
 ```
 
 现在可以通过构建系统（在本例中为 Makefile）运行测试。 

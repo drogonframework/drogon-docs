@@ -148,7 +148,7 @@ int main()
     // Start the main loop on another thread
     std::thread thr([&]() {
         // Queues the promis to be fulfilled after starting the loop
-        app().getLoop()->queueInLoop([]() { p1.set_value(); });
+        app().getLoop()->queueInLoop([&p1]() { p1.set_value(); });
         app().run();
     });
 
@@ -165,13 +165,13 @@ int main()
 
 ### CMake integration
 
-Like most testing frmaeworks, DrogonTest can integrate itself into CMake. The `ParseAndAddDrogonTest` function adds tests it sees in the source file to CMake's CTest framework.
+Like most testing frmaeworks, DrogonTest can integrate itself into CMake. The `ParseAndAddDrogonTests` function adds tests it sees in the source file to CMake's CTest framework.
 
 ```cmake
-include(ParseAndAddDrogonTest)
+find_package(Drogon REQUIRED) # also loads ParseAndAddDrogonTests
 add_executable(mytest main.cpp)
-target_link_libraries(mytest PRIVATE drogon)
-ParseAndAddDrogonTest(mytest)
+target_link_libraries(mytest PRIVATE Drogon::Drogon)
+ParseAndAddDrogonTests(mytest)
 ```
 
 Now the test could be ran through build system (Makefile in this case).
