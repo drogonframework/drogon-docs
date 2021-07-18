@@ -126,6 +126,8 @@ The directory structure of the project is as follows:
 ├── main.cc                       Main program
 ├── models                        The directory of the database model file, model source file creation see 11.2.5
 │   └── model.json
+├── tests                         The direftory for unit/integration tests
+│   └── test_main.cc              Entry point for tests
 └── views                         The directory where view csp files are stored, the source file does not need to be manually created by the user, and csp files are automatically preprocessed to obtain view source files when the project is compiled.
 ```
 
