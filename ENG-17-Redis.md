@@ -100,4 +100,19 @@ redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
 
 ### Coroutines
 
-Redis clients support coroutines. One should use the gcc11 compiler or a newer compiler and use `cmake -DCMAKE_CXX_FLAGS=-fcoroutines` to enable it.
+Redis clients support coroutines. One should use the GCC 11 or a newer compiler and use `cmake -DCMAKE_CXX_FLAGS="-std=c++20"` to enable it. See the (coroutine)[ENG-16-Coroutines] section for more information.
+
+```c++
+try
+{
+    auto transaction = co_await redisClient->newTransactionCoro();
+    co_await transaction->execCommandCoro("set zzz 123");
+    co_await transaction->execCommandCoro("set mening 42");
+    co_await transaction->executeCoro();
+}
+catch(const std::exception& e)
+{
+    LOG_ERROR << "Redis failed: " << e.what();
+}
+```
+
