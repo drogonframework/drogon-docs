@@ -99,4 +99,18 @@ redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
 
 ### 协程
 
-Redis 客户端也支持协程. 需要gcc11或者更新的编译器，并且使用`cmake -DCMAKE_CXX_FLAGS=-fcoroutines` 来使能它.
+Redis 客户端也支持协程. 需要GCC 11或者更新的编译器，并且使用`cmake -DCMAKE_CXX_FLAGS="-std=c++20"` 来使能它。見[协程](CHN-16-协程)取得细节
+
+```c++
+try
+{
+    auto transaction = co_await redisClient->newTransactionCoro();
+    co_await transaction->execCommandCoro("set zzz 123");
+    co_await transaction->execCommandCoro("set mening 42");
+    co_await transaction->executeCoro();
+}
+catch(const std::exception& e)
+{
+    LOG_ERROR << "Redis failed: " << e.what();
+}
+```

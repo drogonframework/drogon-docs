@@ -128,6 +128,8 @@ dg_ctl create project ProjectName
 ├── main.cc                       主程序
 ├── models                        数据库模型文件的目录，模型源文件创建见11.2.5
 │   └── model.json
+├── tests                         存放测试程序的目录
+│   └── test_main.cc              测试主程序
 └── views                         存放视图csp文件的目录，源文件无需用户手动创建，工程编译时会自动预处理csp文件得到视图的源文件
 ```
 

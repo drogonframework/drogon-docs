@@ -16,7 +16,7 @@
 *  OpenSSL，并非必须，如果安装了OpenSSL库，drogon将支持HTTPS，否则drogon只支持HTTP；
 *  c-ares, 并非必须，如果安装了ares库，drogon对DNS的支持会具有更好的性能；
 *  libbrotli，并非必须，如果安装了brotli库，drogon的HTTP响应会支持brotli压缩；
-*  boost，版本**不低于1.61**，只在C++编译器不支持c++17时才需要安装；
+*  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
 *  postgreSQL, mariadb, sqlite3的客户端开发库，并非必须，安装后drogon会提供对响应的库的访问能力；
 *  gtest, 并非必须，如果安装了gtest库，drogon的单元测试代码可以被编译；
 
