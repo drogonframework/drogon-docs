@@ -63,7 +63,8 @@ class EchoWebsock:public drogon::WebSocketController<EchoWebsock>
 {
 public:
     virtual void handleNewMessage(const WebSocketConnectionPtr&,
-                                  std::string &&)override;
+                                  std::string &&,
+                                  const WebSocketMessageType &)override;
     virtual void handleNewConnection(const HttpRequestPtr &,
                                      const WebSocketConnectionPtr&)override;
     virtual void handleConnectionClosed(const WebSocketConnectionPtr&)override;
@@ -103,7 +104,8 @@ The user-defined websocket controller class inherits from the `drogon::WebSocket
 
 ```c++
 virtual void handleNewConnection(const HttpRequestPtr &req,const WebSocketConnectionPtr &wsConn);
-virtual void handleNewMessage(const WebSocketConnectionPtr &wsConn,std::string &&message);
+virtual void handleNewMessage(const WebSocketConnectionPtr &wsConn,std::string &&message,
+const WebSocketMessageType &);
 virtual void handleConnectionClosed(const WebSocketConnectionPtr &wsConn);
 ```
 
