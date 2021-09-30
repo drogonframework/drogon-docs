@@ -169,6 +169,17 @@ The suboption of the app option, an array of strings, with default values ​​
     ],
 ```
 
+### mime
+
+The suboption of the app option, a dictionary of strings to strings or an array of strings. Declares how file extenstions are mapped to new MIME types (i.e. for those not recognized by default) when sending static files. Note that this options merely registers the MIME. The framework still sends a 404 if the extensoin is not in `file_types` described above.
+
+```json
+"mime" : {
+  "text/markdown": "md",
+  "text/gemini": ["gmi", "gemini"]
+}
+```
+
 ### Connection number control
 
 The children of the `app` option have two options, as follows:
