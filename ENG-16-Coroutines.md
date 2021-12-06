@@ -1,6 +1,6 @@
 ## Coroutine
 
-Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a way to flatten the control flow of asyncrynous calls, i.e. escaping the callback hell. With it, asyncrynois programming becomes as easy as syncrinous ones.
+Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a way to flatten the control flow of asyncrynous calls, i.e. escaping the callback hell. With it, asyncrynois programming becomes as easy as synchronous ones.
 
 ### Terminology
 
