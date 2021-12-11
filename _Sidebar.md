@@ -37,7 +37,7 @@
 * [Redis](ENG-17-Redis)
 * [Testing Framework](ENG-18-Testing-Framework)
 * [FAQ](ENG-FAQ)
-        * [Understanding drogon's threading model](ENG-FAQ-1-Understanding-drogon-threading-model)
+    * [Understanding drogon's threading model](ENG-FAQ-1-Understanding-drogon-threading-model)
 
 ## 中文文档
 
@@ -76,4 +76,4 @@
 * [Redis](CHN-17-Redis)
 * [测试框架](CHN-18-测试框架)
 * [FAQ](ENG-FAQ)
-        * [drogon的线程模型](CHN-FAQ-1-线程模型)
+    * [drogon的线程模型](CHN-FAQ-1-线程模型)
