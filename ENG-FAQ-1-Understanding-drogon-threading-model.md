@@ -43,7 +43,12 @@ The thread hierarchy looks like this
  <thread 1>     <thread 2>   <thread ...>
 ```
 
-The number of worker loops depends on numerous variables. Namely, how many threads are specified for the HTTP server, how many non-fast DB and NoSQL connections are created - we'll get to fast vs non-fast connections later. Just know that drogon has more threads than just the HTTP server threads. Each event loop is essentally a task queue. You can submit task to run on the a loop from any other threads. Task submitting is totally lock free (thanks to lock free data structure!) and won't cause data race in all circumstances. They process tasks one-by-one and goes to sleep when there's nothing to do. Thus tasks have a well-defined order of execution. But also, tasks that's queued after a huge, long running task gets delayed.
+The number of worker loops depends on numerous variables. Namely, how many threads are specified for the HTTP server, how many non-fast DB and NoSQL connections are created - we'll get to fast vs non-fast connections later. Just know that drogon has more threads than just the HTTP server threads. Each event loop is essentally a task queue with the following funcionality.
+
+* Reads tasks from a test queue and execute them.  You can submit task to run on the a loop from any other threads. Task submitting is totally lock free (thanks to lock free data structure!) and won't cause data race in all circumstances. Event loops process tasks one-by-one. Thus tasks have a well-defined order of execution. But also, tasks that's queued after a huge, long running task gets delayed.
+* Listen to and dispatch network events that it manages 
+* Execue timers when they timeout (usually created by the user)
+When non of the above is happning. The event loop/thread blocks and waits for them.
 
 ```cpp
 // queuing two tasks on the main loop
