@@ -75,5 +75,5 @@
 * [协程](CHN-16-协程)
 * [Redis](CHN-17-Redis)
 * [测试框架](CHN-18-测试框架)
-* [FAQ](ENG-FAQ)
+* [FAQ](CHN-FAQ)
     * [drogon的线程模型](CHN-FAQ-1-线程模型)
