@@ -44,9 +44,9 @@ execCommandAsync 以异步方式执行 Redis 命令。 它至少需要3个参数
 
 ```c++
 redisClient->execCommandAsync(
-    [](const drogon::nosql::RedisResult &r) {}
+    [](const drogon::nosql::RedisResult &r) {},
     [](const std::exception &err) {
-        LOG_ERROR << "something failed!!! " << e.what();
+        LOG_ERROR << "something failed!!! " << err.what();
     },
     "set name drogon");
 ```
@@ -55,9 +55,9 @@ redisClient->execCommandAsync(
 
 ```c++
 redisClient->execCommandAsync(
-    [](const drogon::nosql::RedisResult &r) {}
+    [](const drogon::nosql::RedisResult &r) {},
     [](const std::exception &err) {
-        LOG_ERROR << "something failed!!! " << e.what();
+        LOG_ERROR << "something failed!!! " << err.what();
     },
     "set myid %s", "587d-4709-86e4");
 ```
@@ -71,9 +71,9 @@ redisClient->execCommandAsync(
             LOG_INFO << "Cannot find variable associated with the key 'name'";
         else
             LOG_INFO << "Name is " << r.asString();
-    }
+    },
     [](const std::exception &err) {
-        LOG_ERROR << "something failed!!! " << e.what();
+        LOG_ERROR << "something failed!!! " << err.what();
     },
     "get name");
 ```
@@ -87,7 +87,7 @@ newTransactionAsync 方法创建一个新事务。 然后就可以像普通的 R
 ```c++
 redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
     transPtr->execCommandAsync(
-        [](const drogon::nosql::RedisResult &r) { /* this command works */ }
+        [](const drogon::nosql::RedisResult &r) { /* this command works */ },
         [](const std::exception &err) { /* this command failed */ },
     "set name drogon");
 

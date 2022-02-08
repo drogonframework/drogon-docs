@@ -45,9 +45,9 @@ execCommandAsync executes Redis commands in an asynchronous manner. It takes at 
 
 ```c++
 redisClient->execCommandAsync(
-    [](const drogon::nosql::RedisResult &r) {}
+    [](const drogon::nosql::RedisResult &r) {},
     [](const std::exception &err) {
-        LOG_ERROR << "something failed!!! " << e.what();
+        LOG_ERROR << "something failed!!! " << err.what();
     },
     "set name drogon");
 ```
@@ -56,9 +56,9 @@ Or set `myid` to `587d-4709-86e4`
 
 ```c++
 redisClient->execCommandAsync(
-    [](const drogon::nosql::RedisResult &r) {}
+    [](const drogon::nosql::RedisResult &r) {},
     [](const std::exception &err) {
-        LOG_ERROR << "something failed!!! " << e.what();
+        LOG_ERROR << "something failed!!! " << err.what();
     },
     "set myid %s", "587d-4709-86e4");
 ```
@@ -72,9 +72,9 @@ redisClient->execCommandAsync(
             LOG_INFO << "Cannot find variable associated with the key 'name'";
         else
             LOG_INFO << "Name is " << r.asString();
-    }
+    },
     [](const std::exception &err) {
-        LOG_ERROR << "something failed!!! " << e.what();
+        LOG_ERROR << "something failed!!! " << err.what();
     },
     "get name");
 ```
@@ -88,7 +88,7 @@ The newTransactionAsync method creates a new transaction. Then the transaction c
 ```c++
 redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
     transPtr->execCommandAsync(
-        [](const drogon::nosql::RedisResult &r) { /* this command works */ }
+        [](const drogon::nosql::RedisResult &r) { /* this command works */ },
         [](const std::exception &err) { /* this command failed */ },
     "set name drogon");
 
