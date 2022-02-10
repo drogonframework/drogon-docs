@@ -4,7 +4,7 @@ Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a wa
 
 ### Terminology
 
-This page isn't intended to explain what is a coroutine nor how it works. But to show how to use coroutines in drogon. The usual vocabulary tends get messy as subroutines (functions) uses the same terminology as coroutine does, yet they have slightly different meanings. The fact that C++ coroutines can act as if they are functions doesn't help either. To reduce confusion, we'll use the termiology that follows - it is by no means perfect, but it is good enough.
+This page isn't intended to explain what is a coroutine nor how it works. But to show how to use coroutines in drogon. The usual vocabulary tends get messy as subroutines (functions) uses the same terminology as coroutine does, yet they have slightly different meanings. The fact that C++ coroutines can act as if they are functions doesn't help either. To reduce confusion, we'll use the terminology that follows - it is by no means perfect, but it is good enough.
 
 **Coroutine** is a function that can suspend execution then resume.<br/> 
 **Return** means a function finishing execution and fiving a return value to its caller. Or a coroutine generating a _resumable_ object; which can be used to resume the coroutine.<br/>
