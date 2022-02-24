@@ -261,6 +261,46 @@ __如果你尚未安装vckpg:__
 
 我们也在[docker hub](https://hub.docker.com/r/drogonframework/drogon)上提供了构建好的docker镜像. 在这个docker里Drogon和它所有的依赖都已经安装完毕，用户可以在上面直接开发Drogon应用程序。
 
+#### 使用Nix包
+
+Nix包管理器在版本21.11后提供了Drogon的Nix包。
+
+你可以在你项目的根目录下添加下面的`shell.nix`使用Drogon包:
+```
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs; [
+    cmake
+  ];
+
+  buildInputs = with pkgs; [
+    drogon
+  ];
+}
+```
+
+通过运行`nix-shell`进入shell。它将安装Drogon， 并使你拥有安装了所有依赖的环境。
+
+Drogon的Nix包有一些选项，你可以按照需要进行配置:
+
+| 选项 | 默认值 |
+| --- | --- |
+| sqliteSupport | true |
+| postgresSupport | false |
+| redisSupport | false |
+| mysqlSupport | false |
+
+这里是如何更改选项值的一个例子:
+```
+  buildInputs = with pkgs; [
+    (drogon.override {
+      sqliteSupport = false;
+    })
+  ];
+```
+
+__如果你尚未安装Nix:__ 你可以按照[NixOS website](https://nixos.org/download.html)的说明进行操作.
+
 #### 直接使用drogon源码
 
 当然，你也可以在你的项目中包含drogon源码，比如将drogon放置在你的项目目录的third_party下，那么，你只需要在你项目的cmake文件里添加如下两行：
