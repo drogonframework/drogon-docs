@@ -117,6 +117,21 @@ yum install openssl-devel
 ```shell
 yum install zlib-devel
 ```
+#### Windows
+
+##### 环境
+安装Visual Studio 2019专业版,安装选项中至少包括：
+* MSVC C++ 生成工具
+* Windows 10 SDK
+* 用于Windows的C++ CMake工具
+* Google Test测试适配器
+
+##### 包管理器
+如果有python环境，可以通过pip安装conan包管理器，当然也可以通过从官网下载connan的安装文件进行安装。
+```
+pip intall conan
+```
+conan包管理器可以提供Drogon项目的所有依赖。
 
 ## 数据库环境
 
@@ -155,6 +170,7 @@ MySQL的原生库不支持异步读写，而通过同步接口+线程池的方�
 ## 安装drogon
 
 假设上述系统环境和库依赖都已经准备好，安装过程是非常简单的；
+#### Linux源码安装
 
 ```shell
 cd $WORK_PATH
@@ -180,6 +196,34 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 * drogon的命令行工具drogon_ctl被安装到/usr/local/bin中；
 * trantor的头文件被安装到/usr/local/include/trantor中；
 * trantor的库文件libtrantor.a被安装到/usr/local/lib中；
+
+#### Windows源码安装
+安装了`conan`包管理器后,可以在Visual Studio 2019的PowellShell中执行
+```
+cd $WORK_PATH
+git clone https://github.com/an-tao/drogon
+cd drogon
+git submodule update --init
+mkdir build
+cd build
+conan install .. -s compiler="Visual Studio" -s compiler.version=16 -s build_type=Debug -g cmake_paths
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:/ -DCMAKE_TOOLCHAIN_FILE=./conan_paths.cmake
+cmake --build . --parallel --target install
+```
+**注意: conan和camke的build type必须保持一致。**
+
+安装结束后，将有如下文件被安装在系统中(CMAKE_INSTALL_PREFIX可以改变安装位置)：
+
+* drogon的头文件被安装到D:/include/drogon中；
+* drogon的库文件drogon.dll被安装到D:/bin中；
+* drogon的命令行工具drogon_ctl.exe被安装到D:/bin中；
+* trantor的头文件被安装到D:/include/trantor中；
+* trantor的库文件trantor.dll被安装到D:/bin中；
+
+添加`bin`和`cmake`路径到`path`环境变量。
+`D:\bin`
+`D:\lib\cmake\Drogon`
+`D:\lib\cmake\Trantor`
 
 #### 使用vcpkg安装
 

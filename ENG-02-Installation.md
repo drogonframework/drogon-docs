@@ -114,6 +114,21 @@ yum install openssl-devel
 ```shell
 yum install zlib-devel
 ```
+#### Windows
+
+##### Environment
+Install Visual Studio 2019 professional 2019, at least included these options:
+* MSVC C++ building tools
+* Windows 10 SDK
+* C++ CMake tools for windows
+* Test adaptor for Google Test
+
+##### Package Manager
+If python is installed on system, you could install conan package manager via pip, of course you can download the installation file from connan official website to install it also.
+```
+pip intall conan
+```
+conan package manager could provide all dependencies that Drogon projector needs。
 
 ## Database Environment
 
@@ -154,6 +169,8 @@ MariaDB installation is as follows：
 
 Assuming that the above environment and library dependencies are all ready, the installation process is very simple;
 
+#### Install by source in Linux
+
 ```shell
 cd $WORK_PATH
 git clone https://github.com/an-tao/drogon
@@ -179,6 +196,30 @@ After the installation is complete, the following files will be installed in the
 * Drogon's command line tool drogon_ctl is installed into /usr/local/bin;
 * The trantor header file is installed into /usr/local/include/trantor;
 * The trantor library file libtrantor.a is installed into /usr/local/lib;
+
+#### Install by source in Windows
+
+After installed `conan` package manager, run command in PowerShell for Visual studio as bellow:
+```
+cd $WORK_PATH
+git clone https://github.com/an-tao/drogon
+cd drogon
+git submodule update --init
+mkdir build
+cd build
+conan install .. -s compiler="Visual Studio" -s compiler.version=16 -s build_type=Debug -g cmake_paths
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:/ -DCMAKE_TOOLCHAIN_FILE=./conan_paths.cmake
+cmake --build . --parallel --target install
+```
+**Note: Must keep build type same in conan and camke.**
+
+After the installation is complete, the following files will be installed in the system（One can change the installation location with the CMAKE_INSTALL_PREFIX option）:
+
+* The header file of drogon is installed into D:/include/drogon;
+* The drogon library file drogon.dll is installed into D:/bin;
+* Drogon's command line tool drogon_ctl.exe is installed into D:/bin;
+* The trantor header file is installed into D:/include/trantor;
+* The trantor library file trantor.dll is installed into D:/lib;
 
 #### Use vcpkg
 
