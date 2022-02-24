@@ -194,6 +194,68 @@ vcpkg.exe install drogon
 ```
 vcpkg.exe install drogon:x64-windows
 ```
+__如果你尚未安装vckpg:__
+
+0. [观看安装教程](https://www.youtube.com/watch?v=0ojHvu0Is6A)
+1. 假设你尚未安装`cmake.exe`,`make.exe`和`vcpkg.exe`。
+2. 确保你已经安装了windows版的`git`。
+3. 首先，定位到你想安装`vcpkg`的目录。
+    - 此例中，我们将使用`C:/Dev`目录。
+    - 如果还不存在此目录，使用administrator管理员登陆 __*powershell*__ :
+        - `cd c:/`
+        - `mkdir Dev`
+        - `cd Dev`
+        - `git clone https://github.com/microsoft/vcpkg`
+        - `cd vcpkg`
+        - `./bootstrap-vcpkg.bat` 安装 `vcpkg.exe`
+
+         说明: 要升级vcpkg, 只需要输入`git pull`
+         确保vcpkg目录可以访问:
+         将 `C:/dev/vpckg` 添加到环境变量 __*path*__.
+         重启 __*powershell*__
+4. 通过输入`vcpkg`或者`vcpkg.exe`检查vcpkg已经正确安装。
+5. 输入指令安装drogon框架:
+    - 32-Bit: `vcpkg install drogon`
+    - 64-Bit: `vcpkg install drogon:x64-windows`
+
+    等待所有依赖安装完毕。
+    - 注意:
+        - 如果有依赖包没有安装而出现错误, 只需安装这个包,例如:
+            - zlib : `vcpkg install zlib` 或者 `vcpkg install zlib:x64-windows` for 64-Bit
+        - 检查已经正确安装:
+            - `vcpkg list`
+6. 添加 __*drogon_ctl*__ 命令和依赖到环境变量 __*path*__:
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\tools\drogon
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\bin
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\lib
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\include
+    ```
+    
+7. 重启 __*powershell*__, 输入:
+    - `drogon_ctl` 或者 `drogon_ctl.exe`
+    - 再输入 __enter__ 回车键
+    - 如果出现:
+    ```
+    usage: drogon_ctl [-v | --version] [-h | --help] <command> [<args>]
+    commands list:
+    create                  create some source files(Use 'drogon_ctl help create' for more information)
+    help                    display this message
+    press                   Do stress testing(Use 'drogon_ctl help press' for more information)
+    version                 display version of this tool
+    ```
+    说明已经安装好了。
+8. 说明:
+    - 你需要熟悉用下面的工具生成CPP库:
+        - `gcc` 或者 `g++`
+        <br>或
+        - Microsoft Visual Studio compiler
 
 #### 使用docker镜像
 
