@@ -181,15 +181,6 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 * trantor的头文件被安装到/usr/local/include/trantor中；
 * trantor的库文件libtrantor.a被安装到/usr/local/lib中；
 
-#### 直接使用drogon源码
-
-当然，你也可以在你的项目中包含drogon源码，比如将drogon放置在你的项目目录的third_party下，那么，你只需要在你项目的cmake文件里添加如下两行：
-
-```cmake
-add_subdirectory(third_party/drogon)
-target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
-```
-
 #### 使用vcpkg安装
 
 在windows下最简便的安装方式是使用vcpkg
@@ -207,5 +198,14 @@ vcpkg.exe install drogon:x64-windows
 #### 使用docker镜像
 
 我们也在[docker hub](https://hub.docker.com/r/drogonframework/drogon)上提供了构建好的docker镜像. 在这个docker里Drogon和它所有的依赖都已经安装完毕，用户可以在上面直接开发Drogon应用程序。
+
+#### 直接使用drogon源码
+
+当然，你也可以在你的项目中包含drogon源码，比如将drogon放置在你的项目目录的third_party下，那么，你只需要在你项目的cmake文件里添加如下两行：
+
+```cmake
+add_subdirectory(third_party/drogon)
+target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
+```
 
 # 03 [快速开始](CHN-03-快速开始)

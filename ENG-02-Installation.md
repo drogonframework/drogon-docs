@@ -180,15 +180,6 @@ After the installation is complete, the following files will be installed in the
 * The trantor header file is installed into /usr/local/include/trantor;
 * The trantor library file libtrantor.a is installed into /usr/local/lib;
 
-#### Include drogon source code locally
-
-Of course, you can also include the drogon source in your project. Suppose you put the drogon under the third_party of your project directory (don't forget to update submodule in the drogon source directory). Then, you only need to add the following two lines to your project's cmake file:
-
-```cmake
-add_subdirectory(third_party/drogon)
-target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
-```
-
 #### Use vcpkg
 
 The easiest way to install drogon on windows is to use vcpkg
@@ -320,4 +311,12 @@ Here is an example of how you can change their values:
 
 __if you haven't installed Nix:__ You can follow the instructions on the [NixOS website](https://nixos.org/download.html).
 
+#### Include drogon source code locally
+
+Of course, you can also include the drogon source in your project. Suppose you put the drogon under the third_party of your project directory (don't forget to update submodule in the drogon source directory). Then, you only need to add the following two lines to your project's cmake file:
+
+```cmake
+add_subdirectory(third_party/drogon)
+target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
+```
 # 03 [Quick Start](ENG-03-Quick-Start)
