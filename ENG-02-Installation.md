@@ -22,9 +22,9 @@ This section takes Linux as an example to introduce the installation process. Ot
 
 ## System Preparation Examples
 
-### Ubuntu 18.04
+#### Ubuntu 18.04
 
-#### Environment
+##### Environment
 
 ```shell
 sudo apt install git
@@ -33,34 +33,34 @@ sudo apt install g++
 sudo apt install cmake
 ```
 
-#### jsoncpp
+##### jsoncpp
 
 ```shell
 sudo apt install libjsoncpp-dev
 ```
 
-#### uuid
+##### uuid
 
 ```shell
 sudo apt install uuid-dev
 ```
 
-#### OpenSSL
+##### OpenSSL
 
 ```shell
 sudo apt install openssl
 sudo apt install libssl-dev
 ```
 
-#### zlib
+##### zlib
 
 ```shell
 sudo apt install zlib1g-dev
 ```
 
-### CentOS 7.5
+#### CentOS 7.5
 
-#### Environment
+##### Environment
 
 ```shell
 yum install git
@@ -86,7 +86,7 @@ scl enable devtoolset-8 bash
 
 **Note: Command `scl enable devtoolset-8 bash` only activate the new gcc temporarily until the session is end. If you want to always use the new gcc, you could run command `echo "scl enable devtoolset-8 bash" >> ~/.bash_profile`, system will automatically activate the new gcc after restarting.**
 
-#### jsoncpp
+##### jsoncpp
 
 ```shell
 git clone https://github.com/open-source-parsers/jsoncpp
@@ -97,19 +97,19 @@ cmake ..
 make && make install
 ```
 
-#### uuid
+##### uuid
 
 ```shell
 yum install libuuid-devel
 ```
 
-#### OpenSSL
+##### OpenSSL
 
 ```shell
 yum install openssl-devel
 ```
 
-#### zlib
+##### zlib
 
 ```shell
 yum install zlib-devel
@@ -180,7 +180,7 @@ After the installation is complete, the following files will be installed in the
 * The trantor header file is installed into /usr/local/include/trantor;
 * The trantor library file libtrantor.a is installed into /usr/local/lib;
 
-## Include drogon source code locally
+#### Include drogon source code locally
 
 Of course, you can also include the drogon source in your project. Suppose you put the drogon under the third_party of your project directory (don't forget to update submodule in the drogon source directory). Then, you only need to add the following two lines to your project's cmake file:
 
@@ -189,7 +189,7 @@ add_subdirectory(third_party/drogon)
 target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
 ```
 
-## Use vcpkg
+#### Use vcpkg
 
 The easiest way to install drogon on windows is to use vcpkg
 
@@ -220,10 +220,10 @@ __if you haven't install vcpkg:__
             - `git clone https://github.com/microsoft/vcpkg`
             - `cd vcpkg`
             - `./bootstrap-vcpkg.bat` this will install `vcpkg.exe`
-            - note: to update your vcpkg, you just need to type `git pull`
-            - to make it sure that vcpkg directory always able to access:
+            note: to update your vcpkg, you just need to type `git pull`
+             to make it sure that vcpkg directory always able to access:
                 - add `C:/dev/vpckg` to your windows __*environment variables*__.
-            - restart/re-open your __*powershell*__
+             - restart/re-open your __*powershell*__
 
 4. Now check if vcpkg already installed properly, just type `vcpkg` or `vcpkg.exe`
 
@@ -274,11 +274,11 @@ __if you haven't install vcpkg:__
 
 <br>
 
-## Use Docker Image
+#### Use Docker Image
 
 We also provide a pre-build docker image on the [docker hub](https://hub.docker.com/r/drogonframework/drogon). All dependencies of Drogon and Drogon itself are already installed in the docker environment, where users can build Drogon-based applications directly.
 
-## Use Nix Package
+#### Use Nix Package
 
 There is a Nix package for Drogon which was released in version 21.11.
 
