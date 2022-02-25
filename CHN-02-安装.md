@@ -23,9 +23,9 @@
 
 ## 系统准备范例
 
-### Ubuntu 18.04
+#### Ubuntu 18.04
 
-#### 环境
+##### 环境
 
 ```shell
 sudo apt install git
@@ -34,35 +34,35 @@ sudo apt install g++
 sudo apt install cmake
 ```
 
-#### jsoncpp
+##### jsoncpp
 
 ```shell
 sudo apt install libjsoncpp-dev
 ```
 
-#### uuid
+##### uuid
 
 ```shell
 sudo apt install uuid-dev
 ```
 
-#### OpenSSL
+##### OpenSSL
 
 ```shell
 sudo apt install openssl
 sudo apt install libssl-dev
 ```
 
-#### zlib
+##### zlib
 
 ```shell
 sudo apt install zlib1g-dev
 ```
 
 
-### CentOS 7.5
+#### CentOS 7.5
 
-#### 环境
+##### 环境
 
 ```shell
 yum install git
@@ -89,7 +89,7 @@ scl enable devtoolset-8 bash
 **注意: `scl enable devtoolset-8 bash`命令仅是临时性的使新的gcc生效，直到会话结束。如果想永久使用新版gcc,可以使用命令`echo "scl enable devtoolset-8 bash" >> ~/.bash_profile`, 系统重新启动后将自动使用新版gcc。**
 
 
-#### jsoncpp
+##### jsoncpp
 
 ```shell
 git clone https://github.com/open-source-parsers/jsoncpp
@@ -100,23 +100,38 @@ cmake ..
 make && make install
 ```
 
-#### uuid
+##### uuid
 
 ```shell
 yum install libuuid-devel
 ```
 
-#### OpenSSL
+##### OpenSSL
 
 ```shell
 yum install openssl-devel
 ```
 
-#### zlib
+##### zlib
 
 ```shell
 yum install zlib-devel
 ```
+#### Windows
+
+##### 环境
+安装Visual Studio 2019专业版,安装选项中至少包括：
+* MSVC C++ 生成工具
+* Windows 10 SDK
+* 用于Windows的C++ CMake工具
+* Google Test测试适配器
+
+##### 包管理器
+如果有python环境，可以通过pip安装conan包管理器，当然也可以通过从官网下载connan的安装文件进行安装。
+```
+pip intall conan
+```
+conan包管理器可以提供Drogon项目的所有依赖。
 
 ## 数据库环境
 
@@ -155,6 +170,7 @@ MySQL的原生库不支持异步读写，而通过同步接口+线程池的方�
 ## 安装drogon
 
 假设上述系统环境和库依赖都已经准备好，安装过程是非常简单的；
+#### Linux源码安装
 
 ```shell
 cd $WORK_PATH
@@ -181,16 +197,35 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 * trantor的头文件被安装到/usr/local/include/trantor中；
 * trantor的库文件libtrantor.a被安装到/usr/local/lib中；
 
-## 直接使用drogon源码
-
-当然，你也可以在你的项目中包含drogon源码，比如将drogon放置在你的项目目录的third_party下，那么，你只需要在你项目的cmake文件里添加如下两行：
-
-```cmake
-add_subdirectory(third_party/drogon)
-target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
+#### Windows源码安装
+安装了`conan`包管理器后,可以在Visual Studio 2019的PowellShell中执行
 ```
+cd $WORK_PATH
+git clone https://github.com/an-tao/drogon
+cd drogon
+git submodule update --init
+mkdir build
+cd build
+conan install .. -s compiler="Visual Studio" -s compiler.version=16 -s build_type=Debug -g cmake_paths
+cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:/ -DCMAKE_TOOLCHAIN_FILE=./conan_paths.cmake
+cmake --build . --parallel --target install
+```
+**注意: conan和camke的build type必须保持一致。**
 
-## 使用vcpkg安装
+安装结束后，将有如下文件被安装在系统中(CMAKE_INSTALL_PREFIX可以改变安装位置)：
+
+* drogon的头文件被安装到D:/include/drogon中；
+* drogon的库文件drogon.dll被安装到D:/bin中；
+* drogon的命令行工具drogon_ctl.exe被安装到D:/bin中；
+* trantor的头文件被安装到D:/include/trantor中；
+* trantor的库文件trantor.dll被安装到D:/bin中；
+
+添加`bin`和`cmake`路径到`path`环境变量。
+`D:\bin`
+`D:\lib\cmake\Drogon`
+`D:\lib\cmake\Trantor`
+
+#### 使用vcpkg安装
 
 在windows下最简便的安装方式是使用vcpkg
 
@@ -203,9 +238,120 @@ vcpkg.exe install drogon
 ```
 vcpkg.exe install drogon:x64-windows
 ```
+__如果你尚未安装vckpg:__
 
-## 使用docker镜像
+0. [观看安装教程](https://www.youtube.com/watch?v=0ojHvu0Is6A)
+1. 假设你尚未安装`cmake.exe`,`make.exe`和`vcpkg.exe`。
+2. 确保你已经安装了windows版的`git`。
+3. 首先，定位到你想安装`vcpkg`的目录。
+    - 此例中，我们将使用`C:/Dev`目录。
+    - 如果还不存在此目录，使用administrator管理员登陆 __*powershell*__ :
+        - `cd c:/`
+        - `mkdir Dev`
+        - `cd Dev`
+        - `git clone https://github.com/microsoft/vcpkg`
+        - `cd vcpkg`
+        - `./bootstrap-vcpkg.bat` 安装 `vcpkg.exe`
+
+         说明: 要升级vcpkg, 只需要输入`git pull`
+         确保vcpkg目录可以访问:
+         将 `C:/dev/vpckg` 添加到环境变量 __*path*__.
+         重启 __*powershell*__
+4. 通过输入`vcpkg`或者`vcpkg.exe`检查vcpkg已经正确安装。
+5. 输入指令安装drogon框架:
+    - 32-Bit: `vcpkg install drogon`
+    - 64-Bit: `vcpkg install drogon:x64-windows`
+
+    等待所有依赖安装完毕。
+    - 注意:
+        - 如果有依赖包没有安装而出现错误, 只需安装这个包,例如:
+            - zlib : `vcpkg install zlib` 或者 `vcpkg install zlib:x64-windows` for 64-Bit
+        - 检查已经正确安装:
+            - `vcpkg list`
+6. 添加 __*drogon_ctl*__ 命令和依赖到环境变量 __*path*__:
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\tools\drogon
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\bin
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\lib
+    ```
+    ```
+    C:\Dev\vcpkg\installed\x64-windows\include
+    ```
+    
+7. 重启 __*powershell*__, 输入:
+    - `drogon_ctl` 或者 `drogon_ctl.exe`
+    - 再输入 __enter__ 回车键
+    - 如果出现:
+    ```
+    usage: drogon_ctl [-v | --version] [-h | --help] <command> [<args>]
+    commands list:
+    create                  create some source files(Use 'drogon_ctl help create' for more information)
+    help                    display this message
+    press                   Do stress testing(Use 'drogon_ctl help press' for more information)
+    version                 display version of this tool
+    ```
+    说明已经安装好了。
+8. 说明:
+    - 你需要熟悉用下面的工具生成CPP库:
+        - `gcc` 或者 `g++`
+        <br>或
+        - Microsoft Visual Studio compiler
+
+#### 使用docker镜像
 
 我们也在[docker hub](https://hub.docker.com/r/drogonframework/drogon)上提供了构建好的docker镜像. 在这个docker里Drogon和它所有的依赖都已经安装完毕，用户可以在上面直接开发Drogon应用程序。
+
+#### 使用Nix包
+
+Nix包管理器在版本21.11后提供了Drogon的Nix包。
+
+你可以在你项目的根目录下添加下面的`shell.nix`使用Drogon包:
+```
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs; [
+    cmake
+  ];
+
+  buildInputs = with pkgs; [
+    drogon
+  ];
+}
+```
+
+通过运行`nix-shell`进入shell。它将安装Drogon， 并使你拥有安装了所有依赖的环境。
+
+Drogon的Nix包有一些选项，你可以按照需要进行配置:
+
+| 选项 | 默认值 |
+| --- | --- |
+| sqliteSupport | true |
+| postgresSupport | false |
+| redisSupport | false |
+| mysqlSupport | false |
+
+这里是如何更改选项值的一个例子:
+```
+  buildInputs = with pkgs; [
+    (drogon.override {
+      sqliteSupport = false;
+    })
+  ];
+```
+
+__如果你尚未安装Nix:__ 你可以按照[NixOS website](https://nixos.org/download.html)的说明进行操作.
+
+#### 直接使用drogon源码
+
+当然，你也可以在你的项目中包含drogon源码，比如将drogon放置在你的项目目录的third_party下，那么，你只需要在你项目的cmake文件里添加如下两行：
+
+```cmake
+add_subdirectory(third_party/drogon)
+target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
+```
 
 # 03 [快速开始](CHN-03-快速开始)
