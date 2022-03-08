@@ -211,7 +211,7 @@ conan install .. -s compiler="Visual Studio" -s compiler.version=16 -s build_typ
 cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:/ -DCMAKE_TOOLCHAIN_FILE=./conan_paths.cmake
 cmake --build . --parallel --target install
 ```
-**Note: Must keep build type same in conan and camke.**
+**Note: Must keep build type same in conan and cmake.**
 
 After the installation is complete, the following files will be installed in the system（One can change the installation location with the CMAKE_INSTALL_PREFIX option）:
 
