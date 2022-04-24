@@ -103,7 +103,7 @@ DROGON_TEST(RemoteAPITest)
     auto client = HttpClient::newHttpClient("http://localhost:8848");
     auto req = HttpRequest::newHttpRequest();
     req->setPath("/");
-    client->sendRequest(req, [TEST_CTX](ReqResuelt res, const HttpResponsePtr& resp) {
+    client->sendRequest(req, [TEST_CTX](ReqResult res, const HttpResponsePtr& resp) {
         // There's nothing we can do if the request didn't reach the server
         // or the server generated garbage.
         REQUIRE(res == ReqResult::Ok);
