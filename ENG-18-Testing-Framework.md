@@ -101,7 +101,7 @@ Drogon is a asynchronous web framework. It only follows DrogonTest supports test
 DROGON_TEST(RemoteAPITest)
 {
     auto client = HttpClient::newHttpClient("http://localhost:8848");
-    auto req = HttpReuqest::newHttpRequest();
+    auto req = HttpRequest::newHttpRequest();
     req->setPath("/");
     client->sendRequest(req, [TEST_CTX](ReqResuelt res, const HttpResponsePtr& resp) {
         // There's nothing we can do if the request didn't reach the server
@@ -122,7 +122,7 @@ DROGON_TEST(RemoteAPITestCoro)
 {
     auto api_test = [TEST_CTX]() {
         auto client = HttpClient::newHttpClient("http://localhost:8848");
-        auto req = HttpReuqest::newHttpRequest();
+        auto req = HttpRequest::newHttpRequest();
         req->setPath("/");
 
         auto resp = co_await client->sendRequestCoro(req);
