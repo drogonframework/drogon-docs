@@ -2,7 +2,7 @@
 
 ```c++
         void disableSession();
-        void enableSession(const size_t timeout=0, Cookie::SameSite sameSite=Cooie::SameSite::kNull);  
+        void enableSession(const size_t timeout=0, Cookie::SameSite sameSite=Cooie::SameSite::kNull);
 ```
 
 The above methods are all called through the `HttpAppFramework` singleton. The timeout parameter represents the time when the session is invalid. The unit is second. The default value is 1200. That is, if the user does not access the web application for more than 20 minutes, the corresponding session will be invalid. Setting timeout to 0 means that drogon will retain the user's session for the entire lifetime;
