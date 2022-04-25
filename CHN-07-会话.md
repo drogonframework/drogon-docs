@@ -2,7 +2,7 @@
 
 ```c++
         void disableSession();
-        void enableSession(const size_t timeout=0);  
+        void enableSession(const size_t timeout=0, Cookie::SameSite sameSite=Cooie::SameSite::kNull);
 ```
 
 都是通过`HttpAppFramework`单例调用，timeout参数代表了会话失效的时间，单位是秒，框架默认值是1200，即如果用户20分钟以上没有访问应用，则他对应的会话就失效了。timeout设置为0表示drogon将在整个生存期保留用户的会话；
