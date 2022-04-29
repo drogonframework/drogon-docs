@@ -268,6 +268,7 @@ __if you haven't install vcpkg:__
             - zlib : `vcpkg install zlib` or `vcpkg install zlib:x64-windows` for 64-Bit
         - to check what already installed:
             - `vcpkg list`
+        - To get drogon_ctl, one has to execute command `vcpkg install drogon[ctl]` for 32 bit or `vcpkg install drogon[ctl]:x64-windows` for 64 bit. Please run `vcpkg search drogon` for more feature option details.
 
 6. To add __*drogon_ctl*__ command and dependencies, you need to add some variables. By following this guide, you just need to add:
     ```

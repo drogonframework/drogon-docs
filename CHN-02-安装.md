@@ -268,6 +268,7 @@ __如果你尚未安装vckpg:__
             - zlib : `vcpkg install zlib` 或者 `vcpkg install zlib:x64-windows` for 64-Bit
         - 检查已经正确安装:
             - `vcpkg list`
+        - 需要运行`vcpkg install drogon[ctl]`(32 bit)或者`vcpkg install drogon[ctl]:x64-windows`(64 bit)以包含drogon_ctl。更多的安装特性选项请运行`vcpkg search drogon`查看。
 6. 添加 __*drogon_ctl*__ 命令和依赖到环境变量 __*path*__:
     ```
     C:\Dev\vcpkg\installed\x64-windows\tools\drogon
