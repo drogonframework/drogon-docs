@@ -144,9 +144,9 @@ auto f = clientPtr->execSqlAsyncFuture("select * from users where org_name=$1",
 try
 {
     auto result = f.get(); // Block until we get the result or catch the exception;
-    std::cout << r.size() << " rows selected!" << std::endl;
+    std::cout << result.size() << " rows selected!" << std::endl;
     int i = 0;
-    for (auto row : r)
+    for (auto row : result)
     {
         std::cout << i++ << ": user name is " << row["user_name"].as<std::string>() << std::endl;
     }
@@ -174,7 +174,7 @@ try
     auto result = clientPtr->execSqlSync("update users set user_name=$1 where user_id=$2",
                                          "test", 
                                          1); // Block until we get the result or catch the exception;
-    std::cout << r.affectedRows() << " rows updated!" << std::endl;
+    std::cout << result.affectedRows() << " rows updated!" << std::endl;
 }
 catch (const DrogonDbException &e)
 {
