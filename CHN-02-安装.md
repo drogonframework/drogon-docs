@@ -164,6 +164,8 @@ MySQL的原生库不支持异步读写，而通过同步接口+线程池的方�
 * `centOS`: ```yum install sqlite-devel```
 * `MacOS`: ```brew install sqlite3```
 
+### Redis
+* `ubuntu`: ```sudo apt-get install libhiredis-dev```
 
 **注意: 上述有些命令只安装了开发库，如果还要安装server端，请自行google。**
 

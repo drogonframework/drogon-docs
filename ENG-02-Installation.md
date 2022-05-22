@@ -163,6 +163,9 @@ MariaDB installation is as follows：
 * `centOS`: ```yum install sqlite-devel```
 * `MacOS`: ```brew install sqlite3```
 
+### Redis
+* `ubuntu`: ```sudo apt-get install libhiredis-dev```
+
 **Note: Some of the above commands only install the development library. If you want to install a server also, please use Google search yourself.**
 
 ## Drogon Installation

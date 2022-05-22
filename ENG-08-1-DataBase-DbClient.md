@@ -109,10 +109,10 @@ Let us give an example:
 ```c++
 auto clientPtr = drogon::app().getDbClient();
 clientPtr->execSqlAsync("select * from users where org_name=$1",
-                            [](const Result &r) {
-                                std::cout << r.size() << " rows selected!" << std::endl;
+                            [](const drogon::orm::Result &result) {
+                                std::cout << result.size() << " rows selected!" << std::endl;
                                 int i = 0;
-                                for (auto row : r)
+                                for (auto row : result)
                                 {
                                     std::cout << i++ << ": user name is " << row["user_name"].as<std::string>() << std::endl;
                                 }
@@ -192,11 +192,11 @@ The streaming interface is special. It inputs the sql statement and parameters i
 ```c++
 *clientPtr  << "select * from users where org_name=$1"
             << "default" 
-            >> [](const Result &r) 
+            >> [](const drogon::orm::Result &result) 
                 {
-                    std::cout << r.size() << " rows selected!" << std::endl;
+                    std::cout << result.size() << " rows selected!" << std::endl;
                     int i = 0;
-                    for (auto row : r)
+                    for (auto row : result)
                     {
                         std::cout << i++ << ": user name is " << row["user_name"].as<std::string>() << std::endl;
                     }
