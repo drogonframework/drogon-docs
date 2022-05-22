@@ -65,9 +65,14 @@ Like DbClient, Mapper also provides asynchronous and synchronous interfaces. The
 
 In the previous section, many interfaces required input criteria object parameters. The criteria object is an instance of the Criteria class, indicating a certain condition, such as a field greater than, equal to, less than a given value, or a condition such as `is Null`.
 
+```c++
+template <typename T>
+Criteria(const std::string &colName, const CompareOperator &opera, T &&arg)
+```
+
 The constructor of a criteria object is very simple. Generally, the first argument is the name of the field, the second argument is the enumeration value representing the comparison type, and the third argument is the value being compared. If the comparison type is IsNull or IsNotNull, the third parameter is not required.
 
-E.g：
+E.g:
 
 ```c++
 Criteria("user_id",CompareOperator::EQ,1);
@@ -80,6 +85,29 @@ Criteria(Users::Cols::_user_id,CompareOperator::EQ,1);
 ```
 
 This is equivalent to the previous one, but this can use the editor's automatic prompts, which is more efficient and less prone to errors;
+
+The Criteria class also supports custom where conditions along with a custom constructor.
+
+```c++
+template <typename... Arguments>
+explicit Criteria(const CustomSql &sql, Arguments &&...args)
+```
+
+The first argument is a `CustomSql` object of sql statements with  `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](ENG-08-1-DataBase-DbClient.md#execSqlAsync).
+
+E.g:
+
+```c++
+Criteria(CustomSql("tags @> $?"), "cloud");
+```
+
+The `CustomSql` class also has a related user-defined string literal, so we recommend to write the following instead:
+
+```c++
+Criteria("tags @> $?"_sql, "cloud");
+```
+
+This is equivalent to the previous one.
 
 Criteria objects support AND and OR operations. The sum of two criteria objects constructs a new criteria object, which makes it easy to construct nested conditions. For example:
 

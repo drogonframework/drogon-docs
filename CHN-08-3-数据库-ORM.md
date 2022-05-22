@@ -65,6 +65,11 @@ Mapper构造时很简单，模板参数就是你要存取的Model的类型，构
 
 上一节中，很多接口都需要输入条件对象参数，条件对象是Criteria类的实例，表示某种where条件，比如某个字段大于、等于、小于某个给定值，或者isNull之类的条件。
 
+```c++
+template <typename T>
+Criteria(const std::string &colName, const CompareOperator &opera, T &&arg)
+```
+
 条件对象的构造函数很简单，一般第一个参数是字段名，第二个参数是表示比较类型的枚举值，第三个字段是被比较的值。如果比较类型是IsNull或IsNotNull，不需要第三个参数。
 
 比如：
@@ -80,6 +85,28 @@ Criteria(Users::Cols::_user_id,CompareOperator::EQ,1);
 ```
 
 跟前面的写法等效，但是这个写法可以有助于编辑器的自动提示，效率更高并且不易出错；
+
+Criteria类还提供了一个自定义构造函数，可以表示自定义的where条件。
+
+```c++
+template <typename... Arguments>
+explicit Criteria(const CustomSql &sql, Arguments &&...args)
+```
+
+构造函数的第一个参数是一个包含了占位符`$?`的`CustomSql`对象，而`CustomSql`类只是一个std::string的包装类。第二个不定参数代表绑定的参数，其行为于[execSqlAsync](CHN-08-1-数据库-Dbclient.md#execsqlasync)中的不定参数一致。
+
+比如：
+```c++
+Criteria(CustomSql("tags @> $?"), "cloud");
+```
+
+`CustomSql`类还拥有一个与之关联的自定义字面量，因此我们更推荐写成下面这样：
+
+```c++
+Criteria("tags @> $?"_sql, "cloud");
+```
+
+这条语句跟前面的写法等效。
 
 条件对象支持与和或的运算，两个条件对象的与和或会构造出新的条件对象，这样可以方便的构造嵌套的where条件。比如：
 
