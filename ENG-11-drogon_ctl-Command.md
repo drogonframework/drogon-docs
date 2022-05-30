@@ -41,7 +41,7 @@ Use create command to create some source files of drogon webapp
 
 Usage:drogon_ctl create <view|controller|filter|project|model> [-options] <object name>
 
-drogon_ctl create view <csp file name> //create HttpView source files from csp file
+drogon_ctl create view <csp file name> [-o <output path>] [-n <namespace>]|[--path-to-namespace] //create HttpView source files from csp file
 
 drogon_ctl create controller [-s] <[namespace::]class_name> //create HttpSimpleController source files
 
