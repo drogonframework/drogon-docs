@@ -90,7 +90,7 @@ This option is used to configure the database client. It is a JSON array type. E
       "passwd": "",
       "is_fast": false,
       "connection_number": 1,
-      "file_name": ""
+      "filename": ""
     }
   ]
 ```
