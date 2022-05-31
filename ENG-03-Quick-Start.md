@@ -52,7 +52,7 @@ Now, we simply add one static file index.html to the Http root path:
 echo '<h1>Hello Drogon!</h1>' >>index.html
 ```
 
-The default root path is `"./"`, the project root (not the build directory). This could also be modified by config.json. See [Configuration File](ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
+The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
 
 
 ![Hello Drogon!](images/hellodrogon.png)
