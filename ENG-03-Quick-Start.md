@@ -19,7 +19,7 @@ There are several useful folders in the project directory already:
 └── views                         The folder where view csp files are stored
 ```
 
-Users can put various files (such as controllers, filters, views, etc.) into corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the drogon_ctl command. See [drogon_ctl](ENG-11-drogon_ctl-Command) for more details.
+Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the drogon_ctl command. See [drogon_ctl](ENG-11-drogon_ctl-Command) for more details.
 
 Let's look at the main.cc file:
 
@@ -46,27 +46,49 @@ make
 
 After the compilation is complete, run the target `./your_project_name`.
 
-Now, we add one simply static file index.html to the Http root path:
+Now, we simply add one static file index.html to the Http root path:
 
 ```shell
 echo '<h1>Hello Drogon!</h1>' >>index.html
 ```
 
-The default root path is `"./"`, this could be modified by config.json also, See [Configuration File](ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp running).
+The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
 
 
 ![Hello Drogon!](images/hellodrogon.png)
 
-If server cannot find the the page you have requested, it return 404 page:
+If the server cannot find the the page you have requested, it returns a 404 page:
 ![404 page](images/notfound.png)
 
-**Note: Make sure your server firewall have allowed the 80 port, otherwise you won't see these pages.**
+**Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.**
 
-We could copy the directory and files of a static website to the startup directory of this running webapp, then we can access them from the browser. The file types supported by drogon are "html", "js", "css", "xml", "xsl", "txt", "svg", "ttf", "otf", "woff2", "woff" , "eot", "png", "jpg", "jpeg", "gif", "bmp", "ico", "icns", etc by default. Drogon also provides interfaces to change these file types. For details, please refer to the [HttpAppFramework API](API-HttpAppFramework). 
+We could copy the directory and files of a static website to the startup directory of this running webapp, then we can access them from the browser. The file types supported by drogon by default are 
+
+- html
+- js
+- css
+- xml
+- xsl
+- txt
+- svg
+- ttf
+- otf
+- woff2
+- woff 
+- eot
+- png
+- jpg
+- jpeg
+- gif
+- bmp
+- ico
+- icns 
+
+Drogon also provides interfaces to change these file types. For details, please refer to the [HttpAppFramework API](API-HttpAppFramework). 
 
 ## Dynamic Site
 
-Let's see how to add controllers to this application， and let the controller respond contents.
+Let's see how to add controllers to this application， and let the controller respond with content.
 
 One can use the drogon_ctl command line tool to generate controller source files. Let's run it in the `controllers` directory:
 
@@ -117,15 +139,18 @@ public:
     virtual void asyncHandleHttpRequest(const HttpRequestPtr &req,
                                         std::function<void (const HttpResponsePtr &)> &&callback)override;
     PATH_LIST_BEGIN
-    //list path definitions here;
+    //list path definitions here
+
+    //example
     //PATH_ADD("/path","filter1","filter2",HttpMethod1,HttpMethod2...);
+
     PATH_ADD("/",Get,Post);
     PATH_ADD("/test",Get);
     PATH_LIST_END
 };
 ```
 
-Use PATH_ADD to map processing functions on the two paths '/' and '/test' respectively, and adding constraints on these path.
+Use PATH_ADD to map the two paths '/' and '/test' to handler functions and add optional path constraints (here, the allowed HTTP methods).
 
 TestCtrl.cc is as follows:
 
@@ -136,6 +161,7 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 {
     //write your application logic here
     auto resp=HttpResponse::newHttpResponse();
+    //NOTE: The enum constant below is named "k200OK" (as in 200 OK), not "k2000K".
     resp->setStatusCode(k200OK);
     resp->setContentTypeCode(CT_TEXT_HTML);
     resp->setBody("Hello World!");
@@ -145,19 +171,19 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 
 Recompile this project with cmake, then run the target `./your_project_name`:
 
-```shelll
+```shell
 cd ../build
 cmake ..
 make
 ./your_project_name
 ```
 
-Typing `"http://localhost/"` or `"http://localhost/test"` in the browser address bar, and you will see "Hello World!" in the browser. 
+Type `"http://localhost/"` or `"http://localhost/test"` in the browser address bar, and you will see "Hello World!" in the browser. 
 
-**Note: If your server both have static and dynamic resource, Drogon use dynamic resource first, In this example，the respond of `http://localhost/` is `Hello Word!` in `TestCtrl` controller instead of `Hello Drogon!` in static file index.html.**
+**Note: If your server has both static and dynamic resources, Drogon uses dynamic resources first. In this example，the response to `GET http://localhost/` is `Hello World!` (from the `TestCtrl` controller file) instead of `Hello Drogon!` (from the static file index.html).**
 
-We see that adding a controller to an application is very simple. You only need to add the corresponding source file. Even the main file does not need to be modified. This low-coupling design is very effective for web application development.
+We see that adding a controller to an application is very simple. You only need to add the corresponding source file. Even the main file does not need to be modified. This loosely coupled design is very effective for web application development.
 
-**Note: Drogon has no restrictions to the location of the controllers source file, you could save it at the project directory also, even you could define new directory in the `CMakeLists.txt`, it is recommended to use the controllers directory for the convenience of management.**
+**Note: Drogon has no restrictions on the location of the controller source files. You could also save them in "./" (the project root directory), or you could even define a new directory in `CMakeLists.txt`. It is recommended to use the controllers directory for the convenience of management.**
 
 # 04.0 [Controller Introduction](ENG-04-0-Controller-Introduction)

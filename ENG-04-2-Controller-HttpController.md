@@ -1,6 +1,6 @@
 ### Generation
 
-You can use the `drogon_ctl` command line tool to quickly generate custum controller class source files based on `HttpController`, the command format is as bellow:
+You can use the `drogon_ctl` command line tool to quickly generate custom controller class source files based on `HttpController`. The command format is as bellow:
 
 ```shell
 drogon_ctl create controller -h <[namespace::]class_name>
@@ -123,15 +123,15 @@ Each `HttpController` class can define many Http request handlers. Since the num
 
 The mapping from the URL path to the handler is done by macros. You can add a multipath map with the `METHOD_ADD `macro or the `ADD_METHOD_TO` macro. All `METHOD_ADD` and `ADD_METHOD_TO` statements should be sandwiched between the `METHOD_LIST_BEGIN` and `METHOD_LIST_END` macro statements.
 
-The `METHOD_ADD` macro automatically prefixes the namespace and class name in the path map. Therefore, in this example, the login function is registered to the `/demo/v1/user/token` path, and the getInfo function is registered to the `/demo/v1/user/xxx/info` path. Constraints are similar to the `PATH_ADD` macro of HttpSimpleController and not be described here. 
+The `METHOD_ADD` macro automatically prefixes the namespace and class name in the path map. Therefore, in this example, the login function is registered to the `/demo/v1/user/token` path, and the getInfo function is registered to the `/demo/v1/user/xxx/info` path. Constraints are similar to the `PATH_ADD` macro of HttpSimpleController and are not described here. 
 
-When you use the `ADD_METHOD` macro and the class belongs to some namespace, you should add namespace to the access url, in this example, use `http://localhost/demo/v1/user/token?userid=xxx&passwd=xxx` or `http://localhost/demo/v1/user/xxxxx/info?token=xxxx` to access.
+When you use the `ADD_METHOD` macro and the class belongs to some namespace, you should add that namespace to the access url. In this example, use `http://localhost/demo/v1/user/token?userid=xxx&passwd=xxx` or `http://localhost/demo/v1/user/xxxxx/info?token=xxxx`.
 
-The `ADD_METHOD_TO` macro acts almost as much as the former, except that it does not automatically add any prefixes, i.e. the path registered by the macro is an absolute path.
+The `ADD_METHOD_TO` macro does almost as much as the former, except that it does not automatically add any prefixes, i.e. the path registered by the macro is an absolute path.
 
-We see that `HttpController` provides a more flexible path mapping mechanism, we can put a class of functions in a class.
+We see that `HttpController` provides a more flexible path mapping mechanism - we can put a class of functions in a class.
 
-In addition, you can see that the macros provide a method for parameters mapping. We can map the parameters on the path to the parameter list of the function. The number of URL path parameter corresponds to the function parameter's position, this is very convenient. The common types which can be converted by string type all can be used as function parameters (such as std::string, int, float, double, etc.), the drogon framework will automatically help you convert the type, this is very convenient for developing. Note that lvalue references must be of type const.
+In addition, you can see that the macros provide a method for parameter mapping. We can map the query parameters on the path to the parameter list of the function. The number of URL path parameters corresponds to the function parameter's position, this is very convenient. The common types which can be converted by string type all can be used as function parameters (such as std::string, int, float, double, etc.), and the drogon framework will automatically help you convert the type. This is very convenient for developing. Note that lvalue references must be of a const type.
 
 The same path can be mapped multiple times, distinguished from each other by Http Method, which is legal and is a common practice of the Restful API, such as:
 
@@ -146,33 +146,33 @@ The same path can be mapped multiple times, distinguished from each other by Htt
 The placeholders of path parameters can be written in several ways:
 
 * `{}`: The position on the path is the position of the function parameter, which indicates that the path parameter maps to the corresponding position of the handler parameters.
-* `{1},{2}`: The path parameters with a number in are mapped to the handler parameters specified by the number.
-* `{anystring}`: Strings here have no practical effect, but can improve the readability of the program, equivalent to `{}`.
-* `{1:anystring},{2:xxx}`: The number before the colon represents the position, and the string behind it does not actually work, but can improve the readability of the program, which is equivalent to the `{1}` and `{2}`.
+* `{1},{2}`: The path parameters with a number in them are mapped to the handler parameters specified by the number.
+* `{anystring}`: Strings here have no practical effect, but can improve the readability of the program. Equivalent to `{}`.
+* `{1:anystring},{2:xxx}`: The number before the colon represents the position. The string after the colon has no effect but can improve the readability of the program. Equivalent to the `{1}` and `{2}`.
 
-The latter two writes are recommended, and if the path parameters and function parameters are in the same order, the third is enough. It is easy to know that the following writes are equivalent:
+The latter two are recommended, and if the path parameters and function parameters are in the same order, the third is enough. It is easy to see that the following are equivalent:
 
 * "/users/{}/books/{}"
 * "/users/{}/books/{2}"
 * "/users/{user_id}/books/{book_id}"
 * "/users/{1:user_id}/books/{2}"
 
-**Note: Path matching is not case sensitive, parameter names are case sensitive, (Parameter values ​​can be mixed in uppercase and lowercase and passed unchanged to the controller)**
+**Note: Path matching is not case sensitive, but parameter names are case sensitive. Parameter values ​​can be mixed in uppercase and lowercase and passed unchanged to the controller.**
 
 
-### Parameters mapping
+### Parameter mapping
 
 Through the previous description, we know that the parameters on the path and the query parameters after the question mark can be mapped to the parameter list of the handler function. The type of the target parameter needs to meet the following conditions:
 
-* Must be one of a value type, a constant left value reference, or a non-const right value reference. It cannot be a non-const lvalue reference. It is recommended to use an rvalue reference so that the user can dispose of it at will;
+* Must be one of a value type, a constant left value reference, or a non-const right value reference. It cannot be a non-const lvalue reference. It is recommended to use an rvalue reference so that the user can dispose of it at will.
 
-* Basic types such as int, long, long long, unsigned long, unsigned long long, float, double, long double, etc can be used as parameter types;
+* Basic types such as int, long, long long, unsigned long, unsigned long long, float, double, long double, etc can be used as parameter types.
 
-* std::string；
+* std::string
 
-* Any type that can be assigned using the `stringstream >>` operator;
+* Any type that can be assigned using the `stringstream >>` operator.
 
-**In addition, the drogon framework also provides a mapping mechanism from the HttpRequestPtr object to any type of parameter**. When the number of mapping parameters in your handler parameter list is more than the parameters on the path, the extra parameters will be converted by the HttpRequestPtr object. The user can define any type of conversion, the way to define this conversion is to specialize the `fromRequest` template (which is defined in the HttpRequest.h header file) in the drogon namespace, for example, say we need to make a RESTful interface to create a new user, we define the user's structure as follows:
+**In addition, the drogon framework also provides a mapping mechanism from the HttpRequestPtr object to any type of parameter.**. When the number of mapping parameters in your handler parameter list is more than the number of parameters on the path, the extra parameters will be converted by the HttpRequestPtr object. The user can define any type of conversion. The way to define this conversion is to specialize the `fromRequest` template (which is defined in the HttpRequest.h header file) in the drogon namespace, for example, say we need to make a RESTful interface to create a new user, we define the user's structure as follows:
 
 ```c++
 namespace myapp{
@@ -218,9 +218,9 @@ public:
 };
 ```
 
-It can be seen that the third parameter of `myapp::User` type has no corresponding placeholder on the mapping path, and the framework regards it as a parameter converted from the `req` object, and obtains this parameter through the user-specialized function template. This is very convenient for users.
+It can be seen that the third parameter of `myapp::User` type has no corresponding placeholder on the mapping path, and the framework regards it as a parameter converted from the `req` object and obtains this parameter through the user-specialized function template. This is very convenient for users.
 
-Further, some users do not need to access the HttpRequestPtr object except for their custom type data, so he can put the custom object in the position of the first parameter, and the framework can also correctly complete the mapping, such as the above example. It can also be written as follows:
+Further, some users do not need to access the HttpRequestPtr object except for their custom type data. They can put the custom object in the position of the first parameter, and the framework will correctly complete the mapping such as the above example. It can also be written as follows:
 
 ```c++
 class UserController:public drogon::HttpController<UserController>
@@ -236,16 +236,16 @@ public:
 };
 ```
 
-### multiple path mapping
+### Multiple Path Mapping
 
-Drogon supports the use of regular expressions in path mapping, which can be used outside the '{}' curly brackets, for example:
+Drogon supports the use of regular expressions in path mapping, which can be used outside the '{}' curly brackets. For example:
 
 ```c++
 ADD_METHOD_TO(UserController::handler1,"/users/.*",Post); /// Match any path prefixed with `/users/`
 ADD_METHOD_TO(UserController::handler2,"/{name}/[0-9]+",Post); ///Match any path composed with a name string and a number.
 ```
 
-### Regular expression
+### Regular Expressions
 
 The above method has limited support for regular expressions. If users want to use regular expressions freely, drogon provides the `ADD_METHOD_VIA_REGEX` macro to achieve this, such as:
 
@@ -257,6 +257,6 @@ ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Matches a
 
 As can be seen, parameter mapping can also be done using regular expressions, and all strings matched by subexpressions will be mapped to the parameters of the handler in order.
 
-**It should be noted that when using regular expressions, you should pay attention to matching conflicts (multiple different handlers are matched). When conflicts happen in the same controller, drogon will only execute the first handler (the one registered in the framework first). When conflicts happen between different controllers, which handler to be executed is uncertain. Therefore, users need to avoid this kind of conflicts.** 
+**It should be noted that when using regular expressions, you should pay attention to matching conflicts (multiple different handlers are matched). When conflicts happen in the same controller, drogon will only execute the first handler (the one registered in the framework first). When conflicts happen between different controllers, it is uncertain which handler will be executed. Therefore, users need to avoid these conflicts.** 
 
 # 04.3 [WebSocketController](ENG-04-3-Controller-WebSocketController)
