@@ -129,7 +129,7 @@ yum install zlib-devel
 ##### 包管理器
 如果有python环境，可以通过pip安装conan包管理器，当然也可以通过从官网下载connan的安装文件进行安装。
 ```
-pip intall conan
+pip install conan
 ```
 conan包管理器可以提供Drogon项目的所有依赖。
 
