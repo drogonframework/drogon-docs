@@ -117,6 +117,36 @@ yum install openssl-devel
 ```shell
 yum install zlib-devel
 ```
+
+#### MacOS
+##### 环境
+MacOS內建都有 更新即可
+##### 升級gcc
+```shell
+brew upgrade
+```
+##### jsoncpp
+
+```shell
+brew install jsoncpp
+```
+##### uuid
+
+```shell
+brew install ossp-uuid
+```
+
+##### OpenSSL
+
+```shell
+brew install openssl
+```
+
+##### zlib
+
+```shell
+brew install zlib
+```
 #### Windows
 
 ##### 环境
