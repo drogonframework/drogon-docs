@@ -126,7 +126,7 @@ Install Visual Studio 2019 professional 2019, at least included these options:
 ##### Package Manager
 If python is installed on system, you could install conan package manager via pip, of course you can download the installation file from connan official website to install it also.
 ```
-pip intall conan
+pip install conan
 ```
 conan package manager could provide all dependencies that Drogon projector needs。
 
