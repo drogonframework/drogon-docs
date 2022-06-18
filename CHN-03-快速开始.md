@@ -59,7 +59,10 @@ Http根目录默认值是`"./"`， 也就是webapp程序运行的当前路径，
 
 ![404页面](images/notfound.png)
 
-**注意：请确认服务器的防火墙已经打开80端口，否则你看不到这些页面。**
+**注意：请确认服务器的防火墙已经打开80端口，否则你看不到这些页面（或是将port改成1024以上以解决遇到以下错误讯息）：**
+```
+FATAL Permission denied (errno=13) , Bind address failed at 0.0.0.0:80 - Socket.cc:67
+```
 
 我们可以把一个静态网站的目录和文件复制到这个webapp的运行目录，然后通过浏览器就可以访问到它们，drogon默认支持的文件类型有"html","js","css","xml","xsl","txt","svg","ttf","otf","woff2","woff","eot","png","jpg","jpeg","gif","bmp","ico","icns"等等，drogon也提供接口更改这些文件类型，具体请参考[HttpAppFramework的API](API-HttpAppFramework-中文)。
 
