@@ -60,7 +60,10 @@ The default root path is `"./"`, but could also be modified by config.json. See 
 If the server cannot find the the page you have requested, it returns a 404 page:
 ![404 page](images/notfound.png)
 
-**Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.**
+**Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.(Another way is to change your port from 80 to 1024(or above) in case you get the error message below):**
+```shell
+FATAL Permission denied (errno=13) , Bind address failed at 0.0.0.0:80 - Socket.cc:67
+```
 
 We could copy the directory and files of a static website to the startup directory of this running webapp, then we can access them from the browser. The file types supported by drogon by default are 
 
