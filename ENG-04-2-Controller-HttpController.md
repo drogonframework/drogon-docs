@@ -267,8 +267,8 @@ The above method has limited support for regular expressions. If users want to u
 
 ```c++
 ADD_METHOD_VIA_REGEX(UserController::handler1,"/users/(.*)",Post); /// Match any path prefixed with `/users/` and map the rest of the path to a parameter of the handler1.
-ADD_METHOD_VIA_REGEX(UserController::handler2,"/.*([0-9]*)",Post); /// Matches any path that ends in a number and map that number to a parameter of the handler2.
-ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Matches any path that does not start with '/data'
+ADD_METHOD_VIA_REGEX(UserController::handler2,"/.*([0-9]*)",Post); /// Match any path that ends in a number and map that number to a parameter of the handler2.
+ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Match any path that does not start with '/data'
 ```
 
 As can be seen, parameter mapping can also be done using regular expressions, and all strings matched by subexpressions will be mapped to the parameters of the handler in order.
