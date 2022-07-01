@@ -17,21 +17,30 @@ demo_v1_User.h is as follows:
 
 ```c++
 #pragma once
+
 #include <drogon/HttpController.h>
+
 using namespace drogon;
+
 namespace demo
 {
-    namespace v1
-    {
-        class User:public drogon::HttpController<User>
-        {
-        public:
-            METHOD_LIST_BEGIN
-                //use METHOD_ADD to add your custom processing function here;
-            METHOD_LIST_END
-            //your declaration of processing function maybe like this:
-        };
-    }
+namespace v1
+{
+class User : public drogon::HttpController<User>
+{
+  public:
+    METHOD_LIST_BEGIN
+    // use METHOD_ADD to add your custom processing function here;
+    // METHOD_ADD(User::get, "/{2}/{1}", Get); // path is /demo/v1/User/{arg2}/{arg1}
+    // METHOD_ADD(User::your_method_name, "/{1}/{2}/list", Get); // path is /demo/v1/User/{arg1}/{arg2}/list
+    // ADD_METHOD_TO(User::your_method_name, "/absolute/path/{1}/{2}/list", Get); // path is /absolute/path/{arg1}/{arg2}/list
+
+    METHOD_LIST_END
+    // your declaration of processing function maybe like this:
+    // void get(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int p1, std::string p2);
+    // void your_method_name(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, double p1, int p2) const;
+};
+}
 }
 ```
 
@@ -39,8 +48,10 @@ demo_v1_User.cc is as follows:
 
 ```c++
 #include "demo_v1_User.h"
+
 using namespace demo::v1;
-//add definition of your processing function here
+
+// Add definition of your processing function here
 ```
 
 ### Usage
@@ -51,31 +62,34 @@ demo_v1_User.h is as follows:
 
 ```c++
 #pragma once
+
 #include <drogon/HttpController.h>
+
 using namespace drogon;
+
 namespace demo
 {
-    namespace v1
-    {
-        class User:public drogon::HttpController<User>
-        {
-        public:
-            METHOD_LIST_BEGIN
-                //use METHOD_ADD to add your custom processing function here;
-                METHOD_ADD(User::login,"/token?userId={1}&passwd={2}",Post);
-                METHOD_ADD(User::getInfo,"/{1}/info?token={2}",Get);
-            METHOD_LIST_END
-            //your declaration of processing function maybe like this:
-            void login(const HttpRequestPtr &req,
-                       std::function<void (const HttpResponsePtr &)> &&callback,
-                       std::string &&userId,
-                       const std::string &password);
-            void getInfo(const HttpRequestPtr &req,
-                         std::function<void (const HttpResponsePtr &)> &&callback,
-                         std::string userId,
-                         const std::string &token) const;
-        };
-    }
+namespace v1
+{
+class User : public drogon::HttpController<User>
+{
+  public:
+    METHOD_LIST_BEGIN
+    // use METHOD_ADD to add your custom processing function here;
+    METHOD_ADD(User::login,"/token?userId={1}&passwd={2}",Post);
+    METHOD_ADD(User::getInfo,"/{1}/info?token={2}",Get);
+    METHOD_LIST_END
+    // your declaration of processing function maybe like this:
+    void login(constHttpRequestPtr &req,
+               std::function<void (const HttpResponsePtr &)> &&callback,
+               std::string &&userId,
+               const std::string &password);
+    void getInfo(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 std::string userId,
+                 const std::string &token) const;
+};
+}
 }
 ```
 
@@ -83,16 +97,18 @@ demo_v1_User.cc is as follows:
 
 ```c++
 #include "demo_v1_User.h"
+
 using namespace demo::v1;
-//add definition of your processing function here
+
+// Add definition of your processing function here
 
 void User::login(const HttpRequestPtr &req,
-           std::function<void (const HttpResponsePtr &)> &&callback,
-           std::string &&userId,
-           const std::string &password)
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 std::string &&userId,
+                 const std::string &password)
 {
     LOG_DEBUG<<"User "<<userId<<" login";
-    //Authentication algorithm, read database, verify identity, etc...
+    //Authentication algorithm, read database, verify, identify, etc...
     //...
     Json::Value ret;
     ret["result"]="ok";
@@ -101,9 +117,9 @@ void User::login(const HttpRequestPtr &req,
     callback(resp);
 }
 void User::getInfo(const HttpRequestPtr &req,
-             std::function<void (const HttpResponsePtr &)> &&callback,
-             std::string userId,
-            const std::string &token) const
+                   std::function<void (const HttpResponsePtr &)> &&callback,
+                   std::string userId,
+                   const std::string &token) const
 {
     LOG_DEBUG<<"User "<<userId<<" get his information";
 
@@ -251,8 +267,8 @@ The above method has limited support for regular expressions. If users want to u
 
 ```c++
 ADD_METHOD_VIA_REGEX(UserController::handler1,"/users/(.*)",Post); /// Match any path prefixed with `/users/` and map the rest of the path to a parameter of the handler1.
-ADD_METHOD_VIA_REGEX(UserController::handler2,"/.*([0-9]*)",Post); /// Matche any path that ends in a number and map that number to a parameter of the handler2.
-ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Matches any path that does not start with '/data'
+ADD_METHOD_VIA_REGEX(UserController::handler2,"/.*([0-9]*)",Post); /// Match any path that ends in a number and map that number to a parameter of the handler2.
+ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Match any path that does not start with '/data'
 ```
 
 As can be seen, parameter mapping can also be done using regular expressions, and all strings matched by subexpressions will be mapped to the parameters of the handler in order.

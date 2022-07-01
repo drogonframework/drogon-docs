@@ -17,29 +17,40 @@ drogon_ctl create controller -h demo::v1::User
 demo_v1_User.h如下:
 ```c++
 #pragma once
+
 #include <drogon/HttpController.h>
+
 using namespace drogon;
+
 namespace demo
 {
-    namespace v1
-    {
-        class User:public drogon::HttpController<User>
-        {
-        public:
-            METHOD_LIST_BEGIN
-                //use METHOD_ADD to add your custom processing function here;
-            METHOD_LIST_END
-            //your declaration of processing function maybe like this:
-        };
-    }
+namespace v1
+{
+class User : public drogon::HttpController<User>
+{
+  public:
+    METHOD_LIST_BEGIN
+    // use METHOD_ADD to add your custom processing function here;
+    // METHOD_ADD(User::get, "/{2}/{1}", Get); // path is /demo/v1/User/{arg2}/{arg1}
+    // METHOD_ADD(User::your_method_name, "/{1}/{2}/list", Get); // path is /demo/v1/User/{arg1}/{arg2}/list
+    // ADD_METHOD_TO(User::your_method_name, "/absolute/path/{1}/{2}/list", Get); // path is /absolute/path/{arg1}/{arg2}/list
+
+    METHOD_LIST_END
+    // your declaration of processing function maybe like this:
+    // void get(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, int p1, std::string p2);
+    // void your_method_name(const HttpRequestPtr& req, std::function<void (const HttpResponsePtr &)> &&callback, double p1, int p2) const;
+};
+}
 }
 ```
 
 demo_v1_User.cc如下：
 ```c++
 #include "demo_v1_User.h"
+
 using namespace demo::v1;
-//add definition of your processing function here
+
+// Add definition of your processing function here
 ```
 
 ### 使用
@@ -50,38 +61,43 @@ demo_v1_User.h如下：
 
 ```c++
 #pragma once
+
 #include <drogon/HttpController.h>
+
 using namespace drogon;
+
 namespace demo
 {
-    namespace v1
-    {
-        class User:public drogon::HttpController<User>
-        {
-        public:
-            METHOD_LIST_BEGIN
-                //use METHOD_ADD to add your custom processing function here;
-                METHOD_ADD(User::login,"/token?userId={1}&passwd={2}",Post);
-                METHOD_ADD(User::getInfo,"/{1}/info?token={2}",Get);
-            METHOD_LIST_END
-            //your declaration of processing function maybe like this:
-            void login(const HttpRequestPtr &req,
-                       std::function<void (const HttpResponsePtr &)> &&callback,
-                       std::string &&userId,
-                       const std::string &password);
-            void getInfo(const HttpRequestPtr &req,
-                         std::function<void (const HttpResponsePtr &)> &&callback,
-                         std::string userId,
-                         const std::string &token) const;
-        };
-    }
+namespace v1
+{
+class User : public drogon::HttpController<User>
+{
+  public:
+    METHOD_LIST_BEGIN
+    // use METHOD_ADD to add your custom processing function here;
+    METHOD_ADD(User::login,"/token?userId={1}&passwd={2}",Post);
+    METHOD_ADD(User::getInfo,"/{1}/info?token={2}",Get);
+    METHOD_LIST_END
+    // your declaration of processing function maybe like this:
+    void login(constHttpRequestPtr &req,
+               std::function<void (const HttpResponsePtr &)> &&callback,
+               std::string &&userId,
+               const std::string &password);
+    void getInfo(const HttpRequestPtr &req,
+                 std::function<void (const HttpResponsePtr &)> &&callback,
+                 std::string userId,
+                 const std::string &token) const;
+};
+}
 }
 ```
 demo_v1_User.cc如下：
 ```c++
 #include "demo_v1_User.h"
+
 using namespace demo::v1;
-//add definition of your processing function here
+
+// Add definition of your processing function here
 
 void User::login(const HttpRequestPtr &req,
            std::function<void (const HttpResponsePtr &)> &&callback,
@@ -249,8 +265,8 @@ ADD_METHOD_TO(UserController::handler2,"/{name}/[0-9]+",Post); ///Match any path
 
 ```c++
 ADD_METHOD_VIA_REGEX(UserController::handler1,"/users/(.*)",Post); /// Match any path prefixed with `/users/` and map the rest of the path to a parameter of the handler1.
-ADD_METHOD_VIA_REGEX(UserController::handler2,"/.*([0-9]*)",Post); /// Matche any path that ends in a number and map that number to a parameter of the handler2.
-ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Matches any path that does not start with '/data'
+ADD_METHOD_VIA_REGEX(UserController::handler2,"/.*([0-9]*)",Post); /// Match any path that ends in a number and map that number to a parameter of the handler2.
+ADD_METHOD_VIA_REGEX(UserController::handler3,"/(?!data).*",Post); /// Match any path that does not start with '/data'
 ```
 
 可以看到，使用正则表达式也可以完成参数映射，所有子表达式匹配的字符串都会按顺序映射到handler的参数上。
