@@ -35,7 +35,7 @@ As you can see, the controller does not need to reference the header file of the
 
 ### A simple example
 
-Now let's make a view that displays the parameters of the HTTP request sent by the browser in the returned html page. 
+Now let's make a view that displays the parameters of the HTTP request sent by the browser in the returned html page.
 
 This time we directly define the handler with the HttpAppFramework interface. In the main file, add the following code before calling the run() method:
 
@@ -97,11 +97,11 @@ drogon_ctl create view ListParameters.csp
 
 After the operation is finished, two source files, ListParameters.h and ListParameters.cc, will appear in the current directory, which can be used to compile into the web application;
 
-Recompile the entire project with cmake, run the target program webapp, you can test the effect in the browser, enter `http://localhost/list_para?p1=a&p2=b&p3=c` in the address bar, you can see the following page :
+Recompile the entire project with CMake, run the target program webapp, you can test the effect in the browser, enter `http://localhost/list_para?p1=a&p2=b&p3=c` in the address bar, you can see the following page :
 
 ![view page](images/viewdemo.png)
 
-The html page rendered by the backend is simply added. 
+The html page rendered by the backend is simply added.
 
 ### Automated processing of csp files
 
@@ -140,9 +140,9 @@ void enableDynamicViewsLoading(const std::vector<std::string> &libPaths);
 
 The interface is a member method of `HttpAppFramework`, and the parameter is an array of strings representing a list of directories in which the view csp file is located. After calling this interface, drogon will automatically search for csp files in these directories. After discovering new or modified csp files, the source files will be automatically generated, compiled into dynamic library files and loaded into the application. The application process does not need to be restarted. Users can experiment on their own and observe the page changes caused by the modification of csp file.
 
-Obviously, this function depends on the development environment. If both drogon and webapp are compiled on this server, there should be no problem in dynamically loading the csp page. 
+Obviously, this function depends on the development environment. If both drogon and webapp are compiled on this server, there should be no problem in dynamically loading the csp page.
 
-**Note: Dynamic views should not be compiled into the application statically. This means that if the view is statically compiled, it cannot be updated via dynamic view loading. You can create a directory outside the compilation folder and move views into it during development.** 
+**Note: Dynamic views should not be compiled into the application statically. This means that if the view is statically compiled, it cannot be updated via dynamic view loading. You can create a directory outside the compilation folder and move views into it during development.**
 
 **Note: This feature is best used to adjust the HTML page during the development phase. In the production environment, it is recommended to compile the csp file directly into the target file. This is mainly for security and stability.**
 

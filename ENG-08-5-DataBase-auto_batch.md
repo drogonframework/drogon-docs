@@ -3,7 +3,7 @@ The automatic batch mode is only valid for the client library of postgresql 14+ 
 ### pipeline mode
 
 Since postgresql 14, its client library provides a pipelining mode interface. In pipelining mode, new sql requests can be sent directly to the server without waiting for the result of the previous request to return (this is consistent with the concept of HTTP pipelining), For details, please refer to [Pipeline mode](https://www.postgresql.org/docs/current/libpq-pipeline-mode.html). This mode is very helpful for performance, allowing fewer database connections to support larger concurrent requests.
-drogon began to support this mode after version 1.7.6, drogon will automatically check whether libpq supports pipeline mode, if so, all requests sent through drogon's DbCleint are in pipeline mode.
+drogon began to support this mode after version 1.7.6, drogon will automatically check whether libpq supports pipeline mode, if so, all requests sent through drogon's DbClient are in pipeline mode.
 
 ### automatic batch mode
 

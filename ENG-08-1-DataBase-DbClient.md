@@ -42,17 +42,17 @@ void execSqlAsync(const std::string &sql,
                   FUNCTION1 &&rCallback,
                   FUNCTION2 &&exceptCallback,
                   Arguments &&... args) noexcept;
-                  
+
 /// Asynchronous mothod by 'future'
 template <typename... Arguments>
 std::future<const Result> execSqlAsyncFuture(const std::string &sql,
                                              Arguments &&... args) noexcept;
-                                             
+
 /// Synchronous method
 template <typename... Arguments>
 const Result execSqlSync(const std::string &sql,
                          Arguments &&... args) noexcept(false);
-                         
+
 /// Streaming-type method
 internal::SqlBinder operator<<(const std::string &sql);
 ```
@@ -93,7 +93,7 @@ The indefinite parameter `args` represents the bound parameter, which can be zer
 * Floating point type: can be `float` or `double`, should match the database field type;
 * String type: can be `std::string` or `const char[]`, corresponding to the string type of the database or other types that can be represented by strings;
 * Date type: `trantor::Date` type, corresponding to the database date, datetime, timestamp types.
-* Binary type: `std::vector<char>` type, corresponding to PostgreSQL's bytea type or Mysql's blob type;
+* Binary type: `std::vector<char>` type, corresponding to PostgreSQL's byte type or Mysql's blob type;
 
 These parameters can be left or right, can be variables or literal constants, and users are free to use them.
 
@@ -172,7 +172,7 @@ E.g:
 try
 {
     auto result = clientPtr->execSqlSync("update users set user_name=$1 where user_id=$2",
-                                         "test", 
+                                         "test",
                                          1); // Block until we get the result or catch the exception;
     std::cout << result.affectedRows() << " rows updated!" << std::endl;
 }
@@ -191,8 +191,8 @@ The streaming interface is special. It inputs the sql statement and parameters i
 
 ```c++
 *clientPtr  << "select * from users where org_name=$1"
-            << "default" 
-            >> [](const drogon::orm::Result &result) 
+            << "default"
+            >> [](const drogon::orm::Result &result)
                 {
                     std::cout << result.size() << " rows selected!" << std::endl;
                     int i = 0;
@@ -201,7 +201,7 @@ The streaming interface is special. It inputs the sql statement and parameters i
                         std::cout << i++ << ": user name is " << row["user_name"].as<std::string>() << std::endl;
                     }
                 }
-            >> [](const DrogonDbException &e) 
+            >> [](const DrogonDbException &e)
                 {
                     std::cerr << "error:" << e.base().what() << std::endl;
                 };
@@ -223,15 +223,15 @@ Let's rewrite the previous example with this callback:
 ```c++
 int i = 0;
 *clientPtr  << "select user_name, user_id from users where org_name=$1"
-            << "default" 
-            >> [&i](bool isNull, const std::string &name, int64_t id) 
+            << "default"
+            >> [&i](bool isNull, const std::string &name, int64_t id)
                     {
                     if (!isNull)
                         std::cout << i++ << ": user name is " << name << ", user id is " << id << std::endl;
                     else
                         std::cout << i << " rows selected!" << std::endl;
-                    } 
-            >> [](const DrogonDbException &e) 
+                    }
+            >> [](const DrogonDbException &e)
                 {
                     std::cerr << "error:" << e.base().what() << std::endl;
                 };

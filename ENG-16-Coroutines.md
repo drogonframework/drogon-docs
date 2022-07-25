@@ -6,7 +6,7 @@ Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a wa
 
 This page isn't intended to explain what is a coroutine nor how it works. But to show how to use coroutines in drogon. The usual vocabulary tends get messy as subroutines (functions) uses the same terminology as coroutine does, yet they have slightly different meanings. The fact that C++ coroutines can act as if they are functions doesn't help either. To reduce confusion, we'll use the terminology that follows - it is by no means perfect, but it is good enough.
 
-**Coroutine** is a function that can suspend execution then resume.<br/> 
+**Coroutine** is a function that can suspend execution then resume.<br/>
 **Return** means a function finishing execution and fiving a return value to its caller. Or a coroutine generating a _resumable_ object; which can be used to resume the coroutine.<br/>
 **Yield**ing is when a coroutine generates a result for the caller.<br/>
 **co-return** means a coroutine yields and then exits.<br/>
@@ -91,11 +91,11 @@ Calling coroutines from websocket controllers isn't supported yet. Feel free to 
 
 ## Common pitfalls
 
-There are some common pitfalls you may encounter when using coroutines. 
+There are some common pitfalls you may encounter when using coroutines.
 
 ### Launching coroutines with lambda capture from a function
 
-Lambda captures and coroutines have seprate lifetimes. A coroutine lives until the coroutine frame is destructed. While lambdas commonly destruct right after being called. Thus, due to the asynchronous nature of coroutines, the coroutines's lifetime can be much longer than the lambda, for example in SQL execution. The lambda destructs right after awaiting for SQL to complete (and returns to the event loop to process other events), while the coroutine frame is awaiting SQL. Thus the lambda will have been destructed when SQL has finished.
+Lambda captures and coroutines have separate lifetimes. A coroutine lives until the coroutine frame is destructed. While lambdas commonly destruct right after being called. Thus, due to the asynchronous nature of coroutines, the coroutines's lifetime can be much longer than the lambda, for example in SQL execution. The lambda destructs right after awaiting for SQL to complete (and returns to the event loop to process other events), while the coroutine frame is awaiting SQL. Thus the lambda will have been destructed when SQL has finished.
 
 Instead of
 
@@ -123,13 +123,13 @@ app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
 
 ### Passing/capturing references into coroutines from function
 
-It's a good practice in C++ to pass objects by reference to reduce unnessary copy. However passing by refence into a coroutine from a function commonly causes issues. This is caused by the the coroutine is in fact asynchronous and can have a much longer lifetime compared to a regular function. For example, the following code crashes
+It's a good practice in C++ to pass objects by reference to reduce unnecessary copy. However passing by reference into a coroutine from a function commonly causes issues. This is caused by the the coroutine is in fact asynchronous and can have a much longer lifetime compared to a regular function. For example, the following code crashes
 
 ```cpp
 void removeCustomers(const std::string& customer_id)
 {
     async_run([&customer_id] {
-        //      ^^^^ DO NOT pass/capture objects by refence into a coroutine
+        //      ^^^^ DO NOT pass/capture objects by reference into a coroutine
         // Unless you are sure the object has a longer lifetime than the coroutine
 
         auto db = app().getDbClient();
@@ -158,7 +158,7 @@ Task<> findUnwantedCustomers()
     for(const auto& customer : list)
         co_await removeCustomers(customer["customer_id"].as<std::string>());
         //                               ^^^^^^^^^^^^^^^^^
-        // This is perfectly fine and prefered although it's a const reference
+        // This is perfectly fine and preferred although it's a const reference
         // since we are calling it from a coroutine
 }
 ```

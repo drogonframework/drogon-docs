@@ -172,7 +172,7 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 }
 ```
 
-Recompile this project with cmake, then run the target `./your_project_name`:
+Recompile this project with CMake, then run the target `./your_project_name`:
 
 ```shell
 cd ../build

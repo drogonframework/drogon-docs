@@ -6,7 +6,7 @@ Drogon从1.4版本开始支持[C++ coroutines][1]（协程）。 它提供了扁
 
 本文无意于解释什么是协程或它是如何工作的，而是向大家介绍如何在Drogon中使用协程。有很多术语，普通的例程也使用，但是在协程里，意义稍有不同，为了避免引起不必要的混淆，我们列举了一些常用术语。
 
-**协程（Coroutine）** 是能暂停执行以在之后恢复的函数.<br/> 
+**协程（Coroutine）** 是能暂停执行以在之后恢复的函数.<br/>
 **Return** 对普通函数来说意味着结束执行并返回一个值。 而协程需要返回一个包含`promise_type`类型的对象（本文中称作_resumable_类型），用来恢复这个协程的执行。<br/>
 **(co_)yield**意思是协程暂停执行并返回一个值。<br/>
 **co_return**意思是协程结束并返回一个值（如果有值的话）。<br/>
@@ -93,11 +93,11 @@ app.registerHandler("/num_users",
 
 ## 常见缺陷
 
-在使用协程时，您可能会遇到一些常见的陷阱。 
+在使用协程时，您可能会遇到一些常见的陷阱。
 
-### 从函数中使用带有  lambda 捕获的协程 
+### 从函数中使用带有  lambda 捕获的协程
 
-Lambda 捕获和协程具有不同且独立的生命周期。协程会一直存在直到协程帧被破坏。但匿名 lambda 通常在调用后立即销毁。因此，由于协程的异步性质，协程的 leftime 可能比 lambda 长得多。例如在下面 SQL 的执行中。 lambda 在开始等待 SQL 完成后立即销毁（返回到事件循环以处理其他事件）。而协程帧在等待 SQL。导致当 SQL 刚完成时，lambda 捕获早就被破坏。 
+Lambda 捕获和协程具有不同且独立的生命周期。协程会一直存在直到协程帧被破坏。但匿名 lambda 通常在调用后立即销毁。因此，由于协程的异步性质，协程的 leftime 可能比 lambda 长得多。例如在下面 SQL 的执行中。 lambda 在开始等待 SQL 完成后立即销毁（返回到事件循环以处理其他事件）。而协程帧在等待 SQL。导致当 SQL 刚完成时，lambda 捕获早就被破坏。
 
 ```c++
 app().getLoop()->queueInLoop([num] -> AsyncTask {
@@ -109,7 +109,7 @@ app().getLoop()->queueInLoop([num] -> AsyncTask {
 // BAD, This will crash
 ```
 
-Drogon 提供了 `async_func` 来包裹 lambda 以确保它的生命周期 
+Drogon 提供了 `async_func` 来包裹 lambda 以确保它的生命周期
 
 ```c++
 app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
@@ -129,7 +129,7 @@ app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
 void removeCustomers(const std::string& customer_id)
 {
     async_run([&customer_id] {
-        //      ^^^^ DO NOT pass/capture objects by refence into a coroutine
+        //      ^^^^ DO NOT pass/capture objects by reference into a coroutine
         // Unless you are sure the object has a longer lifetime than the coroutine
 
         auto db = app().getDbClient();
@@ -158,7 +158,7 @@ Task<> findUnwantedCustomers()
     for(const auto& customer : list)
         co_await removeCustomers(customer["customer_id"].as<std::string>());
         //                               ^^^^^^^^^^^^^^^^^
-        // This is perfectly fine and prefered although it's a const reference
+        // This is perfectly fine and preferred although it's a const reference
         // since we are calling it from a coroutine
 }
 ```

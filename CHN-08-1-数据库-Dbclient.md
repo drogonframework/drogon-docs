@@ -41,7 +41,7 @@ void execSqlAsync(const std::string &sql,
                   FUNCTION1 &&rCallback,
                   FUNCTION2 &&exceptCallback,
                   Arguments &&... args) noexcept;
-                  
+
 /// 异步future接口
 template <typename... Arguments>
 std::future<const Result> execSqlAsyncFuture(const std::string &sql,
@@ -133,7 +133,7 @@ std::future<const Result> execSqlAsyncFuture(const std::string &sql,
                                              Arguments &&... args) noexcept;
 ```
 
-异步futrue接口省略了前一个接口的中间两个参数（使用future对象代替回调函数），调用这个接口会立即返回一个future对象，用户必须调用future的get()方法，得到返回的结果，异常要通过try/catch机制得到，如果调用get()方法时没有try/catch，并且整个调用堆栈中也没有try/catch，则程序会在sql执行发生异常的时候退出。
+异步future接口省略了前一个接口的中间两个参数（使用future对象代替回调函数），调用这个接口会立即返回一个future对象，用户必须调用future的get()方法，得到返回的结果，异常要通过try/catch机制得到，如果调用get()方法时没有try/catch，并且整个调用堆栈中也没有try/catch，则程序会在sql执行发生异常的时候退出。
 
 例如：
 
@@ -171,7 +171,7 @@ const Result execSqlSync(const std::string &sql,
 try
 {
     auto result = clientPtr->execSqlSync("update users set user_name=$1 where user_id=$2",
-                                         "test", 
+                                         "test",
                                          1); // Block until we get the result or catch the exception;
     std::cout << result.affectedRows() << " rows updated!" << std::endl;
 }
@@ -190,8 +190,8 @@ internal::SqlBinder operator<<(const std::string &sql);
 
 ```c++
 *clientPtr  << "select * from users where org_name=$1"
-            << "default" 
-            >> [](const drogon::orm::Result &result) 
+            << "default"
+            >> [](const drogon::orm::Result &result)
                 {
                     std::cout << result.size() << " rows selected!" << std::endl;
                     int i = 0;
@@ -200,7 +200,7 @@ internal::SqlBinder operator<<(const std::string &sql);
                         std::cout << i++ << ": user name is " << row["user_name"].as<std::string>() << std::endl;
                     }
                 }
-            >> [](const DrogonDbException &e) 
+            >> [](const DrogonDbException &e)
                 {
                     std::cerr << "error:" << e.base().what() << std::endl;
                 };
@@ -222,15 +222,15 @@ void (bool,Arguments...);
 ```c++
 int i = 0;
 *clientPtr  << "select user_name, user_id from users where org_name=$1"
-            << "default" 
-            >> [&i](bool isNull, const std::string &name, int64_t id) 
+            << "default"
+            >> [&i](bool isNull, const std::string &name, int64_t id)
                     {
                     if (!isNull)
                         std::cout << i++ << ": user name is " << name << ", user id is " << id << std::endl;
                     else
                         std::cout << i << " rows selected!" << std::endl;
-                    } 
-            >> [](const DrogonDbException &e) 
+                    }
+            >> [](const DrogonDbException &e)
                 {
                     std::cerr << "error:" << e.base().what() << std::endl;
                 };

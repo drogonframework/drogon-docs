@@ -1,4 +1,4 @@
-DrogonTest is a minimal testing framework built into drogon to enable easy asynchronous testing as well as synchronous ones. It is used for Drogon's own unittests adn integration tests. But could also be used for testing applications built with Drogon. The syntax of DrogonTest is enspired by both [GTest](https://github.com/google/googletest) and [Catch2](https://github.com/catchorg/Catch2).
+DrogonTest is a minimal testing framework built into drogon to enable easy asynchronous testing as well as synchronous ones. It is used for Drogon's own unittests and integration tests. But could also be used for testing applications built with Drogon. The syntax of DrogonTest is inspired by both [GTest](https://github.com/google/googletest) and [Catch2](https://github.com/catchorg/Catch2).
 
 You don't have to use DrogonTest for your application. Use whatever you are comfortable with. But it is an option.
 
@@ -8,7 +8,7 @@ Let's start with a simple example. You have a synchronous function that computes
 
 ```c++
 // Tell DrogonTest to generate `test::run()`. Only defined this in the main file
-#define DROGON_TEST_MAIN 
+#define DROGON_TEST_MAIN
 #include <drogon/drogon_test.h>
 
 int sum_all(int n)
@@ -68,12 +68,12 @@ int sum_all(int n)
 
 DrogonTest comes with a variety of assertions and actions. The basic `CHECK()` simply checks if the expression evaluates to true. If not, it prints to console. `CHECK_THROWS()` checks if the expression throws an exception. If it didn't, print to console. etc.. On the other hand `REQUIRE()` checks if a expression is true. Then return if not, preventing expressions after the test being executed.
 
-| action if fail/expression | is true    | throws            | does not throw     | throws certain type  | 
-|---------------------------|------------|-------------------|--------------------|----------------------| 
-| nothing                   | CHECK      | CHECK_THROWS      | CHECK_NOTHROW      | CHECK_THROWS_AS      | 
-| return                    | REQUIRE    | REQUIRE_THROWS    | REQUIRE_NOTHROW    | REQUIRE_THROWS_AS    | 
-| co_return                 | CO_REQUIRE | CO_REQUIRE_THROWS | CO_REQUIRE_NOTHROW | CO_REQUIRE_THROWS_AS | 
-| kill process              | MANDATE     | MANDATE_THROWS     | MANDATE_NOTHROW     | MANDATE_THROWS_AS     | 
+| action if fail/expression | is true    | throws            | does not throw     | throws certain type  |
+|---------------------------|------------|-------------------|--------------------|----------------------|
+| nothing                   | CHECK      | CHECK_THROWS      | CHECK_NOTHROW      | CHECK_THROWS_AS      |
+| return                    | REQUIRE    | REQUIRE_THROWS    | REQUIRE_NOTHROW    | REQUIRE_THROWS_AS    |
+| co_return                 | CO_REQUIRE | CO_REQUIRE_THROWS | CO_REQUIRE_NOTHROW | CO_REQUIRE_THROWS_AS |
+| kill process              | MANDATE     | MANDATE_THROWS     | MANDATE_NOTHROW     | MANDATE_THROWS_AS     |
 
 Let's try a slightly practical example. Let's say you're testing if the content of a file is what you're expecting. There's no point to further test if the program failed to open the file. So, we can use `REQUIRE` to shorten and reduce duplicated code.
 
@@ -95,7 +95,7 @@ Likewise, `CO_REQUIRE` is like REQUIRE. But for coroutines. And `MANDATE` can be
 
 ### Asynchronous testing
 
-Drogon is a asynchronous web framework. It only follows DrogonTest supports testing asynchronou functions. DrogonTest trackes the testing context through the `TEST_CTX` variable. Simply capture the variable **by value**. For example, testing if a remote API is successful and retuns a JSON.
+Drogon is a asynchronous web framework. It only follows DrogonTest supports testing asynchronous functions. DrogonTest tracks the testing context through the `TEST_CTX` variable. Simply capture the variable **by value**. For example, testing if a remote API is successful and returns a JSON.
 
 ```c++
 DROGON_TEST(RemoteAPITest)
@@ -137,17 +137,17 @@ DROGON_TEST(RemoteAPITestCoro)
 
 ### Starting Drogon's event loop
 
-Some tests need Drogon's event loop running. For example, unless specsifed, HTTP clients runs on Drogon's global event loop. The following  boilerplate hanles many edge cases and guarantees the event loop is running before any test starts.
+Some tests need Drogon's event loop running. For example, unless specified, HTTP clients runs on Drogon's global event loop. The following  boilerplate handles many edge cases and guarantees the event loop is running before any test starts.
 
 ```c++
-int main() 
+int main()
 {
     std::promise<void> p1;
     std::future<void> f1 = p1.get_future();
 
     // Start the main loop on another thread
     std::thread thr([&]() {
-        // Queues the promis to be fulfilled after starting the loop
+        // Queues the promise to be fulfilled after starting the loop
         app().getLoop()->queueInLoop([&p1]() { p1.set_value(); });
         app().run();
     });
@@ -165,7 +165,7 @@ int main()
 
 ### CMake integration
 
-Like most testing frmaeworks, DrogonTest can integrate itself into CMake. The `ParseAndAddDrogonTests` function adds tests it sees in the source file to CMake's CTest framework.
+Like most testing frameworks, DrogonTest can integrate itself into CMake. The `ParseAndAddDrogonTests` function adds tests it sees in the source file to CMake's CTest framework.
 
 ```cmake
 find_package(Drogon REQUIRED) # also loads ParseAndAddDrogonTests
