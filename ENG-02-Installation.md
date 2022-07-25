@@ -207,7 +207,7 @@ Assuming that the above environment and library dependencies are all ready, the 
 
 ```shell
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build
@@ -220,7 +220,7 @@ make && sudo make install
 The default is to compile the debug version. If you want to compile the release version, the cmake command should take the following parameters:
 
 ```shell
-cmake -DCMAKE_BUILD_TYPE=Release .. 
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 After the installation is complete, the following files will be installed in the system（One can change the installation location with the CMAKE_INSTALL_PREFIX option）:
@@ -236,7 +236,7 @@ After the installation is complete, the following files will be installed in the
 After installed `conan` package manager, run command in PowerShell for Visual studio as bellow:
 ```
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build

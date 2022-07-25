@@ -206,7 +206,7 @@ MySQL的原生库不支持异步读写，而通过同步接口+线程池的方�
 
 ```shell
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build
@@ -218,7 +218,7 @@ make && sudo make install
 默认是编译debug版本，如果想编译release版本，cmake命令要带如下参数：
 
 ```shell
-cmake -DCMAKE_BUILD_TYPE=Release .. 
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 安装结束后，将有如下文件被安装在系统中(CMAKE_INSTALL_PREFIX可以改变安装位置)：
@@ -233,7 +233,7 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 安装了`conan`包管理器后,可以在Visual Studio 2019的PowellShell中执行
 ```
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build
@@ -314,7 +314,7 @@ __如果你尚未安装vckpg:__
     ```
     C:\Dev\vcpkg\installed\x64-windows\include
     ```
-    
+
 7. 重启 __*powershell*__, 输入:
     - `drogon_ctl` 或者 `drogon_ctl.exe`
     - 再输入 __enter__ 回车键
