@@ -7,7 +7,7 @@ drogon_ctl create project your_project_name
 
 There are several useful folders in the project directory already:
 
-```shell
+```console
 ├── build                         Build folder
 ├── CMakeLists.txt                Project cmake configuration file
 ├── config.json                   Drogon application configuration file
@@ -61,11 +61,11 @@ If the server cannot find the the page you have requested, it returns a 404 page
 ![404 page](images/notfound.png)
 
 **Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.(Another way is to change your port from 80 to 1024(or above) in case you get the error message below):**
-```shell
+```console
 FATAL Permission denied (errno=13) , Bind address failed at 0.0.0.0:80 - Socket.cc:67
 ```
 
-We could copy the directory and files of a static website to the startup directory of this running webapp, then we can access them from the browser. The file types supported by drogon by default are 
+We could copy the directory and files of a static website to the startup directory of this running webapp, then we can access them from the browser. The file types supported by drogon by default are
 
 - html
 - js
@@ -77,7 +77,7 @@ We could copy the directory and files of a static website to the startup directo
 - ttf
 - otf
 - woff2
-- woff 
+- woff
 - eot
 - png
 - jpg
@@ -85,9 +85,9 @@ We could copy the directory and files of a static website to the startup directo
 - gif
 - bmp
 - ico
-- icns 
+- icns
 
-Drogon also provides interfaces to change these file types. For details, please refer to the [HttpAppFramework API](API-HttpAppFramework). 
+Drogon also provides interfaces to change these file types. For details, please refer to the [HttpAppFramework API](API-HttpAppFramework).
 
 ## Dynamic Site
 
@@ -181,7 +181,7 @@ make
 ./your_project_name
 ```
 
-Type `"http://localhost/"` or `"http://localhost/test"` in the browser address bar, and you will see "Hello World!" in the browser. 
+Type `"http://localhost/"` or `"http://localhost/test"` in the browser address bar, and you will see "Hello World!" in the browser.
 
 **Note: If your server has both static and dynamic resources, Drogon uses dynamic resources first. In this example，the response to `GET http://localhost/` is `Hello World!` (from the `TestCtrl` controller file) instead of `Hello Drogon!` (from the static file index.html).**
 

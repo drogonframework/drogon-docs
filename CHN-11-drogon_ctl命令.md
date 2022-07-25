@@ -2,8 +2,8 @@
 
 该程序目前的主要功能是为了方便用户创建各种drogon工程文件，使用`dg_ctl help`命令可以看到它支持的功能，如下：
 
-```shell
-dg_ctl help
+```console
+$ dg_ctl help
 usage: drogon_ctl <command> [<args>]
 commands list:
 create                  create some source files(Use 'drogon_ctl help create' for more information)
@@ -16,27 +16,27 @@ press                   Do stress testing(Use 'drogon_ctl help press' for more i
 
 version子命令用于打印目前安装于系统的drogon版本，如下：
 
-```shell
- dg_ctl version
-     _                             
-  __| |_ __ ___   __ _  ___  _ __  
- / _` | '__/ _ \ / _` |/ _ \| '_ \ 
+```console
+$ dg_ctl version
+     _
+  __| |_ __ ___   __ _  ___  _ __
+ / _` | '__/ _ \ / _` |/ _ \| '_ \
 | (_| | | | (_) | (_| | (_) | | | |
  \__,_|_|  \___/ \__, |\___/|_| |_|
-                 |___/             
+                 |___/
 
 drogon ctl tools
 version:0.9.30.771
 git commit:d4710d3da7ca9e73b881cbae3149c3a570da8de4
-compile config:-O3 -DNDEBUG -Wall -std=c++17 -I/root/drogon/trantor -I/root/drogon/lib/inc -I/root/drogon/orm_lib/inc -I/usr/local/include -I/usr/include/uuid -I/usr/include -I/usr/include/mysql 
+compile config:-O3 -DNDEBUG -Wall -std=c++17 -I/root/drogon/trantor -I/root/drogon/lib/inc -I/root/drogon/orm_lib/inc -I/usr/local/include -I/usr/include/uuid -I/usr/include -I/usr/include/mysql
 ```
 
 ### create子命令
 
 create子命令用于创建各种对象，目前是drogon_ctl的主要功能，使用`dg_ctl help create`命令可以打印该命令的详细帮助，如下：
 
-```shell
-dg_ctl help create
+```console
+$ dg_ctl help create
 Use create command to create some source files of drogon webapp
 
 Usage:drogon_ctl create <view|controller|filter|project|model> [-options] <object name>
@@ -114,7 +114,7 @@ dg_ctl create project ProjectName
 
 工程的目录结构如下：
 
-```shell
+```console
 ├── build                         构建文件夹
 ├── CMakeLists.txt                工程的cmake配置文件
 ├── cmake_modules                 第三方库查找的cmake脚本

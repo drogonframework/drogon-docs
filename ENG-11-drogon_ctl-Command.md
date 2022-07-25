@@ -2,8 +2,8 @@ After the **Drogon** framework is compiled and installed, a command line program
 
 The main function of the program is to make it easy for users to create various drogon project files. Use the `dg_ctl help` command to see the functions it supports, as follows:
 
-```shell
-dg_ctl help
+```console
+$ dg_ctl help
 usage: drogon_ctl <command> [<args>]
 commands list:
 create                  create some source files(Use 'drogon_ctl help create' for more information)
@@ -16,27 +16,27 @@ press                   Do stress testing(Use 'drogon_ctl help press' for more i
 
 The `version` subcommand is used to print the drogon version currently installed on the system, as follows:
 
-```shell
- dg_ctl version
-     _                             
-  __| |_ __ ___   __ _  ___  _ __  
- / _` | '__/ _ \ / _` |/ _ \| '_ \ 
+```console
+$ dg_ctl version
+     _
+  __| |_ __ ___   __ _  ___  _ __
+ / _` | '__/ _ \ / _` |/ _ \| '_ \
 | (_| | | | (_) | (_| | (_) | | | |
  \__,_|_|  \___/ \__, |\___/|_| |_|
-                 |___/             
+                 |___/
 
 drogon ctl tools
 version:0.9.30.771
 git commit:d4710d3da7ca9e73b881cbae3149c3a570da8de4
-compile config:-O3 -DNDEBUG -Wall -std=c++17 -I/root/drogon/trantor -I/root/drogon/lib/inc -I/root/drogon/orm_lib/inc -I/usr/local/include -I/usr/include/uuid -I/usr/include -I/usr/include/mysql 
+compile config:-O3 -DNDEBUG -Wall -std=c++17 -I/root/drogon/trantor -I/root/drogon/lib/inc -I/root/drogon/orm_lib/inc -I/usr/local/include -I/usr/include/uuid -I/usr/include -I/usr/include/mysql
 ```
 
 ### Create sub command
 
 The `create` subcommand is used to create various objects. It is currently the main function of drogon_ctl. Use the `dg_ctl help create` command to print detailed help for this command, as follows:
 
-```shell
-dg_ctl help create
+```console
+$ dg_ctl help create
 Use create command to create some source files of drogon webapp
 
 Usage:drogon_ctl create <view|controller|filter|project|model> [-options] <object name>
@@ -112,7 +112,7 @@ After the command is executed, a complete project directory will be created in t
 
 The directory structure of the project is as follows:
 
-```shell
+```console
 ├── build                         Build folder
 ├── CMakeLists.txt                Project cmake configuration file
 ├── cmake_modules                 Cmake scripts for third-party libraries lookup

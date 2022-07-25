@@ -8,7 +8,7 @@ drogon_ctl create project your_project_name
 
 进入工程目录，可以看到如下文件:
 
-```shell
+```console
 ├── build                         构建文件夹
 ├── CMakeLists.txt                工程的cmake配置文件
 ├── config.json                   drogon应用的配置文件
@@ -60,7 +60,7 @@ Http根目录默认值是`"./"`， 也就是webapp程序运行的当前路径，
 ![404页面](images/notfound.png)
 
 **注意：请确认服务器的防火墙已经打开80端口，否则你看不到这些页面（或是将port改成1024以上以解决遇到以下错误讯息）：**
-```shell
+```console
 FATAL Permission denied (errno=13) , Bind address failed at 0.0.0.0:80 - Socket.cc:67
 ```
 
@@ -70,7 +70,7 @@ FATAL Permission denied (errno=13) , Bind address failed at 0.0.0.0:80 - Socket.
 
 下面我们看看怎么给这个应用添加控制器（controller）,并使用控制器（controller）输出内容。
 
-在`controller`目录下运行drogon_ctl命令行工具生成控制器（controller）源文件: 
+在`controller`目录下运行drogon_ctl命令行工具生成控制器（controller）源文件:
 
 ```shell
 drogon_ctl create controller TestCtrl
