@@ -218,7 +218,7 @@ make && sudo make install
 默认是编译debug版本，如果想编译release版本，cmake命令要带如下参数：
 
 ```shell
-cmake -DCMAKE_BUILD_TYPE=Release .. 
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 安装结束后，将有如下文件被安装在系统中(CMAKE_INSTALL_PREFIX可以改变安装位置)：
@@ -314,7 +314,7 @@ __如果你尚未安装vckpg:__
     ```
     C:\Dev\vcpkg\installed\x64-windows\include
     ```
-    
+
 7. 重启 __*powershell*__, 输入:
     - `drogon_ctl` 或者 `drogon_ctl.exe`
     - 再输入 __enter__ 回车键
@@ -384,6 +384,23 @@ __如果你尚未安装Nix:__ 你可以按照[NixOS website](https://nixos.org/d
 
 ```cmake
 add_subdirectory(third_party/drogon)
+target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
+```
+
+#### 使用[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake)
+
+你可以使用[CPM.cmake](https://github.com/cpm-cmake/CPM.cmake)来包含drogon的源代码：
+
+```cmake
+include(cmake/CPM.cmake)
+
+CPMAddPackage(
+    NAME drogon
+    VERSION 1.7.5
+    GITHUB_REPOSITORY drogonframework/drogon
+    GIT_TAG v1.7.5
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
 ```
 

@@ -220,7 +220,7 @@ make && sudo make install
 The default is to compile the debug version. If you want to compile the release version, the cmake command should take the following parameters:
 
 ```shell
-cmake -DCMAKE_BUILD_TYPE=Release .. 
+cmake -DCMAKE_BUILD_TYPE=Release ..
 ```
 
 After the installation is complete, the following files will be installed in the system（One can change the installation location with the CMAKE_INSTALL_PREFIX option）:
@@ -395,4 +395,22 @@ Of course, you can also include the drogon source in your project. Suppose you p
 add_subdirectory(third_party/drogon)
 target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
 ```
+
+#### Use [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake)
+
+You can use [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) to include the drogon source code:
+
+```cmake
+include(cmake/CPM.cmake)
+
+CPMAddPackage(
+    NAME drogon
+    VERSION 1.7.5
+    GITHUB_REPOSITORY drogonframework/drogon
+    GIT_TAG v1.7.5
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
+```
+
 # 03 [Quick Start](ENG-03-Quick-Start)
