@@ -207,7 +207,7 @@ Assuming that the above environment and library dependencies are all ready, the 
 
 ```shell
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build
@@ -236,7 +236,7 @@ After the installation is complete, the following files will be installed in the
 After installed `conan` package manager, run command in PowerShell for Visual studio as bellow:
 ```
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build

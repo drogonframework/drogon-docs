@@ -206,7 +206,7 @@ MySQL的原生库不支持异步读写，而通过同步接口+线程池的方�
 
 ```shell
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build
@@ -233,7 +233,7 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 安装了`conan`包管理器后,可以在Visual Studio 2019的PowellShell中执行
 ```
 cd $WORK_PATH
-git clone https://github.com/an-tao/drogon
+git clone https://github.com/drogonframework/drogon
 cd drogon
 git submodule update --init
 mkdir build
