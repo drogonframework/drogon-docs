@@ -113,8 +113,8 @@ Criteria("tags @> $?"_sql, "cloud");
 ```c++
 Mapper<Users> mp(dbClientPtr);
 auto users = mp.findBy(
-(Criteria(Users::Cols::_user_name,CompareOperator::LIKE,"李%")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,0))
-||(Criteria(Users::Cols::_user_name,CompareOperator::LIKE,"王%")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,1))
+(Criteria(Users::Cols::_user_name,CompareOperator::Like,"李%")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,0))
+||(Criteria(Users::Cols::_user_name,CompareOperator::Like,"王%")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,1))
 ));
 ```
 
@@ -184,7 +184,7 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
 
 ```c++
     /// Relationship interfaces
-    void getSKU(const DbClientPtr &clientPtr, 
+    void getSKU(const DbClientPtr &clientPtr,
                 const std::function<void(Skus)> &rcb,
                 const ExceptionCallback &ecb) const;
 ```
@@ -195,7 +195,7 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
 
 ```c++
     /// Relationship interfaces
-    void getProduct(const DbClientPtr &clientPtr, 
+    void getProduct(const DbClientPtr &clientPtr,
                     const std::function<void(Products)> &rcb,
                     const ExceptionCallback &ecb) const;
 ```
@@ -220,7 +220,7 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
 上面各个配置的含义跟前一个例子一样，这里不再赘述，因为评价有多个，是复数，所以不用另起一个别名了。按照该设置，drogon_ctl create model之后，products表对应的model中，会增加下面的接口：
 
 ```c++
-    void getReviews(const DbClientPtr &clientPtr, 
+    void getReviews(const DbClientPtr &clientPtr,
                     const std::function<void(std::vector<Reviews>)> &rcb,
                     const ExceptionCallback &ecb) const;
 ```
@@ -228,7 +228,7 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
 reviews表对应的model中，会增加下面的接口：
 
 ```c++
-    void getProduct(const DbClientPtr &clientPtr, 
+    void getProduct(const DbClientPtr &clientPtr,
                     const std::function<void(Products)> &rcb,
                     const ExceptionCallback &ecb) const;
 ```
@@ -260,7 +260,7 @@ reviews表对应的model中，会增加下面的接口：
 按这个配置生成的products的model会添加如下方法：
 
 ```c++
-    void getCarts(const DbClientPtr &clientPtr, 
+    void getCarts(const DbClientPtr &clientPtr,
                   const std::function<void(std::vector<std::pair<Carts,CartsProducts>>)> &rcb,
                   const ExceptionCallback &ecb) const;
 ```
@@ -268,7 +268,7 @@ reviews表对应的model中，会增加下面的接口：
 carts表的model类会添加如下方法：
 
 ```c++
-    void getProducts(const DbClientPtr &clientPtr, 
+    void getProducts(const DbClientPtr &clientPtr,
                      const std::function<void(std::vector<std::pair<Products,CartsProducts>>)> &rcb,
                      const ExceptionCallback &ecb) const;
 ```

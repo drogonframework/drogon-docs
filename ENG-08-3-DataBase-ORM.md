@@ -114,8 +114,8 @@ Criteria objects support AND and OR operations. The sum of two criteria objects 
 ```c++
 Mapper<Users> mp(dbClientPtr);
 auto users = mp.findBy(
-(Criteria(Users::Cols::_user_name,CompareOperator::LIKE,"%Smith")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,0))
-||(Criteria(Users::Cols::_user_name,CompareOperator::LIKE,"%Johnson")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,1))
+(Criteria(Users::Cols::_user_name,CompareOperator::Like,"%Smith")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,0))
+||(Criteria(Users::Cols::_user_name,CompareOperator::Like,"%Johnson")&&Criteria(Users::Cols::_gender,CompareOperator::EQ,1))
 ));
 ```
 
@@ -185,7 +185,7 @@ According to this setting, in the model class corresponding to the products tabl
 
 ```c++
     /// Relationship interfaces
-    void getSKU(const DbClientPtr &clientPtr, 
+    void getSKU(const DbClientPtr &clientPtr,
                 const std::function<void(Skus)> &rcb,
                 const ExceptionCallback &ecb) const;
 ```
@@ -196,7 +196,7 @@ At the same time, since the enable_reverse option is set to true, the following 
 
 ```c++
     /// Relationship interfaces
-    void getProduct(const DbClientPtr &clientPtr, 
+    void getProduct(const DbClientPtr &clientPtr,
                     const std::function<void(Products)> &rcb,
                     const ExceptionCallback &ecb) const;
 ```
@@ -221,7 +221,7 @@ At the same time, since the enable_reverse option is set to true, the following 
 The meaning of each configuration above is the same as the previous example, so I won't repeat it here, because there are multiple reviews for a single product, so there is no need to create an alias of reviews. According to this setting, after running `drogon_ctl create model`, the following interface will be added to the model corresponding to the products table:
 
 ```c++
-    void getReviews(const DbClientPtr &clientPtr, 
+    void getReviews(const DbClientPtr &clientPtr,
                     const std::function<void(std::vector<Reviews>)> &rcb,
                     const ExceptionCallback &ecb) const;
 ```
@@ -229,7 +229,7 @@ The meaning of each configuration above is the same as the previous example, so 
 In the model corresponding to the reviews table, the following interface will be added:
 
 ```c++
-    void getProduct(const DbClientPtr &clientPtr, 
+    void getProduct(const DbClientPtr &clientPtr,
                     const std::function<void(Products)> &rcb,
                     const ExceptionCallback &ecb) const;
 ```
@@ -261,7 +261,7 @@ For the pivot table, there is an additional `pivot_table` configuration. The opt
 The model of `products` generated according to this configuration will add the following method:
 
 ```c++
-    void getCarts(const DbClientPtr &clientPtr, 
+    void getCarts(const DbClientPtr &clientPtr,
                   const std::function<void(std::vector<std::pair<Carts,CartsProducts>>)> &rcb,
                   const ExceptionCallback &ecb) const;
 ```
@@ -269,7 +269,7 @@ The model of `products` generated according to this configuration will add the f
 The model class of the carts table will add the following method:
 
 ```c++
-    void getProducts(const DbClientPtr &clientPtr, 
+    void getProducts(const DbClientPtr &clientPtr,
                      const std::function<void(std::vector<std::pair<Products,CartsProducts>>)> &rcb,
                      const ExceptionCallback &ecb) const;
 ```
