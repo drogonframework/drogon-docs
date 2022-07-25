@@ -14,7 +14,7 @@ FastDbClient的获取接口和普通DbClient的类似，如下：
 
 ```c++
 orm::DbClientPtr getFastDbClient(const std::string &name = "default");
-/// 使用drogon::app().getFastDbCLient("clientName")调用
+/// 使用drogon::app().getFastDbClient("clientName")调用
 ```
 
 需要指出的是，由于FastDbClient的特殊性，用户必须在IO事件循环线程或主线程内调用上述接口才能得到正确的智能指针，在其它线程只能获得空指针，无法使用。

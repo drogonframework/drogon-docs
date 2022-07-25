@@ -14,7 +14,7 @@ The interface to get a FastDbClient is similar to the normal DbClient, as follow
 
 ```c++
 orm::DbClientPtr getFastDbClient(const std::string &name = "default");
-/// Use drogon::app().getFastDbCLient("clientName") to get a FastDbClient object.
+/// Use drogon::app().getFastDbClient("clientName") to get a FastDbClient object.
 ```
 
 It should be pointed out that due to the special nature of FastDbClient, the user must call the above interface in the IO event loop thread or the main thread to get the correct smart pointer. In other threads, only the null pointer can be obtained and cannot be used.

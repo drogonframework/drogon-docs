@@ -43,12 +43,12 @@ The thread hierarchy looks like this
  <thread 1>     <thread 2>   <thread ...>
 ```
 
-The number of worker loops depends on numerous variables. Namely, how many threads are specified for the HTTP server, how many non-fast DB and NoSQL connections are created - we'll get to fast vs non-fast connections later. Just know that drogon has more threads than just the HTTP server threads. Each event loop is essentally a task queue with the following funcionality.
+The number of worker loops depends on numerous variables. Namely, how many threads are specified for the HTTP server, how many non-fast DB and NoSQL connections are created - we'll get to fast vs non-fast connections later. Just know that drogon has more threads than just the HTTP server threads. Each event loop is essentially a task queue with the following functionality.
 
 * Reads tasks from a test queue and execute them.  You can submit task to run on the a loop from any other threads. Task submitting is totally lock free (thanks to lock free data structure!) and won't cause data race in all circumstances. Event loops process tasks one-by-one. Thus tasks have a well-defined order of execution. But also, tasks that's queued after a huge, long running task gets delayed.
-* Listen to and dispatch network events that it manages 
-* Execue timers when they timeout (usually created by the user)
-When non of the above is happning. The event loop/thread blocks and waits for them.
+* Listen to and dispatch network events that it manages
+* Execute timers when they timeout (usually created by the user)
+When non of the above is happening. The event loop/thread blocks and waits for them.
 
 ```cpp
 // queuing two tasks on the main loop
@@ -63,13 +63,13 @@ loop->queueInLoop([]{
 });
 ```
 
-Hopefully is's clear why running the above snippet will result in `task1: I'm gonna wait for 5s` appear immidatelly. Pauses for 5 seconds and then both `task1: hello` and `task2: workd!` showing up.
+Hopefully is's clear why running the above snippet will result in `task1: I'm gonna wait for 5s` appear immediately. Pauses for 5 seconds and then both `task1: hello` and `task2: world!` showing up.
 
 So tip 1: Don't call blocking IO in the event loop. Other tasks has to wait for that IO.
 
 ## Network IO in practice
 
-Almost everything in drogon is associated with an event loop. This includes the TCP stream/connection, HTTP client, DB clients and data cache. To avoid race conditions, all IO are done in the associated event loop. If an IO call is made from another thread, then parameters are stored and submitted as a task to the approprate event loop. This has some implications. For example when calling a remote endpoint from within a HTTP handler or making a DB call. The callback from the client may not necessarily (in fact, commonly does not) runs on the same thread as the handler.
+Almost everything in drogon is associated with an event loop. This includes the TCP stream/connection, HTTP client, DB clients and data cache. To avoid race conditions, all IO are done in the associated event loop. If an IO call is made from another thread, then parameters are stored and submitted as a task to the appropriate event loop. This has some implications. For example when calling a remote endpoint from within a HTTP handler or making a DB call. The callback from the client may not necessarily (in fact, commonly does not) runs on the same thread as the handler.
 
 ```cpp
 app().registerHandler("/send_req", [](const HttpRequest& req
@@ -115,7 +115,7 @@ Therefor, it is possible to clog up an event loop if you are not aware of what y
 ```
 The same principle is also true for the HTTP server. If a response is generated from a separate thread (ex: in a DB callback). Then the response is queue on associated thread for sending instead of sending immediately.
 
-Tip 2: Be aware where you place your computations. They can also harm througput if not careful.
+Tip 2: Be aware where you place your computations. They can also harm throughput if not careful.
 
 ## Deadlocking the event loop
 

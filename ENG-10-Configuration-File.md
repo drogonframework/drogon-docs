@@ -41,7 +41,7 @@ The ssl option is to configure SSL files of the https service as follows:
   }
 ```
 
-Where `cert` is the path of the certificate file and `key` is the path of the private key file. If a file contains both a certificate and a private key, the two paths can be made the same. The file is in PEM encoding format. 
+Where `cert` is the path of the certificate file and `key` is the path of the private key file. If a file contains both a certificate and a private key, the two paths can be made the same. The file is in PEM encoding format.
 
 `conf` are optional SSL options that are directly passed into [SSL_CONF_cmd](https://www.openssl.org/docs/manmaster/man3/SSL_CONF_cmd.html) to allow low level configuration of the encryption. The options must be one or two element arrays.
 
@@ -105,7 +105,7 @@ Among them:
 * `user`：String, user name;
 * `passwd`：String, password;
 * `is_fast`：bool，false by default, indicate if the client is a [FastDbClient](ENG-08-4-Database-FastDbClient)
-* `connection_number`：A integer indicating the number of connections to the database server, at least 1, the default value is also 1, affecting the concurrent performance of data read and write; If the 'is_fast' is true, the number is the number of connections per event loop, otherwise it is the total number of all connections. 
+* `connection_number`：A integer indicating the number of connections to the database server, at least 1, the default value is also 1, affecting the concurrent performance of data read and write; If the 'is_fast' is true, the number is the number of connections per event loop, otherwise it is the total number of all connections.
 * `filename`: The filename of sqlite3 database;
 
 ### threads_num
@@ -128,7 +128,7 @@ Session-related options are also children of the `app` option, controlling wheth
 ```
 
 Among them:
-  
+
 * `enable_session`：A Boolean value indicating whether to use a session. The default is false. If the client does not support cookies, set it to false because the framework will create a new session for each request without a session cookie, which will result in completely unnecessary resource and performance loss;
 * `session_timeout`：An integer value indicating the timeout period of the session, in seconds. The default value is 0, indicating permanent validity. Only works if enable_session is true.
 
@@ -171,7 +171,7 @@ The suboption of the app option, an array of strings, with default values ​​
 
 ### mime
 
-The suboption of the app option, a dictionary of strings to strings or an array of strings. Declares how file extenstions are mapped to new MIME types (i.e. for those not recognized by default) when sending static files. Note that this options merely registers the MIME. The framework still sends a 404 if the extensoin is not in `file_types` described above.
+The suboption of the app option, a dictionary of strings to strings or an array of strings. Declares how file extensions are mapped to new MIME types (i.e. for those not recognized by default) when sending static files. Note that this options merely registers the MIME. The framework still sends a 404 if the extension is not in `file_types` described above.
 
 ```json
 "mime" : {
@@ -229,7 +229,7 @@ Among them：
 
 * `run_as_daemon`：Boolean value, the default value is false. When it is true, the application will be a child process of the No.1 process in the form of a daemon running in the background of the system.
 * `relaunch_on_error`：Boolean value, the default value is false. When it is true, the application will relaunches itself on error.
-  
+
 ### use_sendfile
 
 The suboption of `app` option, boolean, indicates whether the linux system call sendfile is used when sending the file. The default value is true. Using sendfile can improve the sending efficiency and reduce the memory usage of large files. as follows:

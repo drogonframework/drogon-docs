@@ -1,6 +1,6 @@
 # FAQ
 
-This is a list of commonly asked questions and the answers, with some extended explnation.
+This is a list of commonly asked questions and the answers, with some extended explanation.
 
 ## What's drogon's threading model and best prectices?
 
