@@ -80,7 +80,7 @@ class User : public drogon::HttpController<User>
     METHOD_ADD(User::getInfo,"/{1}/info?token={2}",Get);
     METHOD_LIST_END
     // your declaration of processing function maybe like this:
-    void login(constHttpRequestPtr &req,
+    void login(const HttpRequestPtr &req,
                std::function<void (const HttpResponsePtr &)> &&callback,
                std::string &&userId,
                const std::string &password);
