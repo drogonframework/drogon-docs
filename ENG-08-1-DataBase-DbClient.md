@@ -64,7 +64,7 @@ The properties of these methods are shown in the following table:
 | Methods                                   | Synchronous/Asynchronous | Blocking/Non-blocking               | Exception                            |
 | :------------------------------------- | :-------- | :------------------------ | :------------------------------ |
 | void execSqlAsync                      | Asynchronous      | Non-blocking    | Will not throw an exception                        |
-| std::future<const Result> execSqlAsyncFuture| Asynchronous      | Block when calling the get method of the future| May throw an exception when calling the get method of the future |
+| std::future<const Result\> execSqlAsyncFuture| Asynchronous      | Block when calling the get method of the future| May throw an exception when calling the get method of the future |
 | const Result execSqlSync               | Synchronous      | Blocking                      | May throw an exception                      |
 | internal::SqlBinder operator<<         | Asynchronous      | Default non-blocking     | Will not throw an exception                        |
 
@@ -237,7 +237,7 @@ int i = 0;
                 };
 ```
 
-It can be seen that the values ​​of the user_name and user_id fields in the select statement are respectively assigned to the name and id variables in the callback function, and the user does not need to handle these conversions by themselves, which obviously provides a certain convenience, and the user can use it flexibly.
+It can be seen that the values of the user_name and user_id fields in the select statement are respectively assigned to the name and id variables in the callback function, and the user does not need to handle these conversions by themselves, which obviously provides a certain convenience, and the user can use it flexibly.
 
 **Note: It is important to emphasize that in asynchronous programming the user must pay attention to the variable i in the above example. The user must ensure that the variable i is valid when the callback occurs because it is caught by the reference. The callback will be called in another thread, and the current context may have failed when the callback occurred. Programmers typically use smart pointers to hold temporarily created variables and then capture them through callbacks to ensure the validity of the variables.**
 
