@@ -189,4 +189,4 @@ We see that adding a controller to an application is very simple. You only need 
 
 **Note: Drogon has no restrictions on the location of the controller source files. You could also save them in "./" (the project root directory), or you could even define a new directory in `CMakeLists.txt`. It is recommended to use the controllers directory for the convenience of management.**
 
-# 04.0 [Controller Introduction](ENG-04-0-Controller-Introduction)
+# 04.0 [Controller Introduction](ENG-04-0-Controller-Introduction.md)
