@@ -307,7 +307,7 @@ Among them：
 * `dynamic_views_path`：Boolean value, the default value is false. When it is true, the framework searches view files in the view path and dynamically compiles them into .so files, then loads them into the application. When any view file changes, it will also cause automatic compilation and re-loading;
 * `dynamic_views_path`：An array of strings, each of which represents the search path of the dynamic view. If the path value is not starting with `/`, `./` or `../`, and the value is not `.` or `..`, then This path is the relative path of the previous document_root entry, otherwise it is an absolute path or a relative path to the current directory.
 
-See [View](ENG-06-View)
+See [View](ENG-06-View.md)
 
 ### Server header field
 
@@ -332,4 +332,4 @@ The `pipelining_requests` sets the maximum number of unhandled requests that can
 "pipelining_requests": 0
 ```
 
-# 11 [drogon_ctl Command](ENG-11-drogon_ctl-Command)
+# 11 [drogon_ctl Command](ENG-11-drogon_ctl-Command.md)
