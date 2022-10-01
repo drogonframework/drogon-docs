@@ -50,4 +50,4 @@ As you can see, the configuration and registration of filters are very simple. T
 
 **Note: If the filter is defined in the namespace, you must write the namespace completely when you register the filter.**
 
-# 06 [View](ENG-06-View)
+# 06 [View](ENG-06-View.md)
