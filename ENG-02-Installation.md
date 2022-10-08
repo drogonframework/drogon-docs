@@ -273,17 +273,17 @@ __if you haven't install vcpkg:__
 
 0. [Lazzy to read](https://www.youtube.com/watch?v=0ojHvu0Is6A)
 
-1. Assuming that you don't have `cmake.exe`, `make.exe` and `vcpkg.exe`
+1. Assuming that you don't have `cmake.exe`, `make.exe`/`nmake.exe`/`ninja.exe` and `vcpkg.exe`
 
 2. Make it sure you're already install `git` for windows too
 
 3. First, go to where you want to install `vcpkg`.
-    - In this case, we're gonna use `C:/Dev` directory.
+    - In this case, we're gonna use `C:/dev` directory.
     - If you don't have that directory yet, open your __*powershell*__ as administrator:
         - type and enter:
             - `cd c:/`
-            - `mkdir Dev;cd Dev;` mean you will create __dev__ and go to __dev__ directory
-            - `git clone https://github.com/microsoft/vcpkg`
+            - `mkdir dev;cd dev;` mean you will create __dev__ and go to __dev__ directory
+            - `git clone https://github.com/microsoft/vcpkg` or `git clone git@github.com:microsoft/vcpkg.git`
             - `cd vcpkg`
             - `./bootstrap-vcpkg.bat` this will install `vcpkg.exe`
             note: to update your vcpkg, you just need to type `git pull`
@@ -296,26 +296,36 @@ __if you haven't install vcpkg:__
 5. To install drogon framework. Type:
     - 32-Bit: `vcpkg install drogon`
     - 64-Bit: `vcpkg install drogon:x64-windows`
+    - extra : `vcpkg install jsoncpp:x64-windows zlib::x64-windows openssl::x64-windows sqlite3:x64-windows libpq:x64-windows libpqxx:x64-windows drogon[core,ctl,sqlite3,postgres,orm]:x64-windows`
     - wait till all dependencies are installed.
     - note:
         - if there's any package is/are uninstalled and you got error, just install that package. e.g.:
             - zlib : `vcpkg install zlib` or `vcpkg install zlib:x64-windows` for 64-Bit
         - to check what already installed:
             - `vcpkg list`
-        - To get drogon_ctl, one has to execute command `vcpkg install drogon[ctl]` for 32 bit or `vcpkg install drogon[ctl]:x64-windows` for 64 bit. Please run `vcpkg search drogon` for more feature option details.
+        - use `vcpkg search` for what available.
 
 6. To add __*drogon_ctl*__ command and dependencies, you need to add some variables. By following this guide, you just need to add:
     ```
-    C:\Dev\vcpkg\installed\x64-windows\tools\drogon
+    C:\dev\vcpkg\installed\x64-windows\tools\drogon
     ```
     ```
-    C:\Dev\vcpkg\installed\x64-windows\bin
+    C:\dev\vcpkg\installed\x64-windows\bin
     ```
     ```
-    C:\Dev\vcpkg\installed\x64-windows\lib
+    C:\dev\vcpkg\installed\x64-windows\lib
     ```
     ```
-    C:\Dev\vcpkg\installed\x64-windows\include
+    C:\dev\vcpkg\installed\x64-windows\include
+    ```
+    ```
+    C:\dev\vcpkg\installed\x64-windows\share
+    ```
+    ```
+    C:\dev\vcpkg\installed\x64-windows\debug\bin
+    ```
+    ```
+    C:\dev\vcpkg\installed\x64-windows\debug\lib
     ```
     to your windows __*environment variables*__.
 
@@ -335,9 +345,11 @@ __if you haven't install vcpkg:__
 
 8. Note:
     - you need to be familiar with building cpp libraries by using:
-        - independent `gcc` or `g++`
+        - independent `gcc` or `g++` (__*[msys2](https://www.msys2.org/), [mingw-w64](https://www.mingw-w64.org/), [tdm-gcc](https://jmeubank.github.io/tdm-gcc/download/)*__)
         <br>or
         - Microsoft Visual Studio compiler
+
+    - consider use __*make.exe/nmake.exe/ninja.exe*__ as cmake generator since configuration and build behaviour is same as *make* linux, if some devs using Linux/Windows and you are planning to deploy on Linux environment, it's less prone error when switching operating-system.
 
 <br>
 
