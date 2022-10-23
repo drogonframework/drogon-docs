@@ -67,7 +67,7 @@ redisClient->execCommandAsync(
 ```c++
 redisClient->execCommandAsync(
     [](const drogon::nosql::RedisResult &r) {
-        if (r.type() == RedisResultType::kNull)
+        if (r.type() == RedisResultType::kNil)
             LOG_INFO << "Cannot find variable associated with the key 'name'";
         else
             LOG_INFO << "Name is " << r.asString();
