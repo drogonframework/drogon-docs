@@ -148,6 +148,24 @@ The child of the `app` option, a string, represents the default path for uploadi
 "upload_path":"uploads",
 ```
 
+### client_max_body_size
+
+A child of the `app` object, a string, represents the overall maximum size of the body of a request.
+You can use the suffixes `k`, `m`, `g`, to specify kilobyte, megabyte or gigabye (byte * 1024), on 64bit build you can also use `t` for terabytes. The suffixes can be both lower case or upper case.
+
+```json
+"client_max_body_size": "10M",
+```
+
+### client_max_memory_body_size
+
+A child of the `app` object, a string, represents the maximum buffer size to store a request body before caching to a file.
+You can use the suffixes `k`, `m`, `g`, to specify kilobyte, megabyte or gigabye (byte * 1024), on 64bit build you can also use `t` for terabytes. The suffixes can be both lower case or upper case.
+
+```json
+"client_max_memory_body_size": "50K"
+```
+
 ### file_types
 
 The suboption of the app option, an array of strings, with default values ​​as follows, indicates the static file download type supported by the framework. If the requested static file extension is outside of these types, the framework will return a 404 error.
