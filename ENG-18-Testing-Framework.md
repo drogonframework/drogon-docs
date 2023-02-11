@@ -1,3 +1,5 @@
+[English](ENG-18-Testing-Framework) | [简体中文](CHN-18-测试框架)
+
 DrogonTest is a minimal testing framework built into drogon to enable easy asynchronous testing as well as synchronous ones. It is used for Drogon's own unittests and integration tests. But could also be used for testing applications built with Drogon. The syntax of DrogonTest is inspired by both [GTest](https://github.com/google/googletest) and [Catch2](https://github.com/catchorg/Catch2).
 
 You don't have to use DrogonTest for your application. Use whatever you are comfortable with. But it is an option.
@@ -69,11 +71,11 @@ int sum_all(int n)
 DrogonTest comes with a variety of assertions and actions. The basic `CHECK()` simply checks if the expression evaluates to true. If not, it prints to console. `CHECK_THROWS()` checks if the expression throws an exception. If it didn't, print to console. etc.. On the other hand `REQUIRE()` checks if a expression is true. Then return if not, preventing expressions after the test being executed.
 
 | action if fail/expression | is true    | throws            | does not throw     | throws certain type  |
-|---------------------------|------------|-------------------|--------------------|----------------------|
+| ------------------------- | ---------- | ----------------- | ------------------ | -------------------- |
 | nothing                   | CHECK      | CHECK_THROWS      | CHECK_NOTHROW      | CHECK_THROWS_AS      |
 | return                    | REQUIRE    | REQUIRE_THROWS    | REQUIRE_NOTHROW    | REQUIRE_THROWS_AS    |
 | co_return                 | CO_REQUIRE | CO_REQUIRE_THROWS | CO_REQUIRE_NOTHROW | CO_REQUIRE_THROWS_AS |
-| kill process              | MANDATE     | MANDATE_THROWS     | MANDATE_NOTHROW     | MANDATE_THROWS_AS     |
+| kill process              | MANDATE    | MANDATE_THROWS    | MANDATE_NOTHROW    | MANDATE_THROWS_AS    |
 
 Let's try a slightly practical example. Let's say you're testing if the content of a file is what you're expecting. There's no point to further test if the program failed to open the file. So, we can use `REQUIRE` to shorten and reduce duplicated code.
 

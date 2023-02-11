@@ -1,23 +1,25 @@
-**Transactions** are an important feature of relational databases, and Drogon provides transaction support with the `Transaction` class.
+[English](ENG-08-2-DataBase-Transaction) | [简体中文](CHN-08-2-数据库-事务)
+
+> **Transactions** are an important feature of relational databases, and Drogon provides transaction support with the `Transaction` class.
 
 Objects of the `Transaction` class are created by `DbClient`, and many transaction-related operations are performed automatically:
 
-* At the beginning of the `Transaction` object creation, the begin statement is automatically executed to `start` the transaction;
-* When the `Transaction` object is destructed, the `commit` statement is automatically executed to end the transaction;
-* If there is an exception that causes the transaction to fail, the `rollback` statement is automatically executed to roll back the transaction;
-* If the transaction has been rolled back, then the sql statement will return an exception (throw an exception or perform an exception callback);
+- At the beginning of the `Transaction` object creation, the begin statement is automatically executed to `start` the transaction;
+- When the `Transaction` object is destructed, the `commit` statement is automatically executed to end the transaction;
+- If there is an exception that causes the transaction to fail, the `rollback` statement is automatically executed to roll back the transaction;
+- If the transaction has been rolled back, then the sql statement will return an exception (throw an exception or perform an exception callback);
 
 ### Transaction Creation
 
 The method of transaction creation is provided by `DbClient` as follows:
 
 ```c++
-std::shared_ptr<Transaction> newTransaction(const std::function<void(bool)> &commitCallback = std::function<void(bool)>()) 
+std::shared_ptr<Transaction> newTransaction(const std::function<void(bool)> &commitCallback = std::function<void(bool)>())
 ```
 
 This interface is very simple, it returns a smart pointer to a `Transaction` object. Obviously, when the smart pointer loses all the holders and destructs the transaction object, the transaction ends. The parameter `commitCallback` is used to return whether the transaction commit is successful. It should be noted that this callback is only used to indicate whether the `commit` command is successful. If the transaction is automatically or manually rolled back during execution, the `callback` will not be executed. Generally, the `commit` command will succeed，the bool type parameter of this callback is true. Only some special cases, such as the connection disconnection during the commit process, will cause the `commitCallback` to notify the user that the commit fails, at this time, the state of the transaction on the server is not certain, the user needs to deal with this situation specially. Of course, considering that this situation rarely occurs, with non-critical services the user can choose to ignore this event by ignoring the `commitCallback` parameter when creating the transaction (The default empty callback will be passed to the newTransaction method).
 
-The transaction must monopolize the database connection. Therefore, during transaction creation, `DbClient` needs to select an idle connection from its own connection pool and hand it over to transaction object management. This has a problem. If all connections in the `DbClient` are executing sql or other transactions, the interface will block until there is an idle connection. 
+The transaction must monopolize the database connection. Therefore, during transaction creation, `DbClient` needs to select an idle connection from its own connection pool and hand it over to transaction object management. This has a problem. If all connections in the `DbClient` are executing sql or other transactions, the interface will block until there is an idle connection.
 
 The framework also provides an asynchronous interface for creating transactions, as follows:
 
@@ -31,8 +33,8 @@ This interface returns the transaction object through the callback function, doe
 
 The `Transaction` interface is almost identical to `DbClient`, except for the following two differences:
 
-* `Transaction` provides a `rollback()` interface that allows the user to roll back the transaction under any circumstances. Sometimes, the transaction has been automatically rolled back, and then calling the `rollback()` interface has no negative impact, so explicitly using the rollback() interface is a good strategy to at least ensure that it is not committed incorrectly.
-* The user cannot call the transaction's `newTransaction()` interface, which is easy to understand. Although the database has the concept of a sub-transaction, the framework does not currently support it.
+- `Transaction` provides a `rollback()` interface that allows the user to roll back the transaction under any circumstances. Sometimes, the transaction has been automatically rolled back, and then calling the `rollback()` interface has no negative impact, so explicitly using the rollback() interface is a good strategy to at least ensure that it is not committed incorrectly.
+- The user cannot call the transaction's `newTransaction()` interface, which is easy to understand. Although the database has the concept of a sub-transaction, the framework does not currently support it.
 
 In fact, `Transaction` is designed as a subclass of `DbClient`, in order to maintain the consistency of these interfaces, and at the same time, it also creates convenient conditions for the use of [ORM](ORM).
 
@@ -57,13 +59,13 @@ For the simplest example, suppose there is a task table from which the user sele
                                     std::cout << "Got a task!" << std::endl;
                                     *transPtr << "update tasks set status=$1 where task_id=$2"
                                               << "handling"
-                                              << r[0]["task_id"].as<int64_t>() 
-                                              >> [](const Result &r) 
+                                              << r[0]["task_id"].as<int64_t>()
+                                              >> [](const Result &r)
                                                  {
                                                     std::cout << "Updated!";
                                                     ... do something about the task;
-                                                 } 
-                                              >> [](const DrogonDbException &e) 
+                                                 }
+                                              >> [](const DrogonDbException &e)
                                                  {
                                                     std::cerr << "err:" << e.base().what() << std::end;
                                                  };

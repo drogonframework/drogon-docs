@@ -1,4 +1,7 @@
+[English](ENG-06-View) | [简体中文](CHN-06-视图)
+
 ### Views Introduction
+
 Although the front-end rendering technology is popular, the back-end application service only needs to return the corresponding data to the front-end. However, a good web framework should provide back-end rendering technology, so that the server program can dynamically generate HTML pages. Views can help users generate these pages. As the name implies, it is only responsible for doing the work related to the presentation, and the complex business logic should be handed over to the controller.
 
 The earliest web applications embed HTML into the program code to achieve the purpose of dynamically generating HTML pages, but this is inefficient, not intuitive, and so on. So there are languages such as JSP, which are the opposite. , embed the program code into the HTML page. The drogon is of course the latter solution. However, it is obvious that since C++ is compiled and executed, we need to convert the page embedded in C++ code into a C++ source program to compile into the application. Therefore, drogon defines its own specialized CSP (C++ Server Pages) description language, using the command line tool drogon_ctl to convert CSP files into C++ source files for compilation.
@@ -7,15 +10,15 @@ The earliest web applications embed HTML into the program code to achieve the pu
 
 Drogon's CSP solution is very simple, we use special markup symbols to embed C++ code into the HTML page. among them:
 
-* The content between the tags `<%inc` and `%>` is considered to be the part of the header file that needs to be referenced. Only the `#include` statement can be written here, such as `<%inc#include "xx.h" %>`, but many common header files are automatically included by drogon. The user basically does not use this tag;
-* Everything between the tags `<%c++` and `%>` is treated as C++ code, such as `<c++ std:string name="drogon"; %>`;
-* C++ code is generally transferred to the target source file intact, except for the following two special tags:
-	* `@@` represents the data variable passed by the controller, from which you can get the content you want to display;
-	* `$$` represents a stream object representing the content of the page, and the content to be displayed can be displayed on the page by the `<<` operator;
-* The content sandwiched between the tags `[[` and `]]` is considered to be the variable name. The view will use the name as the key to find the corresponding variable from the data passed from the controller and output it to the page. Spaces before and after the variable name will be omitted. Paired `[[` and `]]` should be on the same line. And for performance reasons, only three string data types are supported(const char *, std::string and const std::string), other data types should be output in the above-mentioned way(by `$$`);
-* The content sandwiched between the tags `{%` and `%}` is considered to be the name of a variable or an expression of the C++ program (not the keyword of the data passed by the controller), and the view will output the contents of the variable or the value of the expression to the page. It's easy to know that `{%val.xx%}` is equivalent to `<%c++$$<<val.xx;%>`, but the former is simpler and more intuitive. Similarly, do not write two tags in separate lines;
-* The content sandwiched between the tags `<%view` and `%>` is considered to be the name of the sub-view. The framework will find the corresponding sub-view and fill its contents to the location of the tag; the spaces before and after the view name will be ignored. Do not write `<%view` and `%>` in separate lines. Can use multiple levels of nesting, but not loop nesting;
-* The content between the tags `<%layout` and `%>` is considered as the name of the layout. The framework will find the corresponding layout and fill the content of this view to a position in the layout (in the layout the placeholder `[[]]` marks this position); spaces before and after the layout name will be ignored, and `<%layout` and `%>` should not be written in separate lines. You can use multiple levels of nesting, but not loop nesting. One template file can only inherit from one base layout, multiple inheritance from different layouts is not supported.
+- The content between the tags `<%inc` and `%>` is considered to be the part of the header file that needs to be referenced. Only the `#include` statement can be written here, such as `<%inc#include "xx.h" %>`, but many common header files are automatically included by drogon. The user basically does not use this tag;
+- Everything between the tags `<%c++` and `%>` is treated as C++ code, such as `<c++ std:string name="drogon"; %>`;
+- C++ code is generally transferred to the target source file intact, except for the following two special tags:
+  - `@@` represents the data variable passed by the controller, from which you can get the content you want to display;
+  - `$$` represents a stream object representing the content of the page, and the content to be displayed can be displayed on the page by the `<<` operator;
+- The content sandwiched between the tags `[[` and `]]` is considered to be the variable name. The view will use the name as the key to find the corresponding variable from the data passed from the controller and output it to the page. Spaces before and after the variable name will be omitted. Paired `[[` and `]]` should be on the same line. And for performance reasons, only three string data types are supported(const char *, std::string and const std::string), other data types should be output in the above-mentioned way(by `$$`);
+- The content sandwiched between the tags `{%` and `%}` is considered to be the name of a variable or an expression of the C++ program (not the keyword of the data passed by the controller), and the view will output the contents of the variable or the value of the expression to the page. It's easy to know that `{%val.xx%}` is equivalent to `<%c++$$<<val.xx;%>`, but the former is simpler and more intuitive. Similarly, do not write two tags in separate lines;
+- The content sandwiched between the tags `<%view` and `%>` is considered to be the name of the sub-view. The framework will find the corresponding sub-view and fill its contents to the location of the tag; the spaces before and after the view name will be ignored. Do not write `<%view` and `%>` in separate lines. Can use multiple levels of nesting, but not loop nesting;
+- The content between the tags `<%layout` and `%>` is considered as the name of the layout. The framework will find the corresponding layout and fill the content of this view to a position in the layout (in the layout the placeholder `[[]]` marks this position); spaces before and after the layout name will be ignored, and `<%layout` and `%>` should not be written in separate lines. You can use multiple levels of nesting, but not loop nesting. One template file can only inherit from one base layout, multiple inheritance from different layouts is not supported.
 
 ### The use of views
 
@@ -28,8 +31,8 @@ static HttpResponsePtr newHttpViewResponse(const std::string &viewName,
 
 This interface is a static method of the HttpResponse class, which has two parameters:
 
-* **viewName**: the name of the view, the name of the incoming csp file (**the extension can be omitted**);
-* **data**: The controller's handler passes the data to the view. The type is `HttpViewData`. This is a special map. You can save and retrieve any type of object. For details, please refer to [HttpViewData API] (API-HttpViewData) Description
+- **viewName**: the name of the view, the name of the incoming csp file (**the extension can be omitted**);
+- **data**: The controller's handler passes the data to the view. The type is `HttpViewData`. This is a special map. You can save and retrieve any type of object. For details, please refer to [HttpViewData API] (API-HttpViewData) Description
 
 As you can see, the controller does not need to reference the header file of the view. The controller and the view are well decoupled; their only connection is the data variable.
 
@@ -142,10 +145,10 @@ The interface is a member method of `HttpAppFramework`, and the parameter is an 
 
 Obviously, this function depends on the development environment. If both drogon and webapp are compiled on this server, there should be no problem in dynamically loading the csp page.
 
-**Note: Dynamic views should not be compiled into the application statically. This means that if the view is statically compiled, it cannot be updated via dynamic view loading. You can create a directory outside the compilation folder and move views into it during development.**
+> **Note: Dynamic views should not be compiled into the application statically. This means that if the view is statically compiled, it cannot be updated via dynamic view loading. You can create a directory outside the compilation folder and move views into it during development.**
 
-**Note: This feature is best used to adjust the HTML page during the development phase. In the production environment, it is recommended to compile the csp file directly into the target file. This is mainly for security and stability.**
+> **Note: This feature is best used to adjust the HTML page during the development phase. In the production environment, it is recommended to compile the csp file directly into the target file. This is mainly for security and stability.**
 
-**Note: If a `symbol not found` error occurs while loading a dynamic view, please use the `cmake .. -DCMAKE_ENABLE_EXPORTS=on` to configure your project, or uncomment the last line (`set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)`) in your project's CMakeLists.txt, and then rebuild the project**
+> **Note: If a `symbol not found` error occurs while loading a dynamic view, please use the `cmake .. -DCMAKE_ENABLE_EXPORTS=on` to configure your project, or uncomment the last line (`set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)`) in your project's CMakeLists.txt, and then rebuild the project**
 
 # 07 [Session](ENG-07-Session)

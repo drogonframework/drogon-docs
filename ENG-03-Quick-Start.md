@@ -1,4 +1,7 @@
+[English](ENG-03-Quick-Start) | [简体中文](CHN-03-快速开始)
+
 ## Static Site
+
 Let's start with a simple example that introduces the usage of drogon. In this example we create a project using the command line tool `drogon_ctl`:
 
 ```shell
@@ -19,7 +22,7 @@ There are several useful folders in the project directory already:
 └── views                         The folder where view csp files are stored
 ```
 
-Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the drogon_ctl command. See [drogon_ctl](ENG-11-drogon_ctl-Command) for more details.
+Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the `drogon_ctl` command. See [drogon_ctl](ENG-11-drogon_ctl-Command) for more details.
 
 Let's look at the main.cc file:
 
@@ -54,13 +57,13 @@ echo '<h1>Hello Drogon!</h1>' >>index.html
 
 The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
 
-
 ![Hello Drogon!](images/hellodrogon.png)
 
 If the server cannot find the the page you have requested, it returns a 404 page:
 ![404 page](images/notfound.png)
 
-**Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.(Another way is to change your port from 80 to 1024(or above) in case you get the error message below):**
+> **Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.(Another way is to change your port from 80 to 1024(or above) in case you get the error message below):**
+
 ```console
 FATAL Permission denied (errno=13) , Bind address failed at 0.0.0.0:80 - Socket.cc:67
 ```
@@ -118,6 +121,7 @@ public:
     PATH_LIST_END
 };
 ```
+
 TestCtrl.cc is as follows:
 
 ```c++
@@ -128,6 +132,7 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
     //write your application logic here
 }
 ```
+
 Let's edit the two files and let the controller handle the function response to a simple "Hello World!"
 
 TestCtrl.h is as follows:
@@ -183,10 +188,10 @@ make
 
 Type `"http://localhost/"` or `"http://localhost/test"` in the browser address bar, and you will see "Hello World!" in the browser.
 
-**Note: If your server has both static and dynamic resources, Drogon uses dynamic resources first. In this example，the response to `GET http://localhost/` is `Hello World!` (from the `TestCtrl` controller file) instead of `Hello Drogon!` (from the static file index.html).**
+> **Note: If your server has both static and dynamic resources, Drogon uses dynamic resources first. In this example，the response to `GET http://localhost/` is `Hello World!` (from the `TestCtrl` controller file) instead of `Hello Drogon!` (from the static file index.html).**
 
 We see that adding a controller to an application is very simple. You only need to add the corresponding source file. Even the main file does not need to be modified. This loosely coupled design is very effective for web application development.
 
-**Note: Drogon has no restrictions on the location of the controller source files. You could also save them in "./" (the project root directory), or you could even define a new directory in `CMakeLists.txt`. It is recommended to use the controllers directory for the convenience of management.**
+> **Note: Drogon has no restrictions on the location of the controller source files. You could also save them in "./" (the project root directory), or you could even define a new directory in `CMakeLists.txt`. It is recommended to use the controllers directory for the convenience of management.**
 
 # 04.0 [Controller Introduction](ENG-04-0-Controller-Introduction)

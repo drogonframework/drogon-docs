@@ -1,6 +1,9 @@
+[English](ENG-14-Coz) | [简体中文](CHN-14-Coz分析)
+
 ## Causal profiling with coz
 
 With coz you can profile two things:
+
 * throughput
 * latency
 
@@ -15,6 +18,9 @@ The final profile will be a `profile.coz` file created in the current working di
 Coz also supports scoping source files included for the profile with `--source-scope <pattern>` or `-s <pattern>` among other things, that should prove useful.
 
 For more information checkout:
+
 * `coz run --help`
 * [Git repo](https://github.com/plasma-umass/coz)
 * [Coz whitepaper](https://arxiv.org/pdf/1608.03676v1.pdf)
+
+# 15 [Brotli compression](ENG-15-Brotli)

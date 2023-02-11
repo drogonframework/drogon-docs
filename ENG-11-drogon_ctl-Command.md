@@ -1,3 +1,5 @@
+[English](ENG-11-drogon_ctl-Command) | [简体中文](CHN-11-drogon_ctl命令)
+
 After the **Drogon** framework is compiled and installed, a command line program drogon_ctl is also installed in the system, for convenience, also installed an identical copy `dg_ctl`. Users can choose according to their preferences.
 
 The main function of the program is to make it easy for users to create various drogon project files. Use the `dg_ctl help` command to see the functions it supports, as follows:
@@ -56,108 +58,109 @@ drogon_ctl create project <project_name> //create a project named project_name
 drogon_ctl create model <model_path> //create model classes in model_path
 ```
 
-#### View creation
+- #### View creation
 
-The `dg_ctl create view` command is used to generate source files from csp files, see the [View](ENG-06-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
+  The `dg_ctl create view` command is used to generate source files from csp files, see the [View](ENG-06-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
 
-```shell
-dg_ctl create view UsersList.csp
-```
+  ```shell
+  dg_ctl create view UsersList.csp
+  ```
 
-#### Controller creation
+- #### Controller creation
 
-The `dg_ctl create controller` command is used to help the user create the controller's source files. The three controllers currently supported by drogon can be created by this command.
+  The `dg_ctl create controller` command is used to help the user create the controller's source files. The three controllers currently supported by drogon can be created by this command.
 
-* The command to create an HttpSimpleController is as follows:
+  - The command to create an HttpSimpleController is as follows:
 
-```shell
-dg_ctl create controller SimpleControllerTest
-dg_ctl create controller webapp::v1::SimpleControllerTest
-```
+  ```shell
+  dg_ctl create controller SimpleControllerTest
+  dg_ctl create controller webapp::v1::SimpleControllerTest
+  ```
 
-The last parameter is the controller's class name, which can be prefixed by a namespace.
+  The last parameter is the controller's class name, which can be prefixed by a namespace.
 
-* The command to create an HttpController is as follows:
+  - The command to create an HttpController is as follows:
 
-```shell
-dg_ctl create controller -h ControllerTest
-dg_ctl create controller -h api::v1::ControllerTest
-```
+  ```shell
+  dg_ctl create controller -h ControllerTest
+  dg_ctl create controller -h api::v1::ControllerTest
+  ```
 
-* The command to create a WebSocketController is as follows:
+  - The command to create a WebSocketController is as follows:
 
-```shell
-dg_ctl create controller -w WsControllerTest
-dg_ctl create controller -w api::v1::WsControllerTest
-```
+  ```shell
+  dg_ctl create controller -w WsControllerTest
+  dg_ctl create controller -w api::v1::WsControllerTest
+  ```
 
-#### Filter creation
+- #### Filter creation
 
-The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Filter](ENG-05-Filter) section.
+  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Filter](ENG-05-Filter) section.
 
-```shell
-dg_ctl create filter LoginFilter
-dg_ctl create filter webapp::v1::LoginFilter
-```
+  ```shell
+  dg_ctl create filter LoginFilter
+  dg_ctl create filter webapp::v1::LoginFilter
+  ```
 
-#### Create project
+- #### Create project
 
-The best way the user creates a new Drogon application project is via the drogon_ctl command, as follows:
+  The best way the user creates a new Drogon application project is via the drogon_ctl command, as follows:
 
-```shell
-dg_ctl create project ProjectName
-```
+  ```shell
+  dg_ctl create project ProjectName
+  ```
 
-After the command is executed, a complete project directory will be created in the current directory. The directory name is `ProjectName`, and the user can directly compile the project in the build directory (cmake .. && make). Of course, it does not have any business logic.
+  After the command is executed, a complete project directory will be created in the current directory. The directory name is `ProjectName`, and the user can directly compile the project in the build directory (cmake .. && make). Of course, it does not have any business logic.
 
-The directory structure of the project is as follows:
+  The directory structure of the project is as follows:
 
-```console
-├── build                         Build folder
-├── CMakeLists.txt                Project cmake configuration file
-├── cmake_modules                 Cmake scripts for third-party libraries lookup
-│   ├── FindJsoncpp.cmake
-│   ├── FindMySQL.cmake
-│   ├── FindSQLite3.cmake
-│   └── FindUUID.cmake
-├── config.json                   The configuration file of the drogon application, please refer to the introduction section of the configuration file.
-├── controllers                   The directory where the controller source files are stored
-├── filters                       The directory where the filter files are stored
-├── main.cc                       Main program
-├── models                        The directory of the database model file, model source file creation see 11.2.5
-│   └── model.json
-├── tests                         The direftory for unit/integration tests
-│   └── test_main.cc              Entry point for tests
-└── views                         The directory where view csp files are stored, the source file does not need to be manually created by the user, and csp files are automatically preprocessed to obtain view source files when the project is compiled.
-```
+  ```console
+  ├── build                         Build folder
+  ├── CMakeLists.txt                Project cmake configuration file
+  ├── cmake_modules                 Cmake scripts for third-party libraries lookup
+  │   ├── FindJsoncpp.cmake
+  │   ├── FindMySQL.cmake
+  │   ├── FindSQLite3.cmake
+  │   └── FindUUID.cmake
+  ├── config.json                   The configuration file of the drogon application, please refer to the introduction section of the configuration file.
+  ├── controllers                   The directory where the controller source files are stored
+  ├── filters                       The directory where the filter files are stored
+  ├── main.cc                       Main program
+  ├── models                        The directory of the database model file, model source file creation see 11.2.5
+  │   └── model.json
+  ├── tests                         The direftory for unit/integration tests
+  │   └── test_main.cc              Entry point for tests
+  └── views                         The directory where view csp files are stored, the source file does not need to be manually created by the user, and csp files are automatically preprocessed to obtain view source files when the project is compiled.
+  ```
 
-#### Create models
+- #### Create models
 
-Use the `dg_ctl create model` command to create database model source files. The last parameter is the directory where models is stored. This directory must contain a model configuration file named `model.json` to tell dg_ctl how to connect to the database and which tables to be mapped.
+  Use the `dg_ctl create model` command to create database model source files. The last parameter is the directory where models is stored. This directory must contain a model configuration file named `model.json` to tell dg_ctl how to connect to the database and which tables to be mapped.
 
-For example, if you want to create models in the project directory mentioned above, execute the following command in the project directory:
+  For example, if you want to create models in the project directory mentioned above, execute the following command in the project directory:
 
-```shell
-dg_ctl create model models
-```
+  ```shell
+  dg_ctl create model models
+  ```
 
-This command will prompt the user that the file will be overwritten directly. After the user enters `y`, it will generate all the model files.
+  This command will prompt the user that the file will be overwritten directly. After the user enters `y`, it will generate all the model files.
 
-Other source files need to reference model classes should include model header files, such as:
+  Other source files need to reference model classes should include model header files, such as:
 
-```c++
-#include "models/User.h"
-```
-Note that the models directory name is included to distinguish between multiple data sources in the same project. See [ORM](ENG-08-3-Database-ORM).
+  ```c++
+  #include "models/User.h"
+  ```
+
+  Note that the models directory name is included to distinguish between multiple data sources in the same project. See [ORM](ENG-08-3-Database-ORM).
 
 ### Stress Testing
 
 One can use the `dg_ctl press` command to do a stress testing, there are several options for this command.
 
-* `-n num`  Set the number of requests(default : 1)
-* `-t num`  Set the number of threads(default : 1), Set the number to the number of CPUs to achieve maximum performance
-* `-c num`  Set the number of concurrent connections(default : 1)
-* `-q`      No progress indication(default: no)
+- `-n num` Set the number of requests(default : 1)
+- `-t num` Set the number of threads(default : 1), Set the number to the number of CPUs to achieve maximum performance
+- `-c num` Set the number of concurrent connections(default : 1)
+- `-q` No progress indication(default: no)
 
 For example, users can test an HTTP server as follows:
 

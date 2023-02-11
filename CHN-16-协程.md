@@ -1,6 +1,6 @@
-## 协程
+[English](ENG-16-Coroutines) | [简体中文](CHN-16-协程)
 
-Drogon从1.4版本开始支持[C++ coroutines][1]（协程）。 它提供了扁平化异步执行控制流的方法, 比如，避免著名的`callback hell`. 通过协程, 异步编程将像同步编程一样简单（同时保持了异步程序的高性能）。
+Drogon从1.4版本开始支持[C++ coroutines][1]（协程）。 它提供了扁平化异步执行控制流的方法, 比如，避免著名的`回调地狱callback hell`. 通过协程, 异步编程将像同步编程一样简单（同时保持了异步程序的高性能）。
 
 ### 术语
 
@@ -55,9 +55,10 @@ app.registerHandler("/num_users",
 ```
 
 几个重要的需要注意的地方：
- 1. 任何使用了co_await的handler方法，它自身就成为一个协程，它的返回值就不能是void类型了，必须更换成框架封装好的Task<T>模板。
- 2. 普通函数中的`return`在协程中必须换成`co_return`。
- 3. 协程的参数要用值传递。不能是引用。
+
+1.  任何使用了co_await的handler方法，它自身就成为一个协程，它的返回值就不能是void类型了，必须更换成框架封装好的Task<T>模板。
+2.  普通函数中的`return`在协程中必须换成`co_return`。
+3.  协程的参数要用值传递。不能是引用。
 
 Task<T>模板遵循了c++ coroutine标准，用户不要太关心它的细节，只需要知道如果希望协程生成T类型的结果，那么返回的类型就是`Task<T>`。
 
@@ -91,78 +92,78 @@ app.registerHandler("/num_users",
 
 目前websocket控制器还不支持协程，如果您有需求，请在github上发issue。
 
-## 常见缺陷
+### 常见缺陷
 
 在使用协程时，您可能会遇到一些常见的陷阱。
 
-### 从函数中使用带有  lambda 捕获的协程
+- #### 从函数中使用带有lambda捕获的协程
 
-Lambda 捕获和协程具有不同且独立的生命周期。协程会一直存在直到协程帧被破坏。但匿名 lambda 通常在调用后立即销毁。因此，由于协程的异步性质，协程的 leftime 可能比 lambda 长得多。例如在下面 SQL 的执行中。 lambda 在开始等待 SQL 完成后立即销毁（返回到事件循环以处理其他事件）。而协程帧在等待 SQL。导致当 SQL 刚完成时，lambda 捕获早就被破坏。
+  Lambda捕获和协程具有不同且独立的生命周期。协程会一直存在直到协程帧被破坏。但匿名lambda通常在调用后立即销毁。因此，由于协程的异步性质，协程的leftime可能比lambda长得多。例如在下面SQL的执行中。 lambda在开始等待SQL完成后立即销毁（返回到事件循环以处理其他事件）。而协程帧在等待SQL。导致当SQL刚完成时，lambda捕获早就被破坏。
 
-```c++
-app().getLoop()->queueInLoop([num] -> AsyncTask {
-    auto db = app().getDbClient();
-    co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
-    // The lambda object, thus captures destruct right at awaiting. They are destructed at this point
-    LOG_INFO << "Remove old customers that have no activity for more than " << num << "days"; // use-after-free
-});
-// BAD, This will crash
-```
+  ```c++
+  app().getLoop()->queueInLoop([num] -> AsyncTask {
+      auto db = app().getDbClient();
+      co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
+      // The lambda object, thus captures destruct right at awaiting. They are destructed at this point
+      LOG_INFO << "Remove old customers that have no activity for more than " << num << "days"; // use-after-free
+  });
+  // BAD, This will crash
+  ```
 
-Drogon 提供了 `async_func` 来包裹 lambda 以确保它的生命周期
+  Drogon提供了 `async_func` 来包裹lambda以确保它的生命周期
 
-```c++
-app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
-//                             ^^^^^^^^^^^^^^^^^^^^^^^^^ wrap with async_func and return a Task<>
-    auto db = app().getDbClient();
-    co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
-    LOG_INFO << "Remove old customers that have no activity for more than " << num << "days";
-}));
-// Good
-```
+  ```c++
+  app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
+  //                             ^^^^^^^^^^^^^^^^^^^^^^^^^ wrap with async_func and return a Task<>
+      auto db = app().getDbClient();
+      co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
+      LOG_INFO << "Remove old customers that have no activity for more than " << num << "days";
+  }));
+  // Good
+  ```
 
-### 在函数中将引用传递/捕获到协程
+- #### 在函数中将引用传递/捕获到协程
 
-在 C++ 中通过引用传递对象以减少不必要的复制是一个很好的习惯。然而通过引用从函数传递到协程通常会导致问题。这是由于协程实际上是异步的，并且与一般函数相比具有更长的生命周期。例如下面的代码
+  在C++中通过引用传递对象以减少不必要的复制是一个很好的习惯。然而通过引用从函数传递到协程通常会导致问题。这是由于协程实际上是异步的，并且与一般函数相比具有更长的生命周期。例如下面的代码
 
-```cpp
-void removeCustomers(const std::string& customer_id)
-{
-    async_run([&customer_id] {
-        //      ^^^^ DO NOT pass/capture objects by reference into a coroutine
-        // Unless you are sure the object has a longer lifetime than the coroutine
+  ```cpp
+  void removeCustomers(const std::string& customer_id)
+  {
+      async_run([&customer_id] {
+          //      ^^^^ DO NOT pass/capture objects by reference into a coroutine
+          // Unless you are sure the object has a longer lifetime than the coroutine
 
-        auto db = app().getDbClient();
-        co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
-        // `customer_id` goes out of scope right at awaiting SQL. Crashes here
-        co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
-    }
-}
-```
+          auto db = app().getDbClient();
+          co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
+          // `customer_id` goes out of scope right at awaiting SQL. Crashes here
+          co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
+      }
+  }
+  ```
 
-但是，将来自协程的对象作为引用传递是可以的
+  但是，将来自协程的对象作为引用传递是可以的
 
-```cpp
-Task<> removeCustomers(const std::string& customer_id)
-{
-    auto db = app().getDbClient();
-    co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
-    co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
-}
+  ```cpp
+  Task<> removeCustomers(const std::string& customer_id)
+  {
+      auto db = app().getDbClient();
+      co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
+      co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
+  }
 
-Task<> findUnwantedCustomers()
-{
-    auto db = app().getDbClient();
-    auto list = co_await db->execSqlCoro("SELECT customer_id from customers "
-        "WHERE customer_score < 5;");
-    for(const auto& customer : list)
-        co_await removeCustomers(customer["customer_id"].as<std::string>());
-        //                               ^^^^^^^^^^^^^^^^^
-        // This is perfectly fine and preferred although it's a const reference
-        // since we are calling it from a coroutine
-}
-```
-
+  Task<> findUnwantedCustomers()
+  {
+      auto db = app().getDbClient();
+      auto list = co_await db->execSqlCoro("SELECT customer_id from customers "
+          "WHERE customer_score < 5;");
+      for(const auto& customer : list)
+          co_await removeCustomers(customer["customer_id"].as<std::string>());
+          //                               ^^^^^^^^^^^^^^^^^
+          // This is perfectly fine and preferred although it's a const reference
+          // since we are calling it from a coroutine
+  }
+  ```
 
 [1]: https://en.cppreference.com/w/cpp/language/coroutines
 
+# 17 [Redis](CHN-17-Redis)

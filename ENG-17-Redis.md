@@ -1,4 +1,6 @@
-Drogon supports Redis, a very fast, in-memory data store. Which could be used as a database cache or a message broker. Like everything in Drogon, Redis connections are asynchronous.  Which ensures Drogon running with very high concurrency even under heavy load. 
+[English](ENG-17-Redis) | [简体中文](CHN-17-Redis)
+
+Drogon supports Redis, a very fast, in-memory data store. Which could be used as a database cache or a message broker. Like everything in Drogon, Redis connections are asynchronous. Which ensures Drogon running with very high concurrency even under heavy load.
 
 Redis support depends on the `hiredis` library. Redis support won't be available if hiredis is not available when building Drogon.
 
@@ -13,7 +15,7 @@ app().createRedisClient("127.0.0.1", 6379);
 RedisClientPtr redisClient = app().getRedisClient();
 ```
 
-Redis clients can also be created via the configuration file. 
+Redis clients can also be created via the configuration file.
 
 ```json
     "redis_clients": [
@@ -30,7 +32,7 @@ Redis clients can also be created via the configuration file.
             "db": 0,
             //is_fast: false by default, if it is true, the client is faster but user can't call any synchronous interface of it and can't use it outside of the IO threads and the main thread.
             "is_fast": false,
-            //number_of_connections: 1 by default, if the 'is_fast' is true, the number is the number of connections per IO thread, otherwise it is the total number of all connections.  
+            //number_of_connections: 1 by default, if the 'is_fast' is true, the number is the number of connections per IO thread, otherwise it is the total number of all connections.
             "number_of_connections": 1,
             //timeout: -1.0 by default, in seconds, the timeout for executing a command.
             //zero or negative value means no timeout.
@@ -63,7 +65,7 @@ redisClient->execCommandAsync(
     "set myid %s", "587d-4709-86e4");
 ```
 
-The same execCommandAsync can also retrieve data from Redis. 
+The same execCommandAsync can also retrieve data from Redis.
 
 ```c++
 redisClient->execCommandAsync(
@@ -116,3 +118,4 @@ catch(const std::exception& e)
 }
 ```
 
+# 18 [Testing Framework](ENG-18-Testing-Framework)

@@ -1,4 +1,4 @@
-## Coroutine
+[English](ENG-16-Coroutines) | [简体中文](CHN-16-协程)
 
 Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a way to flatten the control flow of asynchronous calls, i.e. escaping the callback hell. With it, asynchronous programming becomes as easy as synchronous programming.
 
@@ -52,10 +52,11 @@ app.registerHandler("/num_users",
 ```
 
 Notice a few important points:
- 1. Any handler that calls a coroutine MUST return a _resumable_
-    * Turning the handler itself into a coroutine
- 2. `co_return` replaces `return` in a coroutine
- 3. Most parameters are passed by value
+
+1.  Any handler that calls a coroutine MUST return a _resumable_
+    - Turning the handler itself into a coroutine
+2.  `co_return` replaces `return` in a coroutine
+3.  Most parameters are passed by value
 
 A _resumable_ is an object following the coroutine standard. Don't worry too much about the details. Just know that if you want the coroutine to yield something typed `T`, then the return type will be `Task<T>`.
 
@@ -89,78 +90,80 @@ app.registerHandler("/num_users",
 
 Calling coroutines from websocket controllers isn't supported yet. Feel free to open an issue if you need this feature.
 
-## Common pitfalls
+### Common pitfalls
 
 There are some common pitfalls you may encounter when using coroutines.
 
-### Launching coroutines with lambda capture from a function
+- #### Launching coroutines with lambda capture from a function
 
-Lambda captures and coroutines have separate lifetimes. A coroutine lives until the coroutine frame is destructed. While lambdas commonly destruct right after being called. Thus, due to the asynchronous nature of coroutines, the coroutines's lifetime can be much longer than the lambda, for example in SQL execution. The lambda destructs right after awaiting for SQL to complete (and returns to the event loop to process other events), while the coroutine frame is awaiting SQL. Thus the lambda will have been destructed when SQL has finished.
+  Lambda captures and coroutines have separate lifetimes. A coroutine lives until the coroutine frame is destructed. While lambdas commonly destruct right after being called. Thus, due to the asynchronous nature of coroutines, the coroutines's lifetime can be much longer than the lambda, for example in SQL execution. The lambda destructs right after awaiting for SQL to complete (and returns to the event loop to process other events), while the coroutine frame is awaiting SQL. Thus the lambda will have been destructed when SQL has finished.
 
-Instead of
+  Instead of
 
-```c++
-app().getLoop()->queueInLoop([num] -> AsyncTask {
-    auto db = app().getDbClient();
-    co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
-    // The lambda object, thus captures destruct right at awaiting. They are destructed at this point
-    LOG_INFO << "Remove old customers that have no activity for more than " << num << "days"; // use-after-free
-});
-// BAD, This will crash
-```
+  ```c++
+  app().getLoop()->queueInLoop([num] -> AsyncTask {
+      auto db = app().getDbClient();
+      co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
+      // The lambda object, thus captures destruct right at awaiting. They are destructed at this point
+      LOG_INFO << "Remove old customers that have no activity for more than " << num << "days"; // use-after-free
+  });
+  // BAD, This will crash
+  ```
 
-Drogon provides `async_func` that wraps around the lambda to ensure its lifetime
+  Drogon provides `async_func` that wraps around the lambda to ensure its lifetime
 
-```c++
-app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
-//                             ^^^^^^^^^^^^^^^^^^^^^^^^^ wrap with async_func and return a Task<>
-    auto db = app().getDbClient();
-    co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
-    LOG_INFO << "Remove old customers that have no activity for more than " << num << "days";
-}));
-// Good
-```
+  ```c++
+  app().getLoop()->queueInLoop(async_func([num] -> Task<void> {
+  //                             ^^^^^^^^^^^^^^^^^^^^^^^^^ wrap with async_func and return a Task<>
+      auto db = app().getDbClient();
+      co_await db->execSqlCoro("DELETE FROM customers WHERE last_login < CURRENT_TIMESTAMP - INTERVAL $1 DAY". std::to_string(num));
+      LOG_INFO << "Remove old customers that have no activity for more than " << num << "days";
+  }));
+  // Good
+  ```
 
-### Passing/capturing references into coroutines from function
+- #### Passing/capturing references into coroutines from function
 
-It's a good practice in C++ to pass objects by reference to reduce unnecessary copy. However passing by reference into a coroutine from a function commonly causes issues. This is caused by the the coroutine is in fact asynchronous and can have a much longer lifetime compared to a regular function. For example, the following code crashes
+  It's a good practice in C++ to pass objects by reference to reduce unnecessary copy. However passing by reference into a coroutine from a function commonly causes issues. This is caused by the the coroutine is in fact asynchronous and can have a much longer lifetime compared to a regular function. For example, the following code crashes
 
-```cpp
-void removeCustomers(const std::string& customer_id)
-{
-    async_run([&customer_id] {
-        //      ^^^^ DO NOT pass/capture objects by reference into a coroutine
-        // Unless you are sure the object has a longer lifetime than the coroutine
+  ```cpp
+  void removeCustomers(const std::string& customer_id)
+  {
+      async_run([&customer_id] {
+          //      ^^^^ DO NOT pass/capture objects by reference into a coroutine
+          // Unless you are sure the object has a longer lifetime than the coroutine
 
-        auto db = app().getDbClient();
-        co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
-        // `customer_id` goes out of scope right at awaiting SQL. Crashes here
-        co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
-    }
-}
-```
+          auto db = app().getDbClient();
+          co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
+          // `customer_id` goes out of scope right at awaiting SQL. Crashes here
+          co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
+      }
+  }
+  ```
 
-However passing objects as reference from a coroutine is considered a good practice
+  However passing objects as reference from a coroutine is considered a good practice
 
-```cpp
-Task<> removeCustomers(const std::string& customer_id)
-{
-    auto db = app().getDbClient();
-    co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
-    co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
-}
+  ```cpp
+  Task<> removeCustomers(const std::string& customer_id)
+  {
+      auto db = app().getDbClient();
+      co_await db->execSqlCoro("DELETE FROM customers WHERE customer_id = $1", customer_id);
+      co_await db->execSqlCoro("DELETE FROM orders WHERE customer_id = $1", customer_id);
+  }
 
-Task<> findUnwantedCustomers()
-{
-    auto db = app().getDbClient();
-    auto list = co_await db->execSqlCoro("SELECT customer_id from customers "
-        "WHERE customer_score < 5;");
-    for(const auto& customer : list)
-        co_await removeCustomers(customer["customer_id"].as<std::string>());
-        //                               ^^^^^^^^^^^^^^^^^
-        // This is perfectly fine and preferred although it's a const reference
-        // since we are calling it from a coroutine
-}
-```
+  Task<> findUnwantedCustomers()
+  {
+      auto db = app().getDbClient();
+      auto list = co_await db->execSqlCoro("SELECT customer_id from customers "
+          "WHERE customer_score < 5;");
+      for(const auto& customer : list)
+          co_await removeCustomers(customer["customer_id"].as<std::string>());
+          //                               ^^^^^^^^^^^^^^^^^
+          // This is perfectly fine and preferred although it's a const reference
+          // since we are calling it from a coroutine
+  }
+  ```
 
 [1]: https://en.cppreference.com/w/cpp/language/coroutines
+
+# 17 [Redis](ENG-17-Redis)

@@ -1,6 +1,8 @@
+[English](ENG-08-0-Database-General) | [简体中文](CHN-08-0-数据库-概述)
+
 ### General
 
-**Drogon** has built-in database read/write engine. The operation of database connection is based on non-blocking I/O technology. Therefore, the application works  in an efficient non-blocking asynchronous mode from the bottom to the upper layer, which ensures Drogon's high concurrency performance. Currently, Drogon supports PostgreSQL and MySQL databases. If you want to use a database, the development environment of the corresponding database must be installed first. Drogon will automatically detect the header files and library files of these libraries and compile the corresponding parts. For the preparation of the database development environment, see [Development Environment](ENG-02-Installation#Database-Environment).
+**Drogon** has built-in database read/write engine. The operation of database connection is based on non-blocking I/O technology. Therefore, the application works in an efficient non-blocking asynchronous mode from the bottom to the upper layer, which ensures Drogon's high concurrency performance. Currently, Drogon supports PostgreSQL and MySQL databases. If you want to use a database, the development environment of the corresponding database must be installed first. Drogon will automatically detect the header files and library files of these libraries and compile the corresponding parts. For the preparation of the database development environment, see [Development Environment](ENG-02-Installation#Database-Environment).
 
 **Drogon** supports the sqlite3 database in order to support lightweight applications. The asynchronous interface is implemented through the thread pool, which is the same as the interfaces of the aforementioned databases.
 

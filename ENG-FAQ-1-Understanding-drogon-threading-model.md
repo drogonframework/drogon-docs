@@ -1,3 +1,5 @@
+[English](CHS-FAQ-1-Understanding-drogon-threading-model.md) | [简体中文](CHN-FAQ-1-线程模型.md)
+
 # Understanding Drogon's threading model
 
 Drogon is a fast C++ web app framework. It's fast in part by not abstracting the underlying threading model away. However, it also causes some confusions. It's not uncommon to see issues and discussions about why responses are only sent after some blocking call, why calling a blocking networking function on the same event loop blocks causes a deadlock, etc.. This page aims to explain the exact condition that causes them and how to avoid them.
@@ -45,9 +47,9 @@ The thread hierarchy looks like this
 
 The number of worker loops depends on numerous variables. Namely, how many threads are specified for the HTTP server, how many non-fast DB and NoSQL connections are created - we'll get to fast vs non-fast connections later. Just know that drogon has more threads than just the HTTP server threads. Each event loop is essentially a task queue with the following functionality.
 
-* Reads tasks from a task queue and execute them.  You can submit task to run on the a loop from any other threads. Task submitting is totally lock free (thanks to lock free data structure!) and won't cause data race in all circumstances. Event loops process tasks one-by-one. Thus tasks have a well-defined order of execution. But also, tasks that's queued after a huge, long running task gets delayed.
-* Listen to and dispatch network events that it manages
-* Execute timers when they timeout (usually created by the user)
+- Reads tasks from a task queue and execute them. You can submit task to run on the a loop from any other threads. Task submitting is totally lock free (thanks to lock free data structure!) and won't cause data race in all circumstances. Event loops process tasks one-by-one. Thus tasks have a well-defined order of execution. But also, tasks that's queued after a huge, long running task gets delayed.
+- Listen to and dispatch network events that it manages
+- Execute timers when they timeout (usually created by the user)
 
 When non of the above is happening. The event loop/thread blocks and waits for them.
 
@@ -66,7 +68,7 @@ loop->queueInLoop([]{
 
 Hopefully is's clear why running the above snippet will result in `task1: I'm gonna wait for 5s` appear immediately. Pauses for 5 seconds and then both `task1: hello` and `task2: world!` showing up.
 
-So tip 1: Don't call blocking IO in the event loop. Other tasks has to wait for that IO.
+> So tip 1: Don't call blocking IO in the event loop. Other tasks has to wait for that IO.
 
 ## Network IO in practice
 
@@ -114,9 +116,10 @@ Therefor, it is possible to clog up an event loop if you are not aware of what y
 |         |    | response |     | back    |
 :---------:    :----------:     :---------:
 ```
+
 The same principle is also true for the HTTP server. If a response is generated from a separate thread (ex: in a DB callback). Then the response is queue on associated thread for sending instead of sending immediately.
 
-Tip 2: Be aware where you place your computations. They can also harm throughput if not careful.
+> Tip 2: Be aware where you place your computations. They can also harm throughput if not careful.
 
 ## Deadlocking the event loop
 
@@ -164,7 +167,7 @@ Which could be visualized as
 
 The same is true for everything else too. DB, NoSQL callbacks, you name it. Fortunately non-fast DB clients runs on their own threads; each client gets their own thread. Thus it's safe to make synchronous DB queries from a HTTP handler. However you should not run sync DB queries inside the callback of the same client. Otherwise the same thing happens.
 
-Tip 3: Sync APIs are evil for both performance and safety. Avoid them like the plague. If you have to, make sure you run the client on a separate thread.
+> Tip 3: Sync APIs are evil for both performance and safety. Avoid them like the plague. If you have to, make sure you run the client on a separate thread.
 
 ### Fast DB clients
 
@@ -189,7 +192,9 @@ db->execSqlAsync("INSERT......", [db, callback](auto result){
     // handle failure
 })
 ```
+
 versus
+
 ```cpp
 // drogon's sync API. Exception can be handled automatically by the framework
 db->execSqlSync("INSERT.....");
@@ -207,8 +212,8 @@ It's exactly like the sync API! But better in almost every way. You get all the 
 
 Tip 4: Use coroutines when you can
 
-## TL;DR
+## Summary
 
-* Use C++20 coroutines and Fast DB connections when you can
-* Synchronous API can slow down or event deadlock the event loop
-* If you have to use a synchronous API. Make sure they are associated with a different thread
+- Use C++20 coroutines and `Fast DB` connections when you can
+- Synchronous API can slow down or event deadlock the event loop
+- If you have to use a synchronous API. Make sure they are associated with a different thread
