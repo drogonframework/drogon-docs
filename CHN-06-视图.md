@@ -1,3 +1,5 @@
+[English](ENG-06-View) | [简体中文](CHN-06-视图)
+
 ### 视图介绍
 
 虽然目前前端渲染技术大行其道，使后端应用服务只需要返回相应数据给前端即可，不过，一个好的web框架还是应该提供后端渲染技术，使服务端程序可以动态生成HTML页面。视图（View）可以帮助使用者生成这些页面，顾名思义，它只负责做跟展示相关的工作，而复杂的业务逻辑都应该交给控制器完成。
@@ -108,9 +110,9 @@ drogon_ctl create view ListParameters.csp
 
 ### csp文件的自动化处理
 
-**注意：如果你的工程是使用`drogon_ctl`命令创建的，那么本节描述的内容已经由该命令自动帮你做了。**
+> **注意：如果你的工程是使用`drogon_ctl`命令创建的，那么本节描述的内容已经由该命令自动帮你做了。**
 
-显然，每次修改csp文件都需要手动运行drogon_ctl命令显得太不方便了，我们可以把drogon_ctl的处理放进CMakeLists.txt文件里，仍以前面的例子为例，假设我们把所有的csp文件都放到views文件夹里，则CMakeLists.txt可以添加如下处理：
+显然，每次修改csp文件都需要手动运行drogon_ctl命令显得太不方便了，我们可以把drogon_ctl的处理放进CMakeLists.txt 文件里，仍以前面的例子为例，假设我们把所有的csp文件都放到views文件夹里，则CMakeLists.txt可以添加如下处理：
 
 ```cmake
 FILE(GLOB SCP_LIST ${CMAKE_CURRENT_SOURCE_DIR}/views/*.csp)
@@ -135,7 +137,6 @@ add_executable(webapp ${SRC_DIR} ${VIEWSRC})
 
 上述措施在`drogon_ctl create project`命令生成的工程里已经写入CMakeLists.txt文件，用户在views文件夹创建的csp文件都会被自动转换并编译进应用程序。
 
-
 ### 视图的动态编译和加载
 
 drogon提供了在应用运行期动态编译和加载csp文件的方法，使用如下接口设置：
@@ -148,10 +149,10 @@ void enableDynamicViewsLoading(const std::vector<std::string> &libPaths);
 
 很显然，该功能依赖于开发环境，如果drogon和webapp都在这台服务器编译，则动态加载csp页面也应该没有问题；
 
-**注意：动态加载的视图不能静态编译进程序，也就是说，如果一个视图已经静态编译进程序，那么它无法通过动态加载更新，你可以单独建一个动态视图路径，并在开发阶段把视图移动到这个路径进行调试（linux操作系统没有这个问题）。**
+> **注意：动态加载的视图不能静态编译进程序，也就是说，如果一个视图已经静态编译进程序，那么它无法通过动态加载更新，你可以单独建一个动态视图路径，并在开发阶段把视图移动到这个路径进行调试（linux操作系统没有这个问题）。**
 
-**注意: 该特性最好用于在开发阶段方便调整页面，生产环境部署还是建议直接编译成目标文件运行，这主要是出于安全性和稳定性考虑。**
+> **注意: 该特性最好用于在开发阶段方便调整页面，生产环境部署还是建议直接编译成目标文件运行，这主要是出于安全性和稳定性考虑。**
 
-**注意: 如果加载时遇到`symbol not found`错误，请使用`cmake .. -DCMAKE_ENABLE_EXPORTS=on`或取消CMakeLists.txt最后一行对`set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)`的注释，并重新编译你的工程**
+> **注意: 如果加载时遇到`symbol not found`错误，请使用`cmake .. -DCMAKE_ENABLE_EXPORTS=on`或取消CMakeLists.txt最后一行对`set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)`的注释，并重新编译你的工程**
 
 # 07 [会话](CHN-07-会话)

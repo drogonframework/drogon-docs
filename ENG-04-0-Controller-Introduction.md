@@ -1,9 +1,10 @@
-### Controller
+[English](ENG-03-Controller-Introduction) | [简体中文](CHN-04-控制器-简介)
+
 The controller is very important in web application development. It processes the request sent by the browser and then generates a response to the browser. The drogon framework has helped us to handle the network transmission, Http protocol analysis and so on. We only need to pay attention to the logic of the controller; each controller object can have one or more processing functions (generally called handlers), and the interface of the function is generally defined as follows:
 
 ```c++
 Void handlerName(const HttpRequestPtr &req,
-                  std::function<void (const HttpResponsePtr &)> &&callback, 
+                  std::function<void (const HttpResponsePtr &)> &&callback,
                  ...);
 ```
 

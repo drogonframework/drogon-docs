@@ -1,3 +1,5 @@
+[English](ENG-08-3-DataBase-ORM) | [简体中文](CHN-08-3-数据库-ORM)
+
 ### Model
 
 Using Drogon's ORM, you first need to create model classes. Drogon's command-line program drogon_ctl provides the ability to generate model classes. The program reads tables information from a user-specified database and automatically generates multiple source files for the model classes based on this information. When the user uses the model, please include the corresponding header file.
@@ -14,13 +16,13 @@ The last parameter is the path to store model classes. There must be a configura
 
 ```json
 {
-    "rdbms":"postgresql",
-    "host":"127.0.0.1",
-    "port":5432,
-    "dbname":"test",
-    "user":"test",
-    "passwd":"",
-    "tables":[]
+  "rdbms": "postgresql",
+  "host": "127.0.0.1",
+  "port": 5432,
+  "dbname": "test",
+  "user": "test",
+  "passwd": "",
+  "tables": []
 }
 ```
 
@@ -36,8 +38,8 @@ There are mainly two types of interfaces that the user directly uses, getter int
 
 There are two types of getter interfaces:
 
-* An interface of the form like `getColumnName` gets the smart pointer of the field. The return value is a pointer instead of a value is primarily used for the NULL field. The user can determine whether the field is a NULL field by determining whether the pointer is empty.
-* An interface of the form like `getValueOfColumnName`, hence the name, is the value obtained. For efficiency reasons, the interface returns a constant reference. If the corresponding field is NULL, the interface returns the default value given by the function parameter.
+- An interface of the form like `getColumnName` gets the smart pointer of the field. The return value is a pointer instead of a value is primarily used for the NULL field. The user can determine whether the field is a NULL field by determining whether the pointer is empty.
+- An interface of the form like `getValueOfColumnName`, hence the name, is the value obtained. For efficiency reasons, the interface returns a constant reference. If the corresponding field is NULL, the interface returns the default value given by the function parameter.
 
 In addition, the binary block type (blob, bytea) has a special interface, in the form of `getValueOfColumnNameAsString`, which loads the binary data into the std::string object and returns it to the user.
 
@@ -59,7 +61,7 @@ Like DbClient, Mapper also provides asynchronous and synchronous interfaces. The
 ![](images/mapper_method2_en.png)
 ![](images/mapper_method3_en.png)
 
-**Note: When using a transaction, the exception does not necessarily cause a rollback. Transactions will not be rolled back in the following cases: When the findByPrimaryKey interface does not find a qualified row, when the findOne interface finds fewer or more than one record, the mapper will throw an exception or enter an exception callback, the exception type is UnexpectedRows. If the business logic needs to be rolled back in this condition, please explicitly call the rollback() interface.**
+> **Note: When using a transaction, the exception does not necessarily cause a rollback. Transactions will not be rolled back in the following cases: When the findByPrimaryKey interface does not find a qualified row, when the findOne interface finds fewer or more than one record, the mapper will throw an exception or enter an exception callback, the exception type is UnexpectedRows. If the business logic needs to be rolled back in this condition, please explicitly call the rollback() interface.**
 
 ### Criteria
 
@@ -93,7 +95,7 @@ template <typename... Arguments>
 explicit Criteria(const CustomSql &sql, Arguments &&...args)
 ```
 
-The first argument is a `CustomSql` object of sql statements with  `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](ENG-08-1-DataBase-DbClient.md#execSqlAsync).
+The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](ENG-08-1-DataBase-DbClient.md#execSqlAsync).
 
 E.g:
 
@@ -136,14 +138,14 @@ Basically, the name of the chain interface expresses its function, so I won't go
 
 ### Convert
 
-The `convert` configuration option is unique to the model configuration. It adds a convert layer before or after a value is read from or written to database.  The object consists of a boolean key `enabled` to use this function or not. The array of `ìtems` objects consists of following keys:
+The `convert` configuration option is unique to the model configuration. It adds a convert layer before or after a value is read from or written to database. The object consists of a boolean key `enabled` to use this function or not. The array of `ìtems` objects consists of following keys:
 
-* `table`: name of the table, which holds the column
-* `column`: name of the column
-* `method`: object
-  * `after_db_read`: string, name of the method which is called after reading from database, signature: void([const] std::shared_ptr<type> [&])
-  * `before_db_write`: string, name of the method which is called before writing to database, signature: void([const] std::shared_ptr<type> [&])
-* `includes`: array of strings, name of the include files surrounded by the \" or <,>
+- `table`: name of the table, which holds the column
+- `column`: name of the column
+- `method`: object
+  - `after_db_read`: string, name of the method which is called after reading from database, signature: void([const] std::shared_ptr<type> [&])
+  - `before_db_write`: string, name of the method which is called before writing to database, signature: void([const] std::shared_ptr<type> [&])
+- `includes`: array of strings, name of the include files surrounded by the \" or <,>
 
 ### Relationships
 
@@ -153,12 +155,12 @@ If the `enable` option is true, the generated model classes will add correspondi
 
 There are three types of relationships,'has one','has many' and 'many to many'.
 
-#### has one
+- #### has one
 
-`has one` represents a one-to-one relationship. A record in the original table can be associated with a record in the target table, and vice versa. For example, the `products` table and `skus` table have a one-to-one relationship, we can define as follows:
+  `has one` represents a one-to-one relationship. A record in the original table can be associated with a record in the target table, and vice versa. For example, the `products` table and `skus` table have a one-to-one relationship, we can define as follows:
 
-```json
-{
+  ```json
+  {
     "type": "has one",
     "original_table_name": "products",
     "original_table_alias": "product",
@@ -167,46 +169,46 @@ There are three types of relationships,'has one','has many' and 'many to many'.
     "target_table_alias": "SKU",
     "target_key": "product_id",
     "enable_reverse": true
-}
-```
+  }
+  ```
 
-among them:
+  among them:
 
-* "type": Indicates that this relationship is one-to-one;
-* "original_table_name": the name of the original table (the corresponding method will be added to the model corresponding to this table);
-* "original_table_alias": alias (the name in the method, because the one-to-one relationship is singular, so set it to `product`), if this option is empty, the table name is used to generate the method name;
-* "original_key": the associated key of the original table;
-* "target_table_name": the name of the target table;
-* "target_table_alias": the alias of the target table, if this option is empty, the table name is used to generate the method name;
-* "target_key": the associated key of the target table;
-* "enable_reverse": Indicate whether to automatically generate a reverse relationship, that is, add a method to obtain records of the original table in the model class corresponding to the target table.
+  - "type": Indicates that this relationship is one-to-one;
+  - "original_table_name": the name of the original table (the corresponding method will be added to the model corresponding to this table);
+  - "original_table_alias": alias (the name in the method, because the one-to-one relationship is singular, so set it to `product`), if this option is empty, the table name is used to generate the method name;
+  - "original_key": the associated key of the original table;
+  - "target_table_name": the name of the target table;
+  - "target_table_alias": the alias of the target table, if this option is empty, the table name is used to generate the method name;
+  - "target_key": the associated key of the target table;
+  - "enable_reverse": Indicate whether to automatically generate a reverse relationship, that is, add a method to obtain records of the original table in the model class corresponding to the target table.
 
-According to this setting, in the model class corresponding to the products table, the following method will be added:
+  According to this setting, in the model class corresponding to the products table, the following method will be added:
 
-```c++
-    /// Relationship interfaces
-    void getSKU(const DbClientPtr &clientPtr,
-                const std::function<void(Skus)> &rcb,
-                const ExceptionCallback &ecb) const;
-```
+  ```c++
+      /// Relationship interfaces
+      void getSKU(const DbClientPtr &clientPtr,
+                  const std::function<void(Skus)> &rcb,
+                  const ExceptionCallback &ecb) const;
+  ```
 
-This is an asynchronous interface that returns the SKU object associated with the current product in the callback.
+  This is an asynchronous interface that returns the SKU object associated with the current product in the callback.
 
-At the same time, since the enable_reverse option is set to true, the following method will be added to the model class corresponding to the skus table:
+  At the same time, since the enable_reverse option is set to true, the following method will be added to the model class corresponding to the skus table:
 
-```c++
-    /// Relationship interfaces
-    void getProduct(const DbClientPtr &clientPtr,
-                    const std::function<void(Products)> &rcb,
-                    const ExceptionCallback &ecb) const;
-```
+  ```c++
+      /// Relationship interfaces
+      void getProduct(const DbClientPtr &clientPtr,
+                      const std::function<void(Products)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-#### has many
+- #### has many
 
-`has many` represents a one-to-many relationship. In such a relationship, the table representing `many` generally has a field associated with the primary key of another table. For example, products and reviews usually have a one-to-many relationship, we can define as follows:
+  `has many` represents a one-to-many relationship. In such a relationship, the table representing `many` generally has a field associated with the primary key of another table. For example, products and reviews usually have a one-to-many relationship, we can define as follows:
 
-```json
-{
+  ```json
+  {
     "type": "has many",
     "original_table_name": "products",
     "original_table_alias": "product",
@@ -215,70 +217,69 @@ At the same time, since the enable_reverse option is set to true, the following 
     "target_table_alias": "",
     "target_key": "product_id",
     "enable_reverse": true
-}
-```
+  }
+  ```
 
-The meaning of each configuration above is the same as the previous example, so I won't repeat it here, because there are multiple reviews for a single product, so there is no need to create an alias of reviews. According to this setting, after running `drogon_ctl create model`, the following interface will be added to the model corresponding to the products table:
+  The meaning of each configuration above is the same as the previous example, so I won't repeat it here, because there are multiple reviews for a single product, so there is no need to create an alias of reviews. According to this setting, after running `drogon_ctl create model`, the following interface will be added to the model corresponding to the products table:
 
-```c++
-    void getReviews(const DbClientPtr &clientPtr,
-                    const std::function<void(std::vector<Reviews>)> &rcb,
-                    const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getReviews(const DbClientPtr &clientPtr,
+                      const std::function<void(std::vector<Reviews>)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-In the model corresponding to the reviews table, the following interface will be added:
+  In the model corresponding to the reviews table, the following interface will be added:
 
-```c++
-    void getProduct(const DbClientPtr &clientPtr,
-                    const std::function<void(Products)> &rcb,
-                    const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getProduct(const DbClientPtr &clientPtr,
+                      const std::function<void(Products)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-#### many to many
+- #### many to many
 
-As the name implies, `many to many` represents a many-to-many relationship. Usually, a many-to-many relationship requires a pivot table. Each record in the pivot table corresponds to a record in the original table and another record in the target table. For example, the `products` table and `carts` table have a many-to-many relationship, which can be defined as follows:
+  As the name implies, `many to many` represents a many-to-many relationship. Usually, a many-to-many relationship requires a pivot table. Each record in the pivot table corresponds to a record in the original table and another record in the target table. For example, the `products` table and `carts` table have a many-to-many relationship, which can be defined as follows:
 
-```json
-{
+  ```json
+  {
     "type": "many to many",
     "original_table_name": "products",
     "original_table_alias": "",
     "original_key": "id",
     "pivot_table": {
-        "table_name": "carts_products",
-        "original_key": "product_id",
-        "target_key": "cart_id"
+      "table_name": "carts_products",
+      "original_key": "product_id",
+      "target_key": "cart_id"
     },
     "target_table_name": "carts",
     "target_table_alias": "",
     "target_key": "id",
     "enable_reverse": true
-}
-```
+  }
+  ```
 
-For the pivot table, there is an additional `pivot_table` configuration. The options inside easy to understand and are omitted here.
+  For the pivot table, there is an additional `pivot_table` configuration. The options inside easy to understand and are omitted here.
 
-The model of `products` generated according to this configuration will add the following method:
+  The model of `products` generated according to this configuration will add the following method:
 
-```c++
-    void getCarts(const DbClientPtr &clientPtr,
-                  const std::function<void(std::vector<std::pair<Carts,CartsProducts>>)> &rcb,
-                  const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getCarts(const DbClientPtr &clientPtr,
+                    const std::function<void(std::vector<std::pair<Carts,CartsProducts>>)> &rcb,
+                    const ExceptionCallback &ecb) const;
+  ```
 
-The model class of the carts table will add the following method:
+  The model class of the carts table will add the following method:
 
-```c++
-    void getProducts(const DbClientPtr &clientPtr,
-                     const std::function<void(std::vector<std::pair<Products,CartsProducts>>)> &rcb,
-                     const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getProducts(const DbClientPtr &clientPtr,
+                      const std::function<void(std::vector<std::pair<Products,CartsProducts>>)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
 ### Restful API controllers
 
 drogon_ctl can also generate restful-style controllers for each model (or table) while creating models, so that users can generate APIs that can add, delete, modify, and search tables with zero coding. These APIs support many functions such as querying by primary key, querying by conditions, sorting by specific fields, returning specified fields, and assigning alias for each field to hide the table structure. It is controlled by the `restful_api_controllers` option in model.json. these options have corresponding comments in the json file.
 
 It should be noted that the controller of each table is designed to be composed of a base class and a subclass. Among them, the base class and the table are closely related, and the subclass is used to implement special business logic or modify the interface format. The advantage of this design is that when the table structure changes, users can update only the base class without overwriting the subclass(by setting the `generate_base_only` option to `true`).
-
 
 # 08.4 [FastDbClient](ENG-08-4-DataBase-FastDbClient)

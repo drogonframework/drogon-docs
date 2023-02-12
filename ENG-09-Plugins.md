@@ -1,3 +1,5 @@
+[English](ENG-09-Plugins) | [简体中文](CHN-09-插件)
+
 Plugins are use to help users build complex applications. In Drogon, all plugins are built and installed into the application based on the configuration file. Plugins in Drogon are single-instance, and users can implement any functionality they want with plugins.
 
 When Drogon runs the run() interface, it instantiates each plugin one by one according to the configuration file and calls the `initAndStart()` interface of them.
@@ -22,9 +24,9 @@ Plugin configuration is done through the configuration file, for example:
 
 It can be seen that there are three configurations for each plugin:
 
-* name: is the class name of the plugin (including the namespace). The framework will create a plugin instance based on the class name. If the item is commented out, the plugin becomes disabled.
-* dependencies: Is a list of names of other plugins that the plugin depends on. The framework creates and initializes all plugins in a specific order. Prioritize the creation and initialization of plugins that are dependent by others. At the end of the program, plugins are closed and destroyed in reverse order. Please note that circular dependencies in plugins are forbidden. Drogon will report an error and exit the program if it detects a circular dependency. If the item is commented out, the list of dependencies is empty.
-* config: is the json object used to initialize the plugin, the object is passed as an input parameter to the plugin's `initAndStart()` interface. If the item is commented out, the json object passed to the `initAndStart` interface is an empty object;
+- name: is the class name of the plugin (including the namespace). The framework will create a plugin instance based on the class name. If the item is commented out, the plugin becomes disabled.
+- dependencies: Is a list of names of other plugins that the plugin depends on. The framework creates and initializes all plugins in a specific order. Prioritize the creation and initialization of plugins that are dependent by others. At the end of the program, plugins are closed and destroyed in reverse order. Please note that circular dependencies in plugins are forbidden. Drogon will report an error and exit the program if it detects a circular dependency. If the item is commented out, the list of dependencies is empty.
+- config: is the json object used to initialize the plugin, the object is passed as an input parameter to the plugin's `initAndStart()` interface. If the item is commented out, the json object passed to the `initAndStart` interface is an empty object;
 
 ### Definition
 

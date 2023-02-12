@@ -1,3 +1,5 @@
+[English](ENG-08-3-DataBase-ORM) | [简体中文](CHN-08-3-数据库-ORM)
+
 ### Model
 
 使用Drogon的ORM支持，首先要创建Model类，Drogon的命令行程序`drogon_ctl`提供了生成Model类的功能，它从用户指定的数据库读取表信息，根据这些信息自动生成多个Model类的源文件。用户使用Model时include对应的头文件即可。
@@ -14,13 +16,13 @@ drogon_ctl create model <model_path>
 
 ```json
 {
-    "rdbms":"postgresql",
-    "host":"127.0.0.1",
-    "port":5432,
-    "dbname":"test",
-    "user":"test",
-    "passwd":"",
-    "tables":[]
+  "rdbms": "postgresql",
+  "host": "127.0.0.1",
+  "port": 5432,
+  "dbname": "test",
+  "user": "test",
+  "passwd": "",
+  "tables": []
 }
 ```
 
@@ -59,7 +61,7 @@ Mapper构造时很简单，模板参数就是你要存取的Model的类型，构
 ![](images/mapper_method2.png)
 ![](images/mapper_method3.png)
 
-**注意: 使用事务时，异常不必然导致回滚，下面的情况是不会回滚的，当findByPrimaryKey接口未找到符合条件的行时，当findOne接口找到少于或多于一行记录时，会抛异常或进入异常回调，异常类型是UnexpectedRows。如果业务逻辑需要在这种情况下回滚，请显式调用rollback()接口。**
+> **注意: 使用事务时，异常不必然导致回滚，下面的情况是不会回滚的，当findByPrimaryKey接口未找到符合条件的行时，当findOne接口找到少于或多于一行记录时，会抛异常或进入异常回调，异常类型是UnexpectedRows。如果业务逻辑需要在这种情况下回滚，请显式调用rollback()接口。**
 
 ### 条件对象
 
@@ -96,6 +98,7 @@ explicit Criteria(const CustomSql &sql, Arguments &&...args)
 构造函数的第一个参数是一个包含了占位符`$?`的`CustomSql`对象，而`CustomSql`类只是一个std::string的包装类。第二个不定参数代表绑定的参数，其行为于[execSqlAsync](CHN-08-1-数据库-Dbclient.md#execsqlasync)中的不定参数一致。
 
 比如：
+
 ```c++
 Criteria(CustomSql("tags @> $?"), "cloud");
 ```
@@ -152,12 +155,12 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
 
 关系共分为三种类型，'has one', 'has many'和'many to many'。
 
-#### has one
+* #### has one
 
-`has one` 代表了1对1的关系，原始表中的一条记录可以关联到目标表中的一条记录，反过来也一样。举个例子，产品表和库存单位表是1对1的关系，我们可以定义如下：
+  `has one` 代表了1对1的关系，原始表中的一条记录可以关联到目标表中的一条记录，反过来也一样。举个例子，产品表和库存单位表是1对1的关系，我们可以定义如下：
 
-```json
-{
+  ```json
+  {
     "type": "has one",
     "original_table_name": "products",
     "original_table_alias": "product",
@@ -166,46 +169,46 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
     "target_table_alias": "SKU",
     "target_key": "product_id",
     "enable_reverse": true
-}
-```
+  }
+  ```
 
-其中：
+  其中：
 
-* "type": 表示这个关系是1对1；
-* "original_table_name": 原始表名字（这个表对应的model中将添加对应的方法）；
-* "original_table_alias": 别名（方法中的名字，因为1对1的关系中都是单数，所以设置为`product`），如果这个选项为空，则使用表名生成方法名；
-* "original_key": 原始表的关联键；
-* "target_table_name": 目标表的名字；
-* "target_table_alias": 目标表的别名，如果这个选项为空，则使用表名生成方法名；
-* "target_key": 目标表的关联键；
-* "enable_reverse": 指明是不是自动生成反向的关系，即在目标表对应的model类中添加获取原始表的记录的方法。
+  * "type": 表示这个关系是1对1；
+  * "original_table_name": 原始表名字（这个表对应的model中将添加对应的方法）；
+  * "original_table_alias": 别名（方法中的名字，因为1对1的关系中都是单数，所以设置为`product`），如果这个选项为空，则使用表名生成方法名；
+  * "original_key": 原始表的关联键；
+  * "target_table_name": 目标表的名字；
+  * "target_table_alias": 目标表的别名，如果这个选项为空，则使用表名生成方法名；
+  * "target_key": 目标表的关联键；
+  * "enable_reverse": 指明是不是自动生成反向的关系，即在目标表对应的model类中添加获取原始表的记录的方法。
 
-按照这个设置，在products表对应的model类中，将添加如下的方法：
+  按照这个设置，在products表对应的model类中，将添加如下的方法：
 
-```c++
-    /// Relationship interfaces
-    void getSKU(const DbClientPtr &clientPtr,
-                const std::function<void(Skus)> &rcb,
-                const ExceptionCallback &ecb) const;
-```
+  ```c++
+      /// Relationship interfaces
+      void getSKU(const DbClientPtr &clientPtr,
+                  const std::function<void(Skus)> &rcb,
+                  const ExceptionCallback &ecb) const;
+  ```
 
-这是一个异步接口，在回调中返回与当前product相关联的SKU对象。
+  这是一个异步接口，在回调中返回与当前product相关联的SKU对象。
 
-同时，由于enable_reverse选项设置为真，那么在skus表对应的model类中，将添加如下方法：
+  同时，由于enable_reverse选项设置为真，那么在skus表对应的model类中，将添加如下方法：
 
-```c++
-    /// Relationship interfaces
-    void getProduct(const DbClientPtr &clientPtr,
-                    const std::function<void(Products)> &rcb,
-                    const ExceptionCallback &ecb) const;
-```
+  ```c++
+      /// Relationship interfaces
+      void getProduct(const DbClientPtr &clientPtr,
+                      const std::function<void(Products)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-#### has many
+* #### has many
 
-`has many` 代表了一对多的关系，这样的关系中，代表了`多`的那个的那个表一般会有个字段和另一个表的主键相关联。比如产品和评价通常是一对多的关系，我们可以定义如下：
+  `has many` 代表了一对多的关系，这样的关系中，代表了`多`的那个的那个表一般会有个字段和另一个表的主键相关联。比如产品和评价通常是一对多的关系，我们可以定义如下：
 
-```json
-{
+  ```json
+  {
     "type": "has many",
     "original_table_name": "products",
     "original_table_alias": "product",
@@ -214,66 +217,66 @@ auto users = mp.orderBy(Users::Cols::_join_time).limit(25).offset(0).findAll();
     "target_table_alias": "",
     "target_key": "product_id",
     "enable_reverse": true
-}
-```
+  }
+  ```
 
-上面各个配置的含义跟前一个例子一样，这里不再赘述，因为评价有多个，是复数，所以不用另起一个别名了。按照该设置，drogon_ctl create model之后，products表对应的model中，会增加下面的接口：
+  上面各个配置的含义跟前一个例子一样，这里不再赘述，因为评价有多个，是复数，所以不用另起一个别名了。按照该设置，drogon_ctl create model之后，products表对应的model中，会增加下面的接口：
 
-```c++
-    void getReviews(const DbClientPtr &clientPtr,
-                    const std::function<void(std::vector<Reviews>)> &rcb,
-                    const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getReviews(const DbClientPtr &clientPtr,
+                      const std::function<void(std::vector<Reviews>)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-reviews表对应的model中，会增加下面的接口：
+  reviews表对应的model中，会增加下面的接口：
 
-```c++
-    void getProduct(const DbClientPtr &clientPtr,
-                    const std::function<void(Products)> &rcb,
-                    const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getProduct(const DbClientPtr &clientPtr,
+                      const std::function<void(Products)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-#### many to many
+* #### many to many
 
-顾名思义，`many to many`代表了多对多的关系，通常，多对多的关系要增加一个中间表，中间表中的每一项对应原始表和目标表中的各1条记录。比如产品和购物车就是多对多的关系，我们可以定义如下：
+  顾名思义，`many to many`代表了多对多的关系，通常，多对多的关系要增加一个中间表，中间表中的每一项对应原始表和目标表中的各1条记录。比如产品和购物车就是多对多的关系，我们可以定义如下：
 
-```json
-{
+  ```json
+  {
     "type": "many to many",
     "original_table_name": "products",
     "original_table_alias": "",
     "original_key": "id",
     "pivot_table": {
-        "table_name": "carts_products",
-        "original_key": "product_id",
-        "target_key": "cart_id"
+      "table_name": "carts_products",
+      "original_key": "product_id",
+      "target_key": "cart_id"
     },
     "target_table_name": "carts",
     "target_table_alias": "",
     "target_key": "id",
     "enable_reverse": true
-}
-```
+  }
+  ```
 
-上面的配置介绍过的选项含义和前面一样，只是对于中间表，多了一项`pivot_table`的配置，里面的选项可以望文生义，这里省略。
+  上面的配置介绍过的选项含义和前面一样，只是对于中间表，多了一项`pivot_table`的配置，里面的选项可以望文生义，这里省略。
 
-按这个配置生成的products的model会添加如下方法：
+  按这个配置生成的products的model会添加如下方法：
 
-```c++
-    void getCarts(const DbClientPtr &clientPtr,
-                  const std::function<void(std::vector<std::pair<Carts,CartsProducts>>)> &rcb,
-                  const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getCarts(const DbClientPtr &clientPtr,
+                    const std::function<void(std::vector<std::pair<Carts,CartsProducts>>)> &rcb,
+                    const ExceptionCallback &ecb) const;
+  ```
 
-carts表的model类会添加如下方法：
+  carts表的model类会添加如下方法：
 
-```c++
-    void getProducts(const DbClientPtr &clientPtr,
-                     const std::function<void(std::vector<std::pair<Products,CartsProducts>>)> &rcb,
-                     const ExceptionCallback &ecb) const;
-```
+  ```c++
+      void getProducts(const DbClientPtr &clientPtr,
+                      const std::function<void(std::vector<std::pair<Products,CartsProducts>>)> &rcb,
+                      const ExceptionCallback &ecb) const;
+  ```
 
-### Restful API 控制器
+### Restful API控制器
 
 drogon_ctl还可以在创建model的同时，为每个model（或者说表）生成restful风格的controller，使用户在零编码的情况下，就生成了可以对表进行增删改查的API。这些API支持按主键查询、按条件查询、按特定字段排序、值返回指定字段、为每个字段指定别名以隐藏表结构等功能。它由model.json中的`restful_api_controllers`选项控制，相关的自选项在json文件中有相应的注释，用户可以自行尝试。
 
