@@ -88,7 +88,7 @@ If your application involves high-concurrency scenarios, please use asynchronous
 
   This is the most commonly used asynchronous interface, working in non-blocking mode;
 
-  The parameter `sql` is a string of sql statements. If there are placeholders for binding parameters, use the placeholder rules of the corresponding database. For example, PostgreSQL placeholders are $1, $2 ..., while MySQL placeholders are `?`.
+  The parameter `sql` is a string of sql statements. If there are placeholders for binding parameters, use the placeholder rules of the corresponding database. For example, PostgreSQL placeholders are $1, $2 ..., while MySQL placeholders are `?` without any numbers.
 
   The indefinite parameter `args` represents the bound parameter, which can be zero or more. The number of parameters is the same as the number of placeholders in the sql statement. The types can be the following:
 
