@@ -8,6 +8,12 @@ span {
 p {
     color: white;
 }
+p a {
+    color: white !important;
+}
+p a:hover {
+  opacity: .8;
+}
 </style>
 
 ![logo](images/drogon-concise-white.png)
