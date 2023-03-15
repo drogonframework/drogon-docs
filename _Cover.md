@@ -1,17 +1,17 @@
 <!-- _coverpage.md -->
 <style>
-span {
+.cover-main span {
     color: white !important;
     font-weight:700;
     /* font-size: 35px; */
 }
-p {
+.cover-main p {
     color: white;
 }
-p a {
+.cover-main p a {
     color: white !important;
 }
-p a:hover {
+.cover-main p a:hover {
   opacity: .8;
 }
 </style>
