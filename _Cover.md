@@ -20,6 +20,11 @@
 
 > Run your application anywhere, knowing it is as fast as it could be. 
 
+Disclaimer: This is a fork from [drogonframework@drogon-docs](https://github.com/drogonframework/drogon-docs). <br/>
+Information you find here may be outdated. <br/>
+Before opening an issue at their issue pages, please double check if the information hasn't already been updated in their repo. <br/>
+For styling issues on this site, please open an issue or pull-request at [rickiewars@drogon-docs](https://github.com/rickiewars/drogon-docs). <br/>
+
 [View releases](https://github.com/drogonframework/drogon/releases)
 [View on Github](https://github.com/drogonframework/drogon)
 [Read the docs](#document)
