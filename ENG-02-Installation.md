@@ -21,6 +21,7 @@ This section takes Linux as an example to introduce the installation process. Ot
 * boost, the version should be **no less than 1.61**, is required only if the C++ compiler does not support C++ 17 and if the STL doesn't fully support `std::filesystem`.
 * the client development libraries of postgreSQL, mariadb and sqlite3, not mandatory, if one or more of them is installed, drogon will support access to the according database.
 * gtest, not mandatory, if the gtest library is installed, the unit tests can be compiled.
+* yaml-cpp, not mandatory, if the yaml-cpp library is installed, drogon will support config file with yaml format.
 
 ## System Preparation Examples
 
