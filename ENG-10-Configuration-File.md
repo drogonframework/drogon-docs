@@ -27,6 +27,10 @@ The file is in `JSON` format and supports comments. You can comment out the unne
 
 After commenting out a configuration option, the framework initializes it with default values. The default value for each option can be found in the comments in the configuration file.
 
+### Supportted Format
+* json
+* yaml, should install yaml-cpp library to provide the yaml file parser.
+
 - ### SSL
 
   The ssl option is to configure SSL files of the https service as follows:
