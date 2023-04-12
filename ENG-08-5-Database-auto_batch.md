@@ -1,4 +1,4 @@
-[English](ENG-08-5-DataBase-auto_batch) | [简体中文](CHN-08-3-数据库-自动批处理)
+[English](ENG-08-5-Database-auto_batch) | [简体中文](CHN-08-3-数据库-自动批处理)
 
 The automatic batch mode is only valid for the client library of postgresql 14+ version, and will be ignored in other cases. Before talking about automatic batch processing, let's understand the pipeline mode first.
 

@@ -1,4 +1,4 @@
-[English](ENG-08-3-DataBase-ORM) | [简体中文](CHN-08-3-数据库-ORM)
+[English](ENG-08-3-Database-ORM) | [简体中文](CHN-08-3-数据库-ORM)
 
 ### Model
 
