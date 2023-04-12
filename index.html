@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <style>
+    .sidebar-toggle {
+        background-color: transparent;
+    }
+    .sidebar {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">Please wait...</div>
+  <script>
+    window.$docsify = {
+      coverpage: '_Cover.md',
+      themeColor: '#1373b3',
+      loadSidebar: '_Sidebar.md',
+      loadFooter: '_Footer.md',
+      homepage: '/ENG-01-Overview.md',
+      name: 'Drogon docs',
+      alias: { // Prevent unnecesary nested _Sidebar.md to be used (optional)
+        '/.*/_Sidebar.md': '/_Sidebar.md'
+      },
+      subMaxLevel: 1, // Generate a maximum of two levels of chapters in TOC
+      repo: 'true', // set the docsify show the corner
+      corner: {
+          // the icon link url to another site  
+          url: "https://github.com/drogonframework/drogon",
+          // the default preset icon in docsify-corner  
+          icon: "github"
+      }
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- Syntax highlighting -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+  <script>
+    // Add additional language aliases here
+    Prism.languages['c++'] = Prism.languages['cpp'];
+  </script>
+  <!-- Additional functionality -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-corner/dist/docsify-corner.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
+</body>
+</html>
