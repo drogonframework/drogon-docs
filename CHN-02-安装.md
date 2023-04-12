@@ -21,6 +21,7 @@
 *  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
 *  postgreSQL, mariadb, sqlite3的客户端开发库，并非必须，安装后drogon会提供对响应的库的访问能力；
 *  gtest, 并非必须，如果安装了gtest库，drogon的单元测试代码可以被编译；
+*  yaml-cpp, 并非必须，如果安装了yaml-cpp，drogon将支持yaml格式的配置文件;
 
 ## 系统准备范例
 
