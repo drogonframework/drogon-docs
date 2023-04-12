@@ -1,4 +1,4 @@
-[English](ENG-08-4-DataBase-FastDbClient) | [简体中文](CHN-08-4-数据库-FastDbClient)
+[English](ENG-08-4-Database-FastDbClient) | [简体中文](CHN-08-4-数据库-FastDbClient)
 
 顾名思义，FastDbClient会提供比普通的DbClient更高的性能。与DbClient拥有自己的EventLoop不同，它和Web应用的网络IO线程和主线程共用 EventLoop，这使得FastDbClient的内部实现可以采用无锁的方式进行，因而会更高效。
 

@@ -1,4 +1,4 @@
-[English](ENG-08-1-DataBase-DbClient) | [简体中文](CHN-08-1-数据库-DbClient)
+[English](ENG-08-1-Database-DbClient) | [简体中文](CHN-08-1-数据库-DbClient)
 
 ### 构建DbClient
 
