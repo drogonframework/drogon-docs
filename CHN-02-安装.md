@@ -1,6 +1,6 @@
 [English](ENG-02-Installation) | [简体中文](CHN-02-安装)
 
-本节以Linux为例，简介安装过程，其它系统，大同小异；
+本节以Ubuntu 18.04, CentOS 7.5, MacOS 12.2为例，简介安装过程，其它系统，大同小异；
 
 ## 系统要求
 
@@ -11,17 +11,21 @@
 
 ## 依赖库
 
-*  trantor，non-blocking I/O C++网络库，也是作者开发，已作为git仓库submodule，无需提前安装；
-*  jsoncpp，json的c++库，版本**不低于1.7**；
-*  libuuid，生成uuid的c库；
-*  zlib，用于支持压缩传输；
-*  OpenSSL，并非必须，如果安装了OpenSSL库，drogon将支持HTTPS，否则drogon只支持HTTP；
-*  c-ares, 并非必须，如果安装了ares库，drogon对DNS的支持会具有更好的性能；
-*  libbrotli，并非必须，如果安装了brotli库，drogon的HTTP响应会支持brotli压缩；
-*  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
-*  postgreSQL, mariadb, sqlite3的客户端开发库，并非必须，安装后drogon会提供对响应的库的访问能力；
-*  gtest, 并非必须，如果安装了gtest库，drogon的单元测试代码可以被编译；
-*  yaml-cpp, 并非必须，如果安装了yaml-cpp，drogon将支持yaml格式的配置文件;
+*  内置
+   *  trantor，non-blocking I/O C++网络库，也是作者开发，已作为git仓库submodule，无需提前安装；
+*  必须
+   *  jsoncpp，json的c++库，版本**不低于1.7**；
+   *  libuuid，生成uuid的c库；
+   *  zlib，用于支持压缩传输；
+*  可选
+   *  OpenSSL，如果安装了OpenSSL库，drogon将支持HTTPS，否则drogon只支持HTTP；
+   *  c-ares, 如果安装了ares库，drogon对DNS的支持会具有更好的性能；
+   *  libbrotli，如果安装了brotli库，drogon的HTTP响应会支持brotli压缩；
+   *  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
+   *  postgreSQL, mariadb, sqlite3的客户端开发库，安装后drogon会提供对响应的库的访问能力；
+   *  hiredis, 如果安装了hiredis库，drogon将支持redis的访问；
+   *  gtest, 如果安装了gtest库，drogon的单元测试代码可以被编译；
+   *  yaml-cpp, 如果安装了yaml-cpp，drogon将支持yaml格式的配置文件;
 
 ## 系统准备范例
 
@@ -48,18 +52,19 @@
   sudo apt install uuid-dev
   ```
 
-* OpenSSL
+* zlib
+
+  ```shell
+  sudo apt install zlib1g-dev
+  ```
+
+* OpenSSL (可选，提供HTTPS支持)
 
   ```shell
   sudo apt install openssl
   sudo apt install libssl-dev
   ```
 
-* zlib
-
-  ```shell
-  sudo apt install zlib1g-dev
-  ```
 
 #### CentOS 7.5
 
@@ -104,17 +109,18 @@
   yum install libuuid-devel
   ```
 
-* OpenSSL
-
-  ```shell
-  yum install openssl-devel
-  ```
-
 * zlib
 
   ```shell
   yum install zlib-devel
   ```
+
+* OpenSSL (可选，提供HTTPS支持)
+
+  ```shell
+  yum install openssl-devel
+  ```
+
 
 #### MacOS 12.2
 
@@ -139,16 +145,16 @@
   brew install ossp-uuid
   ```
 
-* OpenSSL
-
-  ```shell
-  brew install openssl
-  ```
-
 * zlib
 
   ```shell
   brew install zlib
+  ```
+
+* OpenSSL (可选，提供HTTPS支持)
+
+  ```shell
+  brew install openssl
   ```
 
 #### Windows
@@ -162,7 +168,7 @@
   * 用于Windows的C++ CMake工具
   * Google Test测试适配器
 
-## 数据库环境
+## 数据库环境 (可选)
 
 > **注意：下面的这些库都不是必须的, 用户可以根据实际需求选择安装一个或者多个数据库。**
 

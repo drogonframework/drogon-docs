@@ -1,6 +1,6 @@
 [English](ENG-02-Installation) | [简体中文](CHN-02-安装)
 
-This section takes Linux as an example to introduce the installation process. Other systems are similar;
+This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introduce the installation process. Other systems are similar;
 
 ## System Requirements
 
@@ -11,17 +11,21 @@ This section takes Linux as an example to introduce the installation process. Ot
 
 ## Library Dependencies
 
-* trantor, a non-blocking I/O C++ network library, also developed by the author of Drogon, has been used as a git repository submodule, no need to install in advance;
-* jsoncpp, JSON's c++ library, the version should be **no less than 1.7**;
-* libuuid, generating c library of uuid;
-* zlib, used to support compressed transmission;
-* OpenSSL, not mandatory, if the OpenSSL library is installed, drogon will support HTTPS as well, otherwise drogon only supports HTTP.
-* c-ares, not mandatory, if the c-ares library is installed，drogon will be more efficient with DNS;
-* libbrotli, not mandatory, if the libbrotli library is installed, drogon will support brotli compression when sending HTTP responses;
-* boost, the version should be **no less than 1.61**, is required only if the C++ compiler does not support C++ 17 and if the STL doesn't fully support `std::filesystem`.
-* the client development libraries of postgreSQL, mariadb and sqlite3, not mandatory, if one or more of them is installed, drogon will support access to the according database.
-* gtest, not mandatory, if the gtest library is installed, the unit tests can be compiled.
-* yaml-cpp, not mandatory, if the yaml-cpp library is installed, drogon will support config file with yaml format.
+* Built-in
+  * trantor, a non-blocking I/O C++ network library, also developed by the author of Drogon, has been used as  a git repository submodule, no need to install in advance;
+* Mandatory
+  * jsoncpp, JSON's c++ library, the version should be **no less than 1.7**;
+  * libuuid, generating c library of uuid;
+  * zlib, used to support compressed transmission;
+* Optional
+  * OpenSSL, if the OpenSSL library is installed, drogon will support HTTPS as well, otherwise drogon only supports HTTP.
+  * c-ares, if the c-ares library is installed，drogon will be more efficient with DNS;
+  * libbrotli, if the libbrotli library is installed, drogon will support brotli compression when sending HTTP responses;
+  * boost, the version should be **no less than 1.61**, is required only if the C++ compiler does not support C++ 17 and if the STL doesn't fully support `std::filesystem`.
+  * the client development libraries of postgreSQL, mariadb and sqlite3, if one or more of them is installed, drogon will support access to the according database.
+  * hiredis,  if the hiredis library is installed, drogon will support access to redis.
+  * gtest, if the gtest library is installed, the unit tests can be compiled.
+  * yaml-cpp, if the yaml-cpp library is installed, drogon will support config file with yaml format.
 
 ## System Preparation Examples
 
@@ -48,17 +52,17 @@ This section takes Linux as an example to introduce the installation process. Ot
   sudo apt install uuid-dev
   ```
 
-* OpenSSL
-
-  ```shell
-  sudo apt install openssl
-  sudo apt install libssl-dev
-  ```
-
 * zlib
 
   ```shell
   sudo apt install zlib1g-dev
+  ```
+
+* OpenSSL (Optional, if you want to support HTTPS)
+
+  ```shell
+  sudo apt install openssl
+  sudo apt install libssl-dev
   ```
 
 #### CentOS 7.5
@@ -104,16 +108,16 @@ This section takes Linux as an example to introduce the installation process. Ot
   yum install libuuid-devel
   ```
 
-* OpenSSL
-
-  ```shell
-  yum install openssl-devel
-  ```
-
 * zlib
 
   ```shell
   yum install zlib-devel
+  ```
+
+* OpenSSL (Optional, if you want to support HTTPS)
+
+  ```shell
+  yum install openssl-devel
   ```
 
 #### MacOS 12.2
@@ -139,16 +143,16 @@ This section takes Linux as an example to introduce the installation process. Ot
   brew install ossp-uuid
   ```
 
-* OpenSSL
-
-  ```shell
-  brew install openssl
-  ```
-
 * zlib
 
   ```shell
-  brew install zlib
+  yum install zlib-devel
+  ```
+
+* OpenSSL (Optional, if you want to support HTTPS)
+
+  ```shell
+  brew install openssl
   ```
 
 #### Windows
@@ -160,7 +164,7 @@ This section takes Linux as an example to introduce the installation process. Ot
   * C++ CMake tools for windows
   * Test adaptor for Google Test
 
-## Database Environment
+## Database Environment (Optional)
 
 > **Note: These libraries below are not mandatory. You could choose to install one or more database according to your actual needs.**
 
