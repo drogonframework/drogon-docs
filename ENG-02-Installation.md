@@ -5,7 +5,7 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
 ## System Requirements
 
 * The Linux kernel should be not lower than 2.6.9, 64-bit version;
-* The gcc version is not less than 5.4.0;
+* The gcc version is not less than 5.4.0, suggest to use version 11 or above;
 * Use cmake as the build tool, and the cmake version should be not less than 3.5;
 * Use git as the version management tool;
 
@@ -18,14 +18,15 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
   * libuuid, generating c library of uuid;
   * zlib, used to support compressed transmission;
 * Optional
-  * OpenSSL, if the OpenSSL library is installed, drogon will support HTTPS as well, otherwise drogon only supports HTTP.
-  * c-ares, if the c-ares library is installed，drogon will be more efficient with DNS;
-  * libbrotli, if the libbrotli library is installed, drogon will support brotli compression when sending HTTP responses;
   * boost, the version should be **no less than 1.61**, is required only if the C++ compiler does not support C++ 17 and if the STL doesn't fully support `std::filesystem`.
+  * OpenSSL, after installed, drogon will support HTTPS as well, otherwise drogon only supports HTTP.
+  * c-ares, after installed, drogon will be more efficient with DNS;
+  * libbrotli, after installed, drogon will support brotli compression when sending HTTP responses;
+
   * the client development libraries of postgreSQL, mariadb and sqlite3, if one or more of them is installed, drogon will support access to the according database.
-  * hiredis,  if the hiredis library is installed, drogon will support access to redis.
-  * gtest, if the gtest library is installed, the unit tests can be compiled.
-  * yaml-cpp, if the yaml-cpp library is installed, drogon will support config file with yaml format.
+  * hiredis,  after installed, drogon will support access to redis.
+  * gtest, after installed, the unit tests can be compiled.
+  * yaml-cpp, after installed, drogon will support config file with yaml format.
 
 ## System Preparation Examples
 
@@ -85,11 +86,11 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
   ```shell
   # Upgrade gcc
   yum install centos-release-scl
-  yum install devtoolset-8
-  scl enable devtoolset-8 bash
+  yum install devtoolset-11
+  scl enable devtoolset-11 bash
   ```
 
-  > **Note: Command `scl enable devtoolset-8 bash` only activate the new gcc temporarily until the session is end. If you want to always use the new gcc, you could run command `echo "scl enable devtoolset-8 bash" >> ~/.bash_profile`, system will automatically activate the new gcc after restarting.**
+  > **Note: Command `scl enable devtoolset-11 bash` only activate the new gcc temporarily until the session is end. If you want to always use the new gcc, you could run command `echo "scl enable devtoolset-11 bash" >> ~/.bash_profile`, system will automatically activate the new gcc after restarting.**
 
 * jsoncpp
 
@@ -157,13 +158,46 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
 
 #### Windows
 
-* Environment
+* Environment (Visual Studio 2019)
   Install Visual Studio 2019 professional 2019, at least included these options:
   * MSVC C++ building tools
   * Windows 10 SDK
   * C++ CMake tools for windows
   * Test adaptor for Google Test
+      
+`conan` package manager could provide all dependencies that Drogon projector needs。If python is installed on system, you could install `conan` package manager via pip. 
 
+```
+pip install conan
+```
+> of course you can download the installation file from `connan` [official website](https://conan.io/) to install it also.
+
+Create`conanfile.txt`and add the following content to it:
+
+* jsoncpp
+
+  ```txt
+  [requires]
+  jsoncpp/1.9.4
+  ```
+
+* uuid
+
+  不需要安装，Windows 10 SDK已经包含了uuid库。
+
+* zlib
+
+  ```txt
+  [requires]
+  zlib/1.2.11
+  ```
+
+* OpenSSL (可选，提供HTTPS支持)
+
+  ```txt
+  [requires]
+  openssl/1.1.1t
+  ```
 ## Database Environment (Optional)
 
 > **Note: These libraries below are not mandatory. You could choose to install one or more database according to your actual needs.**
@@ -178,6 +212,7 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
   * `ubuntu 18`: `sudo apt-get install postgresql-all`
   * `centOS 7`: `yum install postgresql-devel`
   * `MacOS`: `brew install postgresql`
+  * `Windows conanfile`: `libpq/13.4`
 
 * #### MySQL
 
@@ -188,15 +223,20 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
   * `ubuntu`: `sudo apt install libmariadbclient-dev`
   * `centOS 7`: `yum install mariadb-devel`
   * `MacOS`: `brew install mariadb`
+  * `Windows conanfile`: `libmariadb/3.1.13`
 
 * #### Sqlite3
 
   * `ubuntu`: `sudo apt-get install libsqlite3-dev`
   * `centOS`: `yum install sqlite-devel`
   * `MacOS`: `brew install sqlite3`
+  * `Windows conanfile`: `sqlite3/3.36.0`
 
 * #### Redis
   * `ubuntu`: `sudo apt-get install libhiredis-dev`
+  * `centOS`: `yum install hiredis-devel`
+  * `MacOS`: `brew install hiredis`
+  * `Windows conanfile`: `hiredis/1.0.0`
 
 > **Note: Some of the above commands only install the development library. If you want to install a server also, please use Google search yourself.**
 
@@ -233,64 +273,72 @@ Assuming that the above environment and library dependencies are all ready, the 
 
 * #### Install by source in Windows
 
-  If python is installed on system, you could install `conan` package manager via pip, of course you can download the installation file from `connan` [official website](https://conan.io/) to install it also. conan package manager could provide all dependencies that Drogon projector needs。
+  1. Download drogon source
 
-  ```
-  pip install conan
-  ```
+      ```dos
+      cd $WORK_PATH
+      git clone https://github.com/drogonframework/drogon
+      cd drogon
+      git submodule update --init
+      ```
 
-  After installed `conan` package manager, run command in PowerShell for Visual studio as bellow:
+  2. Install dependencies
 
-  ```
-  cd $WORK_PATH
-  git clone https://github.com/drogonframework/drogon
-  cd drogon
-  git submodule update --init
-  mkdir build
-  cd build
-  conan install .. -s compiler="Visual Studio" -s compiler.version=16 -s build_type=Debug -g cmake_paths
-  cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:/ -DCMAKE_TOOLCHAIN_FILE=./conan_paths.cmake
-  cmake --build . --parallel --target install
-  ```
+     install dependencies via `conan`:
+
+      ```dos
+      mkdir build
+      cd build
+      conan profile detect --force
+      conan install .. -s compiler="msvc" -s compiler.version=193  -s compiler.cppstd=17 -s build_type=Debug  --output-folder . --build=missing
+      ```
+
+      > Modify `conanfile.txt` to change the version of dependencies.
+
+  3. Compile and install
+      ```dos
+      cmake ..  -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE="conan_toolchain.cmake" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_INSTALL_PREFIX="D:"
+      cmake --build . --parallel --target install
+      ```
 
   > **Note: Must keep build type same in conan and cmake.**
 
-  After the installation is complete, the following files will be installed in the system（One can change the installation location with the CMAKE_INSTALL_PREFIX option）:
+  After the installation is complete, the following files will be installed in the system（One can change the installation location with the `CMAKE_INSTALL_PREFIX` option）:
 
-  * The header file of drogon is installed into D:/include/drogon;
-  * The drogon library file drogon.dll is installed into D:/bin;
-  * Drogon's command line tool drogon_ctl.exe is installed into D:/bin;
-  * The trantor header file is installed into D:/include/trantor;
-  * The trantor library file trantor.dll is installed into D:/lib;
+  * The header file of drogon is installed into `D:/include/drogon`;
+  * The drogon library file drogon.dll is installed into `D:/bin`;
+  * Drogon's command line tool drogon_ctl.exe is installed into `D:/bin`;
+  * The trantor header file is installed into `D:/include/trantor`;
+  * The trantor library file trantor.dll is installed into `D:/lib`;
 
+  Add `bin` and `cmake` directory to `path`：
+  ```
+  D:\bin
+  ```
+  ```
+  D:\lib\cmake\Drogon
+  ```
+  ```
+  D:\lib\cmake\Trantor
+  ```
 * #### Install by vcpkg in Windows
+  
+  [Lazzy to read](https://www.youtube.com/watch?v=0ojHvu0Is6A)
 
-  **if you haven't install vcpkg:**
+  **Install vcpkg:**
 
-  1. [Lazzy to read](https://www.youtube.com/watch?v=0ojHvu0Is6A)
-
-  2. Assuming that you don't have `cmake.exe`, `make.exe`/`nmake.exe`/`ninja.exe` and `vcpkg.exe`
-
-  3. Make it sure you're already install `git` for windows too
-
-  4. First, go to where you want to install `vcpkg`. In this case, we're gonna use `C:/dev` directory. If you don't have that directory yet, open your **_powershell_** as administrator:
-
+  1. Install `vcpkg` by `git`.
+  
      ```
-     cd  C:/
-     mkdir Dev
-     cd Dev
      git clone https://github.com/microsoft/vcpkg
      cd vcpkg
      ./bootstrap-vcpkg.bat
      ```
 
-     note: to update your vcpkg, you just need to type `git pull`
+     > note: to update your vcpkg, you just need to type `git pull`
 
-     > Make it sure that vcpkg directory always able to access:
-     > add `C:/dev/vpckg` to your windows **_environment variables_**.
-     > restart/re-open your **_powershell_**
-
-  5. Now check if vcpkg already installed properly, just type `vcpkg` or `vcpkg.exe`
+  2. add `vpckg` to your windows environment variables **_path_**.
+  3. Now check if vcpkg already installed properly, just type `vcpkg` or `vcpkg.exe`
 
   **Now Install Drogon:**
 
