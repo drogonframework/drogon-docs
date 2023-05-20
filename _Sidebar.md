@@ -137,7 +137,7 @@
     * [Model类的接口](CHN-08-3-数据库-ORM#Model类的接口)
     * [Mapper类模板](CHN-08-3-数据库-ORM#Mapper类模板)
     * [条件对象](CHN-08-3-数据库-ORM#条件对象)
-    * [Mappe 的链式接口](CHN-08-3-数据库-ORM#Mapper的链式接口)
+    * [Mapper 的链式接口](CHN-08-3-数据库-ORM#Mapper的链式接口)
     * [转换](CHN-08-3-数据库-ORM#转换)
     * [关系](CHN-08-3-数据库-ORM#关系)
       * [has one](CHN-08-3-数据库-ORM#has-one)

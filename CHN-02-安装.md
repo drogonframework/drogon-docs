@@ -1,27 +1,31 @@
 [English](ENG-02-Installation) | [简体中文](CHN-02-安装)
 
-本节以Linux为例，简介安装过程，其它系统，大同小异；
+本节以Ubuntu 18.04, CentOS 7.5, MacOS 12.2为例，简介安装过程，其它系统，大同小异；
 
 ## 系统要求
 
 *  Linux内核应不低于2.6.9，64位版本；
-*  gcc版本不低于5.4.0；
+*  gcc版本不低于5.4.0, 建议使用11及以上版本；
 *  构建工具是cmake,cmake版本应不低于3.5；
 *  git版本管理工具；
 
 ## 依赖库
 
-*  trantor，non-blocking I/O C++网络库，也是作者开发，已作为git仓库submodule，无需提前安装；
-*  jsoncpp，json的c++库，版本**不低于1.7**；
-*  libuuid，生成uuid的c库；
-*  zlib，用于支持压缩传输；
-*  OpenSSL，并非必须，如果安装了OpenSSL库，drogon将支持HTTPS，否则drogon只支持HTTP；
-*  c-ares, 并非必须，如果安装了ares库，drogon对DNS的支持会具有更好的性能；
-*  libbrotli，并非必须，如果安装了brotli库，drogon的HTTP响应会支持brotli压缩；
-*  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
-*  postgreSQL, mariadb, sqlite3的客户端开发库，并非必须，安装后drogon会提供对响应的库的访问能力；
-*  gtest, 并非必须，如果安装了gtest库，drogon的单元测试代码可以被编译；
-*  yaml-cpp, 并非必须，如果安装了yaml-cpp，drogon将支持yaml格式的配置文件;
+*  内置
+   *  trantor，non-blocking I/O C++网络库，也是作者开发，已作为git仓库submodule，无需提前安装；
+*  必须
+   *  jsoncpp，json的c++库，版本**不低于1.7**；
+   *  libuuid，生成uuid的c库；
+   *  zlib，用于支持压缩传输；
+*  可选
+   *  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
+   *  OpenSSL，安装后drogon将支持HTTPS，否则drogon只支持HTTP；
+   *  c-ares, 安装后drogon对DNS的支持会具有更好的性能；
+   *  libbrotli，安装后drogon的HTTP响应会支持brotli压缩；
+   *  postgreSQL, mariadb, sqlite3的客户端开发库，安装后drogon会提供对响应的库的访问能力；
+   *  hiredis, 安装后drogon将支持redis的访问；
+   *  gtest, 安装后drogon的单元测试代码可以被编译；
+   *  yaml-cpp, 安装后drogon将支持yaml格式的配置文件;
 
 ## 系统准备范例
 
@@ -48,18 +52,19 @@
   sudo apt install uuid-dev
   ```
 
-* OpenSSL
+* zlib
+
+  ```shell
+  sudo apt install zlib1g-dev
+  ```
+
+* OpenSSL (可选，提供HTTPS支持)
 
   ```shell
   sudo apt install openssl
   sudo apt install libssl-dev
   ```
 
-* zlib
-
-  ```shell
-  sudo apt install zlib1g-dev
-  ```
 
 #### CentOS 7.5
 
@@ -81,11 +86,11 @@
   ```shell
   # 升级 gcc
   yum install centos-release-scl
-  yum install devtoolset-8
-  scl enable devtoolset-8 bash
+  yum install devtoolset-11
+  scl enable devtoolset-11 bash
   ```
 
-  > **注意: `scl enable devtoolset-8 bash`命令仅是临时性的使新的gcc生效，直到会话结束。如果想永久使用新版gcc,可以使用命令`echo "scl enable devtoolset-8 bash" >> ~/.bash_profile`, 系统重新启动后将自动使用新版gcc。**
+  > **注意: `scl enable devtoolset-11 bash`命令仅是临时性的使新的gcc生效，直到会话结束。如果想永久使用新版gcc,可以使用命令`echo "scl enable devtoolset-11 bash" >> ~/.bash_profile`, 系统重新启动后将自动使用新版gcc。**
 
 * jsoncpp
 
@@ -104,17 +109,18 @@
   yum install libuuid-devel
   ```
 
-* OpenSSL
-
-  ```shell
-  yum install openssl-devel
-  ```
-
 * zlib
 
   ```shell
   yum install zlib-devel
   ```
+
+* OpenSSL (可选，提供HTTPS支持)
+
+  ```shell
+  yum install openssl-devel
+  ```
+
 
 #### MacOS 12.2
 
@@ -139,16 +145,16 @@
   brew install ossp-uuid
   ```
 
-* OpenSSL
-
-  ```shell
-  brew install openssl
-  ```
-
 * zlib
 
   ```shell
   brew install zlib
+  ```
+
+* OpenSSL (可选，提供HTTPS支持)
+
+  ```shell
+  brew install openssl
   ```
 
 #### Windows
@@ -162,7 +168,42 @@
   * 用于Windows的C++ CMake工具
   * Google Test测试适配器
 
-## 数据库环境
+`connan`包管理器可以提供Drogon项目的所有依赖,  如果有python环境，可以通过pip安装`connan`包管理器。
+
+```
+pip install conan
+```
+>当然也可以通过从[官网](https://conan.io/)下载`connan`的安装文件进行安装。
+
+创建`conanfile.txt`文件中并添加如下内容:
+
+
+* jsoncpp
+
+  ```txt
+  [requires]
+  jsoncpp/1.9.4
+  ```
+
+* uuid
+
+  不需要安装，Windows 10 SDK已经包含了uuid库。
+
+* zlib
+
+  ```txt
+  [requires]
+  zlib/1.2.11
+  ```
+
+* OpenSSL (可选，提供HTTPS支持)
+
+  ```txt
+  [requires]
+  openssl/1.1.1t
+  ```
+
+## 数据库环境 (可选)
 
 > **注意：下面的这些库都不是必须的, 用户可以根据实际需求选择安装一个或者多个数据库。**
 
@@ -176,6 +217,7 @@
   * `ubuntu 18`: `sudo apt-get install postgresql-all`
   * `centOS 7`: `yum install postgresql-devel`
   * `MacOS`: `brew install postgresql`
+  * `Windows conanfile`: `libpq/13.2`
 
 * #### MySQL
 
@@ -185,17 +227,22 @@
 
   * `ubuntu`: `sudo apt install libmariadbclient-dev`
   * `centOS 7`: `yum install mariadb-devel`
-  * `MacOS`: `brew install mariadb`
+  * `MacOS`: `brew install mariadb`  
+  * `Windows conanfile`: `libmariadb/3.1.13`
 
 * #### Sqlite3
 
   * `ubuntu`: `sudo apt-get install libsqlite3-dev`
   * `centOS`: `yum install sqlite-devel`
   * `MacOS`: `brew install sqlite3`
+  * `Windows conanfile`: `sqlite3/3.36.0`
 
 * #### Redis
 
   * `ubuntu`: `sudo apt-get install libhiredis-dev`
+  * `centOS`: `yum install hiredis-devel`
+  * `MacOS`: `brew install hiredis`
+  * `Windows conanfile`: `hiredis/1.0.0`
 
 > **注意: 上述有些命令只安装了开发库，如果还要安装server端，请自行google。**
 
@@ -232,66 +279,71 @@
 
 * #### Windows 源码安装
 
-  如果有python环境，可以通过pip安装`connan`包管理器，当然也可以通过从[官网](https://conan.io/)下载`connan`的安装文件进行安装。`connan`包管理器可以提供Drogon项目的所有依赖。
+  1. 下载Drogon源码
 
-  ```
-  pip install conan
-  ```
+      ```shell
+      cd $WORK_PATH
+      git clone https://github.com/drogonframework/drogon
+      cd drogon
+      git submodule update --init
+      ```
 
-  安装了`conan`包管理器后,可以在Visual Studio 2019的PowellShell中执行
+  2. 安装依赖库
 
-  ```
-  cd $WORK_PATH
-  git clone https://github.com/drogonframework/drogon
-  cd drogon
-  git submodule update --init
-  mkdir build
-  cd build
-  conan install .. -s compiler="Visual Studio" -s compiler.version=16 -s build_type=Debug -g cmake_paths
-  cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=D:/ -DCMAKE_TOOLCHAIN_FILE=./conan_paths.cmake
-  cmake --build . --parallel --target install
-  ```
+      ```dos
+      mkdir build
+      cd build
+      conan profile detect --force
+      conan install .. -s compiler="msvc" -s compiler.version=193 -s compiler.cppstd=17 -s build_type=Debug  --output-folder . --build=missing
+      ```
+
+     > 编辑`conanfile.txt`文件可以添加依赖，修改依赖库的版本。
+
+
+  3. 编译并安装
+
+      ```dos
+      cmake ..  -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE="conan_toolchain.cmake" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW -DCMAKE_INSTALL_PREFIX="D:"
+      cmake --build . --parallel --target install
+      ```
 
   > **注意: conan和cmake的build type必须保持一致。**
 
-  安装结束后，将有如下文件被安装在系统中(CMAKE_INSTALL_PREFIX 可以改变安装位置)：
+  安装结束后，将有如下文件被安装在系统中(`CMAKE_INSTALL_PREFIX` 可以改变安装位置)：
 
-  * drogon的头文件被安装到D:/include/drogon中；
-  * drogon的库文件drogon.dll被安装到D:/bin中；
-  * drogon的命令行工具drogon_ctl.exe 被安装到D:/bin中；
-  * trantor的头文件被安装到D:/include/trantor中；
-  * trantor的库文件trantor.dll被安装到D:/bin中；
+  * drogon的头文件被安装到`D:/include/drogon`中；
+  * drogon的库文件drogon.dll被安装到`D:/bin`中；
+  * drogon的命令行工具drogon_ctl.exe 被安装到`D:/bin`中；
+  * trantor的头文件被安装到`D:/include/trantor`中；
+  * trantor的库文件trantor.dll被安装到`D:/bin`中；
 
   添加`bin`和`cmake`路径到`path`环境变量中：
-  `D:\bin`
-  `D:\lib\cmake\Drogon`
-  `D:\lib\cmake\Trantor`
+  ```
+  D:\bin
+  ```
+  ```
+  D:\lib\cmake\Drogon
+  ```
+  ```
+  D:\lib\cmake\Trantor
+  ```
 
 * #### Windows vcpkg安装
+  [观看安装教程](https://www.youtube.com/watch?v=0ojHvu0Is6A)
 
-  **如果你尚未安装 vckpg:**
-
-  1. [观看安装教程](https://www.youtube.com/watch?v=0ojHvu0Is6A)
-  2. 假设你尚未安装`cmake.exe`,`make.exe`和`vcpkg.exe`。
-  3. 确保你已经安装了windows版的`git`。
-  4. 首先，定位到你想安装`vcpkg`的目录，此例中，我们将使用`C:/Dev`目录, 使用administrator管理员登陆 **_powershell_** :
+  **安装 vckpg:**
+  1. `git`安装`vcpkg`。
 
      ```
-     cd  C:/
-     mkdir Dev
-     cd Dev
      git clone https://github.com/microsoft/vcpkg
      cd vcpkg
      ./bootstrap-vcpkg.bat
      ```
 
-     说明: 要升级vcpkg, 只需要输入`git pull`
+     > 说明: 要升级vcpkg, 只需要输入`git pull`
 
-     > 确保 vcpkg 目录可以访问:
-     > 将 `C:/dev/vpckg` 添加到环境变量 **_path_**.
-     > 重启 **_powershell_**
-
-  5. 通过输入`vcpkg`或者`vcpkg.exe`检查vcpkg已经正确安装。
+  2. 将 `vpckg`路径添加到环境变量 **_path_**.
+  3. 终端中输入`vcpkg`或者`vcpkg.exe`检查vcpkg已经正确安装。
 
   **正式安装 Drogon:**
 
