@@ -22,7 +22,7 @@
     * [Install by vcpkg in Windows](ENG-02-Installation#Install-by-vcpkg-in-Windows)
     * [Use Docker Image](ENG-02-Installation#Use-Docker-Image)
     * [Use Nix Package](ENG-02-Installation#Use-Nix-Package)
-    * [Use CPM.cmake](CHN-02-安装#Use-CPM.cmake)
+    * [Use CPM.cmake](ENG-02-Installation#Use-CPM.cmake)
     * [Include drogon source code locally](ENG-02-Installation#Include-drogon-source-code-locally)
 * [Quick Start](ENG-03-Quick-Start)
   * [Static Site](ENG-03-Quick-Start#Static-Site)
