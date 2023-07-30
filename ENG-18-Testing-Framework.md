@@ -111,7 +111,7 @@ DROGON_TEST(RemoteAPITest)
         REQUIRE(res == ReqResult::Ok);
         REQUIRE(resp != nullptr);
 
-        CHECK(resp->getStatusCode == k200Ok);
+        CHECK(resp->getStatusCode() == k200OK);
         CHECK(resp->contentType() == CT_APPLICATION_JSON);
     });
 }
@@ -129,7 +129,7 @@ DROGON_TEST(RemoteAPITestCoro)
 
         auto resp = co_await client->sendRequestCoro(req);
         CO_REQUIRE(resp != nullptr);
-        CHECK(resp->getStatusCode == k200Ok);
+        CHECK(resp->getStatusCode() == k200OK);
         CHECK(resp->contentType() == CT_APPLICATION_JSON);
     };
 
