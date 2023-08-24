@@ -16,7 +16,7 @@
 }
 </style>
 
-![logo](images/drogon-concise-white.png)
+![logo](images/drogon-white17.jpg)
 
 > Run your application anywhere, knowing it is as fast as it could be. 
 
