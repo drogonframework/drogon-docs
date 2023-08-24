@@ -1,1 +1,1 @@
-![](images/drogon-white.jpg)
+![](images/drogon-white17.jpg)
