@@ -64,7 +64,7 @@ Then, Go to the views folder and create a view file ListParameters.csp with the 
 <!DOCTYPE html>
 <html>
 <%c++
-    auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
+    auto para=@@.get<std::unordered_map<std::string,std::string,utils::internal::SafeStringHash>>("parameters");
 %>
 <head>
     <meta charset="UTF-8">

@@ -66,7 +66,7 @@ drogon::HttpAppFramework::instance()
 <!DOCTYPE html>
 <html>
 <%c++
-    auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
+    auto para=@@.get<std::unordered_map<std::string,std::string,utils::internal::SafeStringHash>>("parameters");
 %>
 <head>
     <meta charset="UTF-8">
