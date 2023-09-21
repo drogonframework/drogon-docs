@@ -346,7 +346,7 @@ Assuming that the above environment and library dependencies are all ready, the 
 
      * 32-Bit: `vcpkg install drogon`
      * 64-Bit: `vcpkg install drogon:x64-windows`
-     * extra : `vcpkg install jsoncpp:x64-windows zlib::x64-windows openssl::x64-windows sqlite3:x64-windows libpq:x64-windows libpqxx:x64-windows drogon[core,ctl,sqlite3,postgres,orm]:x64-windows`
+     * extra : `vcpkg install jsoncpp:x64-windows zlib:x64-windows openssl:x64-windows sqlite3:x64-windows libpq:x64-windows libpqxx:x64-windows drogon[core,ctl,sqlite3,postgres,orm]:x64-windows`
 
      note:
 
