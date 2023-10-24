@@ -22,7 +22,7 @@
    *  OpenSSL，安装后drogon将支持HTTPS，否则drogon只支持HTTP；
    *  c-ares, 安装后drogon对DNS的支持会具有更好的性能；
    *  libbrotli，安装后drogon的HTTP响应会支持brotli压缩；
-   *  postgreSQL, mariadb, sqlite3的客户端开发库，安装后drogon会提供对响应的库的访问能力；
+   *  postgreSQL, mariadb, sqlite3的客户端开发库，安装后drogon会提供对相应的库的访问能力；
    *  hiredis, 安装后drogon将支持redis的访问；
    *  gtest, 安装后drogon的单元测试代码可以被编译；
    *  yaml-cpp, 安装后drogon将支持yaml格式的配置文件;
