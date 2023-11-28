@@ -183,7 +183,7 @@ Create`conanfile.txt`and add the following content to it:
 
 * uuid
 
-  不需要安装，Windows 10 SDK已经包含了uuid库。
+  No installation is required, the Windows 10 SDK already includes the uuid library.
 
 * zlib
 
@@ -192,12 +192,13 @@ Create`conanfile.txt`and add the following content to it:
   zlib/1.2.11
   ```
 
-* OpenSSL (可选，提供HTTPS支持)
+* OpenSSL (Optional, if you want to support HTTPS)
 
   ```txt
   [requires]
   openssl/1.1.1t
   ```
+
 ## Database Environment (Optional)
 
 > **Note: These libraries below are not mandatory. You could choose to install one or more database according to your actual needs.**
