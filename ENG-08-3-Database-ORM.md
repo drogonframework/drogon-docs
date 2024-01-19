@@ -22,7 +22,11 @@ The last parameter is the path to store model classes. There must be a configura
   "dbname": "test",
   "user": "test",
   "passwd": "",
-  "tables": []
+  "tables": [],
+  "relationships": {
+      "enabled": false,
+      "items": []
+  }
 }
 ```
 

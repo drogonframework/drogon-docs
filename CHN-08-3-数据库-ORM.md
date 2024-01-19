@@ -22,7 +22,11 @@ drogon_ctl create model <model_path>
   "dbname": "test",
   "user": "test",
   "passwd": "",
-  "tables": []
+  "tables": [],
+  "relationships": {
+      "enabled": false,
+      "items": []
+  }
 }
 ```
 
