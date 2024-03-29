@@ -115,15 +115,15 @@ Obviously, it is too inconvenient to manually run the drogon_ctl command every t
 ```cmake
 FILE(GLOB SCP_LIST ${CMAKE_CURRENT_SOURCE_DIR}/views/*.csp)
 foreach(cspFile ${SCP_LIST})
-    message(STATUS "cspFile:" ${cspFile})
-    EXEC_PROGRAM(basename ARGS "-s .csp ${cspFile}" OUTPUT_VARIABLE classname)
-    message(STATUS "view classname:" ${classname})
-    add_custom_command(OUTPUT ${classname}.h ${classname}.cc
-        COMMAND drogon_ctl
-        ARGS create view ${cspFile}
-        DEPENDS ${cspFile}
-        VERBATIM )
-   set(VIEWSRC ${VIEWSRC} ${classname}.cc)
+  message(STATUS "cspFile:" ${cspFile})
+  execute_process(COMMAND basename ARGS "-s .csp ${cspFile}" OUTPUT_VARIABLE classname)
+  message(STATUS "view classname:" ${classname})
+  add_custom_command(
+    OUTPUT ${classname}.h ${classname}.cc
+    COMMAND drogon_ctl ARGS create view ${cspFile}
+    DEPENDS ${cspFile}
+    VERBATIM)
+  set(VIEWSRC ${VIEWSRC} ${classname}.cc)
 endforeach()
 ```
 
