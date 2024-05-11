@@ -19,29 +19,30 @@ Drogon contains the following common filters:
 
 - #### Middleware Definition
 
-  Users can customize the middleware, you need to inherit the `HttpMiddleware` class template, the template type is the subclass type, for example, if you want to create a middleware that logs the request and response, you could define it as follows:
+  Users can customize the middleware, you need to inherit the `HttpMiddleware` class template, the template type is the subclass type, for example, if you want to enable cross-region support for come routes, you could define it as follows:
 
   ```c++
   class MyMiddleware : public HttpMiddleware<MyMiddleware>
   {
-    public:
+  public:
       MyMiddleware(){};  // do not omit constructor
 
       void invoke(const HttpRequestPtr &req,
                   MiddlewareNextCallback &&nextCb,
                   MiddlewareCallback &&mcb) override
       {
-          if (req->path() == "/some/path")
+          const std::string &origin = req->getHeader("origin");
+          if (origin.find("www.some-evil-place.com") != std::string::npos)
           {
               // intercept directly
               mcb(HttpResponse::newNotFoundResponse(req));
               return;
           }
-          LOG_INFO << "Request path: " << req->path() << ", body: " << req->body();
           // Do something before calling the next middleware
           nextCb([mcb = std::move(mcb)](const HttpResponsePtr &resp) {
               // Do something after the next middleware returns
-              LOG_INFO << "Response status: " << resp->statusCode() << ", body: " << resp->body();
+              resp->addHeader("Access-Control-Allow-Origin", origin);
+              resp->addHeader("Access-Control-Allow-Credentials","true");
               mcb(resp);
           });
       }
@@ -64,9 +65,9 @@ Drogon contains the following common filters:
   class LoginFilter:public drogon::HttpFilter<LoginFilter>
   {
   public:
-      virtual void doFilter(const HttpRequestPtr &req,
-                          FilterCallback &&fcb,
-                          FilterChainCallback &&fccb) override ;
+      void doFilter(const HttpRequestPtr &req,
+                    FilterCallback &&fcb,
+                    FilterChainCallback &&fccb) override ;
   };
   ```
 

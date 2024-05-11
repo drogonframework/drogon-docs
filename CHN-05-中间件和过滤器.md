@@ -2,7 +2,7 @@
 
 中间件(middleware)和过滤器(filter)可以帮助用户提高编程效率，在HttpController的[例子](CHN-04-2-控制器-HttpController)中，getInfo方法在返回用户信息之前应该先校验用户是否登录，我们把这个逻辑写在getInfo方法里当然是可以的，但是，很显然，校验用户登录属于通用逻辑，很多接口都将用到，应该把它单独提取出来，再配置到调用handler之前，这就是filter的作用。
 
-drogon的中间件采用了洋葱圈模型, 框架做完URL路径匹配后，会一次调用注册到该路径上的中间件，在每个中间件中，用户可以选择拦截或放行请求，并添加前置、后置处理逻辑。
+drogon的中间件采用了洋葱圈模型, 框架做完URL路径匹配后，会依次调用注册到该路径上的中间件，在每个中间件中，用户可以选择拦截或放行请求，并添加前置、后置处理逻辑。
 如果有一个中间件拦截了请求，该请求将不会继续深入洋葱圈内层，对应的handler也不会被调用，但是仍然会通过外层中间件的后置处理逻辑。
 
 过滤器实际上是省略后置操作的中间件，经过进一步的包装后暴露给用户。中间件和过滤器可以在注册路径时混合使用。
@@ -17,28 +17,29 @@ drogon内置了如下常用过滤器:
 ### 自定义中间件/过滤器
 
 * #### 中间件的定义
-  用户可以自定义中间件，需要继承`HttpMiddleware`类模板，模板类型就是子类类型，比如我们想在请求前后打印出请求和响应体，就可以定义如下:
+  用户可以自定义中间件，需要继承`HttpMiddleware`类模板，模板类型就是子类类型，比如我们想为某些路由开启跨域支持，就可以定义如下:
   ```c++
   class MyMiddleware : public HttpMiddleware<MyMiddleware>
   {
-    public:
+  public:
       MyMiddleware(){};  // do not omit constructor
 
       void invoke(const HttpRequestPtr &req,
                   MiddlewareNextCallback &&nextCb,
                   MiddlewareCallback &&mcb) override
       {
-          if (req->path() == "/some/path")
+          const std::string &origin = req->getHeader("origin");
+          if (origin.find("www.some-evil-place.com") != std::string::npos)
           {
               // intercept directly
               mcb(HttpResponse::newNotFoundResponse(req));
               return;
           }
-          LOG_INFO << "Request path: " << req->path() << ", body: " << req->body();
           // Do something before calling the next middleware
           nextCb([mcb = std::move(mcb)](const HttpResponsePtr &resp) {
               // Do something after the next middleware returns
-              LOG_INFO << "Response status: " << resp->statusCode() << ", body: " << resp->body();
+              resp->addHeader("Access-Control-Allow-Origin", origin);
+              resp->addHeader("Access-Control-Allow-Credentials","true");
               mcb(resp);
           });
       }
@@ -62,9 +63,9 @@ drogon内置了如下常用过滤器:
   class LoginFilter:public drogon::HttpFilter<LoginFilter>
   {
   public:
-      virtual void doFilter(const HttpRequestPtr &req,
-                          FilterCallback &&fcb,
-                          FilterChainCallback &&fccb) override ;
+      void doFilter(const HttpRequestPtr &req,
+                    FilterCallback &&fcb,
+                    FilterChainCallback &&fccb) override ;
   };
   ```
 
