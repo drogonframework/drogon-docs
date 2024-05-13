@@ -305,7 +305,7 @@ After commenting out a configuration option, the framework initializes it with d
   - `path`：String, Http path;
   - `controller`：String, the name of the HttpSimpleController;
   - `http_methods`：An array of strings representing the supported Http methods. Requests outside this list will be filtered out, returning a 405 error.
-  - `filters`：String array, list of filters on the path, see [Filter](ENG-05-Filter);
+  - `filters`：String array, list of filters on the path, see [Middleware and Filter](ENG-05-Middleware-and-Filter);
 
 - ### Idle connection timeout control
 

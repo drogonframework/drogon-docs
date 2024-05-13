@@ -95,7 +95,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 - #### Filter creation
 
-  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Filter](ENG-05-Filter) section.
+  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Middleware and Filter](ENG-05-Middleware-and-Filter) section.
 
   ```shell
   dg_ctl create filter LoginFilter

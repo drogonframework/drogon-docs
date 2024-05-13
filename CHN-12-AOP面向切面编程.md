@@ -15,7 +15,7 @@ Drogon提供了7个插入点供用户使用，当应用程序运行至插入点�
 * HttpResponseCreation: 注册到这个插入点上的处理程序会在每个HTTP Response对象创建时运行，Advice的调用类型是`void(const HttpResponsePtr &)`，其中的参数就是新创建的对象，用户可以在这个处理程序中对所有Response进行一些统一的操作，比如添加某个特殊的header等，这个插入点会影响所有的Response，包括404或任何drogon内部产生的错误响应，也包括应用产生的所有响应。注册的接口是`registerHttpResponseCreationAdvice`;
 
 * Sync: 这个插入点的位置在Http请求处理的最前端，用户可以在这里通过返回一个非空的Response对象来拦截这个请求，Advice调用类型是`HttpRequestPtr(const HttpRequestPtr &)`，注册接口是`registerSyncAdvice`;
-* Pre-Routing: 这个插入点的位置在框架为客户端的请求寻找相应的处理器之前，Advice的调用类型有两个，`void(const HttpRequestPtr &,AdviceCallback &&,AdviceChainCallback &&)`和`void(const HttpRequestPtr &)`, 前一个和Filter的doFilter方法的调用类型完全一致，实际上，它们的运行方式也是一样的（请参考[过滤器](CHN-05-过滤器)），用户可以通过这种Advice拦截客户端请求或者让它通过，后一种调用类型没有拦截能力，不过消耗更低，如果用户不打算拦截，请选择这种 Advice 注册。注册的接口是`registerPreRoutingAdvice`;
+* Pre-Routing: 这个插入点的位置在框架为客户端的请求寻找相应的处理器之前，Advice的调用类型有两个，`void(const HttpRequestPtr &,AdviceCallback &&,AdviceChainCallback &&)`和`void(const HttpRequestPtr &)`, 前一个和Filter的doFilter方法的调用类型完全一致，实际上，它们的运行方式也是一样的（请参考[中间件和过滤器](CHN-05-中间件和过滤器)），用户可以通过这种Advice拦截客户端请求或者让它通过，后一种调用类型没有拦截能力，不过消耗更低，如果用户不打算拦截，请选择这种 Advice 注册。注册的接口是`registerPreRoutingAdvice`;
 * Post-Routing: 这个插入点的位置在找到处理器之后和HTTP方法检测及过滤器处理之前，Advice的调用类型和上个插入点一致，注册接口是`registerPostRoutingAdvice`;
 * Pre-Handling: 这个插入点的位置在通过了所有过滤器之后和处理器处理之前，Advice的调用类型和上个插入点一致，注册接口是`registerPreHandlingAdvice`;
 * Post-Handling: 这个插入点的位置在处理器处理完成生成Response之后和发送给客户端之前，Advice的调用类型是`oid(const HttpRequestPtr &, const HttpResponsePtr &)`，注册接口是`registerPostHandlingAdvice`;

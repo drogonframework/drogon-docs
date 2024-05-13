@@ -305,7 +305,7 @@ int main()
   * `path`：字符串，Http路径；
   * `controller`：字符串，HttpSimpleController的名字；
   * `http_methods`：字符串数组，支持的Http方法，这个列表之外的会被过滤掉，返回405错误；
-  * `filters`：字符串数组，路径上的filter列表，参见[过滤器](CHN-05-过滤器)；
+  * `filters`：字符串数组，路径上的filter列表，参见[中间件和过滤器](CHN-05-中间件和过滤器)；
 
 * ### idle_connection_timeout空闲连接超时控制
 

@@ -97,7 +97,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 * #### 过滤器创建
 
-  `dg_ctl create filter`命令用于帮助用户创建过滤器的源文件，参见[过滤器](CHN-05-过滤器)一节。
+  `dg_ctl create filter`命令用于帮助用户创建过滤器的源文件，参见[中间件和过滤器](CHN-05-中间件和过滤器)一节。
 
   ```shell
   dg_ctl create filter LoginFilter
