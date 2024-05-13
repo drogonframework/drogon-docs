@@ -47,7 +47,7 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 
 从URL路径到处理函数的路由(或称映射)由宏完成，可以用`PATH_ADD`宏添加多重路径映射，所有`PATH_ADD`语句应夹在`PATH_LIST_BEGIN`和`PATH_LIST_END`宏语句之间。
 
-第一个参数是映射的路径,路径后面的参数是对这个路径的约束，目前支持两种约束，一种是`HttpMethod`类型，表示该路径允许使用的Http方法，可以配置零个或多个，一种是`HttpFilter`类的名字，这种对象执行特定的过滤操作，也可以配置0个或多个，两种类型没有顺序要求，框架会处理好类型的匹配。关于Filter，请参阅[过滤器 Filter](CHN-05-过滤器)。
+第一个参数是映射的路径,路径后面的参数是对这个路径的约束，目前支持两种约束，一种是`HttpMethod`类型，表示该路径允许使用的Http方法，可以配置零个或多个，一种是`HttpFilter`类的名字，这种对象执行特定的过滤操作，也可以配置0个或多个，两种类型没有顺序要求，框架会处理好类型的匹配。关于Filter，请参阅[中间件和过滤器](CHN-05-中间件和过滤器)。
 
 用户可以把同一个Simple Controller注册到多个路径上，也可以在同一个路径上注册多个Simple Controller通过 HTTP method 区分）。
 
