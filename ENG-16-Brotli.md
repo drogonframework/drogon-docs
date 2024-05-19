@@ -1,4 +1,4 @@
-[English](ENG-15-Brotli) | [简体中文](CHN-15-Brotli压缩)
+##### Other languages: [简体中文](CHN-15-Brotli压缩)
 
 ## Brotli Info
 

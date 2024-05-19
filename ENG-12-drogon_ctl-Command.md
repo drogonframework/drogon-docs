@@ -1,6 +1,6 @@
-[English](ENG-11-drogon_ctl-Command) | [简体中文](CHN-11-drogon_ctl命令)
+##### Other languages: [简体中文](CHN-11-drogon_ctl命令)
 
-After the **Drogon** framework is compiled and installed, a command line program drogon_ctl is also installed in the system, for convenience, also installed an identical copy `dg_ctl`. Users can choose according to their preferences.
+After the **Drogon** framework is compiled and installed, it is recommended to create your first project using the command line program `drogon_ctl` which is installed alongside the framework, for convenience there is the shortened command `dg_ctl`. Users can choose according to their preferences.
 
 The main function of the program is to make it easy for users to create various drogon project files. Use the `dg_ctl help` command to see the functions it supports, as follows:
 
@@ -60,7 +60,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 - #### View creation
 
-  The `dg_ctl create view` command is used to generate source files from csp files, see the [View](ENG-06-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
+  The `dg_ctl create view` command is used to generate source files from csp files, see the [View](ENG-07-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
 
   ```shell
   dg_ctl create view UsersList.csp
@@ -95,7 +95,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 - #### Filter creation
 
-  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Middleware and Filter](ENG-05-Middleware-and-Filter) section.
+  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Middleware and Filter](ENG-06-Middleware-and-Filter) section.
 
   ```shell
   dg_ctl create filter LoginFilter
@@ -169,4 +169,4 @@ dg_ctl press -n1000000 -t4 -c1000 -q http://localhost:8080/
 dg_ctl press -n 1000000 -t 4 -c 1000 https://www.domain.com/path/to/be/tested
 ```
 
-# 12 [AOP](ENG-12-AOP-Aspect-Oriented-Programming)
+# Next: [Controller Introduction](ENG-05-0-Controller-Introduction)

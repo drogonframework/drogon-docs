@@ -1,4 +1,4 @@
-[English](ENG-FAQ) | [简体中文](CHN-FAQ)
+##### Other languages: [简体中文](CHN-FAQ)
 
 # FAQ
 

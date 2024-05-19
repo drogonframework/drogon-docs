@@ -1,4 +1,4 @@
-[English](ENG-17-Redis) | [简体中文](CHN-17-Redis)
+##### Other languages: [简体中文](CHN-17-Redis)
 
 Drogon supports Redis, a very fast, in-memory data store. Which could be used as a database cache or a message broker. Like everything in Drogon, Redis connections are asynchronous. Which ensures Drogon running with very high concurrency even under heavy load.
 

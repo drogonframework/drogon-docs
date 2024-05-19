@@ -1,4 +1,4 @@
-[English](ENG-14-Coz) | [简体中文](CHN-14-Coz分析)
+##### Other languages: [简体中文](CHN-14-Coz分析)
 
 ## Causal profiling with coz
 

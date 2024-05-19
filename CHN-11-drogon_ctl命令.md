@@ -1,4 +1,4 @@
-[English](ENG-11-drogon_ctl-Command) | [简体中文](CHN-11-drogon_ctl命令)
+[English](ENG-12-drogon_ctl-Command) | [简体中文](CHN-11-drogon_ctl命令)
 
 **Drogon**框架编译安装后，一个命令行程序 `drogon_ctl` 也同时被安装于系统，为了方便，还安装了一个完全一样的副本 `dg_ctl`。用户可以按喜好自行选用。
 
