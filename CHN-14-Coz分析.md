@@ -1,4 +1,4 @@
-[English](ENG-14-Coz) | [简体中文](CHN-14-Coz分析)
+[English](ENG-15-Coz) | [简体中文](CHN-14-Coz分析)
 
 ## 使用coz进行因果分析
 

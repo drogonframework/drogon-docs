@@ -1,5 +1,4 @@
-[English](ENG-12-AOP-Aspect-Oriented-Programming)
-| [简体中文](CHN-12-AOP面向切面编程)
+##### Other languages: [简体中文](CHN-12-AOP面向切面编程)
 
 AOP(Aspect Oriented Programming) is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns(Quoted from Wikipedia).
 
