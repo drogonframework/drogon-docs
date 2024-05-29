@@ -67,6 +67,7 @@
   * [Automatic batch mode](ENG-08-5-Database-auto_batch)
 * [References](ENG-09-0-References-request)
   * [Request References](ENG-09-0-References-request)
+  * [File Handler](ENG-09-1-File-Handler)
 * [Plugins](ENG-10-Plugins)
 * [Configuration File](ENG-11-Configuration-File)
 * [drogon_ctl Command](ENG-12-drogon_ctl-Command)
