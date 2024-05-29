@@ -2,7 +2,7 @@
 
 The HttpRequest type pointer commonly named `req` in the examples in this documentation represents the data contained in a request received or sent by drogon, below are the some methods by which you can interact with this object:
 
-- ### isOnSecureConnection()
+- ### `isOnSecureConnection()`
 
   #### Summary:
   Function that returns if the request was made on https.
@@ -13,7 +13,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   #### Returns:
   bool type.
 
-- ### getMethod()
+- ### `getMethod()`
 
   #### Summary:
   Function that returns the request method. Useful to differentiate the request method if a single handle allows more than one type.
@@ -39,7 +39,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   }
   ```
 
-- ### getParameter(const std::string &key)
+- ### `getParameter(const std::string &key)`
 
   #### Summary:
   Function that returns the value of a parameter based on an identifier. The behavior changes based on the Get or Post request type.
@@ -81,7 +81,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   }
   ```
 
-- ### getPath()
+- ### `getPath()`
 
   #### Similar:
   path()
@@ -110,7 +110,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   }
   ```
 
-- ### getBody()
+- ### `getBody()`
 
   #### Similar:
   body()
@@ -149,7 +149,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   }
   ```
 
-- ### headers()
+- ### `headers()`
 
   #### Summary:
   Function that returns all headers of a request.
@@ -176,7 +176,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   }
   ```
 
-- ### getCookie()
+- ### `getCookie()`
 
   #### Summary:
   Function that returns request cookie based on an identifier.
@@ -187,7 +187,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   #### Returns:
   Value of cookie on string format.
 
-- ### cookies()
+- ### `cookies()`
 
   #### Summary:
   Function that returns all cookies of a request.
@@ -214,7 +214,7 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   }
   ```
 
-- ### getJsonObject()
+- ### `getJsonObject()`
 
   #### Summary:
   Function that converts the body value of a request into a Json object (normally POST requests).
@@ -238,5 +238,32 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
       std::string email = jsonData["email"].asString();
   }
   ```
+
+## Useful Things
+
+###### From here are not methods of the Http Request object, but some useful things you can do to process the requests you will receive
+
+### Parsing File Request
+
+```c++
+#include "mycontroller.h"
+
+using namespace drogon;
+
+void mycontroller::postfile(const HttpRequestPtr &req, std::function<void (const HttpResponsePtr &)> &&callback) {
+    // Only Post Requests (File Form)
+
+    MultiPartParser file;
+    file.parse(req);
+
+    if (file.getFiles().empty()) {
+      // Not Files Found
+    }
+
+    // Get First file and save then
+    const HttpFile archive = file.getFiles()[0];
+    archive.saveAs("/tmp/" + archive.getFileName());
+  }
+```
 
 # Next: [Plugins](ENG-10-Plugins)
