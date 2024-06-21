@@ -1,4 +1,4 @@
-[English](ENG-04-2-Controller-HttpController) | [简体中文](CHN-04-2-控制器-HttpController)
+[English](/ENG/ENG-04-2-Controller-HttpController) | [简体中文](/CHN/CHN-04-2-控制器-HttpController)
 
 ### 生成
 
@@ -280,4 +280,4 @@ void User::getInfo(const HttpRequestPtr &req,
 
   > **需要注意的是，使用正则表达式要注意匹配冲突（多个不同的handler都匹配），当冲突发生在同一个controller内部时，drogon只会执行第一个handler（先注册进框架的那个handler），当冲突发生在不同controller之间时，执行哪个handler是不确定的，因此用户需要避免这种冲突发生。**
 
-# 04.3 [WebSocketController](CHN-04-3-控制器-WebSocketController)
+# 04.3 [WebSocketController](/CHN/CHN-04-3-控制器-WebSocketController)

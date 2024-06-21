@@ -1,4 +1,4 @@
-[English](ENG-03-Quick-Start) | [简体中文](CHN-03-快速开始)
+[English](/ENG/ENG-03-Quick-Start) | [简体中文](/CHN/CHN-03-快速开始)
 
 ## 静态网站
 
@@ -22,7 +22,7 @@ drogon_ctl create project your_project_name
 └── views                         存放视图csp文件的目录
 ```
 
-文件夹的名字就反应了它的用途，用户可以把各类文件(如控制器、过滤器、视图等等)分别放入对应的文件夹，方便项目管理，请读者自行实验。关于`drogon_ctl`的详细使用，可参见[drogon_ctl](CHN-11-drogon_ctl命令)
+文件夹的名字就反应了它的用途，用户可以把各类文件(如控制器、过滤器、视图等等)分别放入对应的文件夹，方便项目管理，请读者自行实验。关于`drogon_ctl`的详细使用，可参见[drogon_ctl](/CHN/CHN-11-drogon_ctl命令)
 
 让我们看一下main.cc文件，内容如下：
 
@@ -55,7 +55,7 @@ make
 echo '<h1>Hello Drogon!</h1>' >>index.html
 ```
 
-Http根目录默认值是`"./"`， 也就是webapp程序运行的当前路径， Http根目录也可在config.json配置文件中进行更改，可参见[配置文件](CHN-10-配置文件)， 然后在地址栏输入`http://localhost`或`http://localhost/index.html`(或者你的webapp所在服务器的ip)可以访问到这个页面：
+Http根目录默认值是`"./"`， 也就是webapp程序运行的当前路径， Http根目录也可在config.json配置文件中进行更改，可参见[配置文件](/CHN/CHN-10-配置文件)， 然后在地址栏输入`http://localhost`或`http://localhost/index.html`(或者你的webapp所在服务器的ip)可以访问到这个页面：
 ![Hello Drogon!](images/hellodrogon.png)
 
 如果服务器找不到浏览器访问的页面，将返回404页面：
@@ -190,4 +190,4 @@ make
 
 > **注意: Drogon没有限制控制器（controller）源文件的位置，也可以放在工程目录下，甚至可以在`CMakeLists.txt`中指定到新的目录中，为了方便管理，建议将控制器源文件放在controllers目录。**
 
-# 04.0 [控制器简介](CHN-04-0-控制器-简介)
+# 04.0 [控制器简介](/CHN/CHN-04-0-控制器-简介)

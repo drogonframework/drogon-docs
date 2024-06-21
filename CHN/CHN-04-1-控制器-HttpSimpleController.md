@@ -1,4 +1,4 @@
-[English](ENG-04-1-Controller-HttpSimpleController) | [简体中文](CHN-04-1-控制器-HttpSimpleController)
+[English](/ENG/ENG-04-1-Controller-HttpSimpleController) | [简体中文](/CHN/CHN-04-1-控制器-HttpSimpleController)
 
 可以由`drogon_ctl`命令行工具快速生成基于`HttpSimpleController`的自定义类的源文件，命令格式如下：
 
@@ -47,7 +47,7 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 
 从URL路径到处理函数的路由(或称映射)由宏完成，可以用`PATH_ADD`宏添加多重路径映射，所有`PATH_ADD`语句应夹在`PATH_LIST_BEGIN`和`PATH_LIST_END`宏语句之间。
 
-第一个参数是映射的路径,路径后面的参数是对这个路径的约束，目前支持两种约束，一种是`HttpMethod`类型，表示该路径允许使用的Http方法，可以配置零个或多个，一种是`HttpFilter`类的名字，这种对象执行特定的过滤操作，也可以配置0个或多个，两种类型没有顺序要求，框架会处理好类型的匹配。关于Filter，请参阅[中间件和过滤器](CHN-05-中间件和过滤器)。
+第一个参数是映射的路径,路径后面的参数是对这个路径的约束，目前支持两种约束，一种是`HttpMethod`类型，表示该路径允许使用的Http方法，可以配置零个或多个，一种是`HttpFilter`类的名字，这种对象执行特定的过滤操作，也可以配置0个或多个，两种类型没有顺序要求，框架会处理好类型的匹配。关于Filter，请参阅[中间件和过滤器](/CHN/CHN-05-中间件和过滤器)。
 
 用户可以把同一个Simple Controller注册到多个路径上，也可以在同一个路径上注册多个Simple Controller通过 HTTP method 区分）。
 
@@ -64,4 +64,4 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 
 > **上述路径到处理函数的映射是在编译期完成的，事实上，drogon框架也提供了运行期完成映射的接口，运行期映射可以让用户通过配置文件或其它用户接口完成映射或修改映射关系而无需重新编译这个程序(出于性能的考虑，禁止在运行app().run()之后再注册任何映射)。**
 
-# 04.2 [HttpController](CHN-04-2-控制器-HttpController)
+# 04.2 [HttpController](/CHN/CHN-04-2-控制器-HttpController)

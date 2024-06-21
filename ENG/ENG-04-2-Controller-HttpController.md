@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN/CHN-04-2-控制器-HttpController)
+##### Other languages: [简体中文](/CHN//CHN/CHN-04-2-控制器-HttpController)
 
 ### Generation
 
@@ -279,4 +279,4 @@ Each `HttpController` class can define many Http request handlers. Since the num
 
   > **It should be noted that when using regular expressions, you should pay attention to matching conflicts (multiple different handlers are matched). When conflicts happen in the same controller, drogon will only execute the first handler (the one registered in the framework first). When conflicts happen between different controllers, it is uncertain which handler will be executed. Therefore, users need to avoid these conflicts.**
 
-# Next: [WebSocketController](/ENG/ENG-04-3-Controller-WebSocketController)
+# Next: [WebSocketController](/ENG//ENG/ENG-04-3-Controller-WebSocketController)

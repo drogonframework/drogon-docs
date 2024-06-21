@@ -1,4 +1,4 @@
-[English](ENG-01-Overview) | [简体中文](CHN-01-概述)
+[English](/ENG/ENG-01-Overview) | [简体中文](/CHN/CHN-01-概述)
 
 **Drogon**是一个基于C++17/20的Http应用框架，使用Drogon可以方便的使用C++构建各种类型的Web应用服务端程序。
 
@@ -29,4 +29,4 @@ Drogon的主要应用平台是Linux，也支持Mac OS、FreeBSD和Windows。
 * 支持插件，可通过配置文件在加载期动态拆装；
 * 支持内建插入点的AOP
 
-# 02 [安装drogon](CHN-02-安装)
+# 02 [安装drogon](/CHN/CHN-02-安装)

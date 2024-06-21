@@ -1,4 +1,4 @@
-[English](ENG-04-3-Controller-WebSocketController) | [简体中文](CHN-04-3-控制器-WebSocketController)
+[English](/ENG/ENG-04-3-Controller-WebSocketController) | [简体中文](/CHN/CHN-04-3-控制器-WebSocketController)
 
 顾名思义，`WebSocketController`用于处理websocket逻辑。websocket是基于HTTP的一种长连接方案，在websocket建立之初，有一次HTTP格式的请求和应答交换，建立完成后，所有的消息在websocket上传输，消息由固定的格式包装，但消息的内容和收发次序没有任何要求，完全由用户定义。
 
@@ -99,7 +99,7 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
   }
   ```
 
-  首先，在这个例子中，通过`WS_PATH_ADD`宏把这个控制器注册到了`/echo`路径上，`WS_PATH_ADD`宏的用法跟之前介绍的其他控制器的宏类似，也可以注册路径并且附带若干[中间件和过滤器](CHN-05-中间件和过滤器)。由于websocket在框架中单独处理，所以它可以和前两种控制器的路径重复而不会相互影响。
+  首先，在这个例子中，通过`WS_PATH_ADD`宏把这个控制器注册到了`/echo`路径上，`WS_PATH_ADD`宏的用法跟之前介绍的其他控制器的宏类似，也可以注册路径并且附带若干[中间件和过滤器](/CHN/CHN-05-中间件和过滤器)。由于websocket在框架中单独处理，所以它可以和前两种控制器的路径重复而不会相互影响。
 
   其次，本例中三个虚函数的实现，只有handleNewMessage有实质内容，只是简单的把收到的消息通过send接口发回客户端。把这个控制器编译进框架，就可以看到效果，请各位自己试验吧。
 
@@ -148,4 +148,4 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
   any *getMutableContext();
   ```
 
-# 05 [中间件和过滤器](CHN-05-中间件和过滤器)
+# 05 [中间件和过滤器](/CHN/CHN-05-中间件和过滤器)

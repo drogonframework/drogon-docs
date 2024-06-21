@@ -1,4 +1,4 @@
-[English](ENG-08-3-Database-ORM) | [简体中文](CHN-08-3-数据库-ORM)
+[English](/ENG/ENG-08-3-Database-ORM) | [简体中文](/CHN/CHN-08-3-数据库-ORM)
 
 ### Model
 
@@ -30,7 +30,7 @@ drogon_ctl create model <model_path>
 }
 ```
 
-配置的参数和应用的配置文件一致，请参考[配置文件](CHN-10-配置文件#db_clients)。
+配置的参数和应用的配置文件一致，请参考[配置文件](/CHN/CHN-10-配置文件#db_clients)。
 
 tables配置项是它特有的，是一个字符串数组，每个字符串表示要转化成Model的表名，如果该项为空，则所有的表都会生成对应的Model类。
 
@@ -99,7 +99,7 @@ template <typename... Arguments>
 explicit Criteria(const CustomSql &sql, Arguments &&...args)
 ```
 
-构造函数的第一个参数是一个包含了占位符`$?`的`CustomSql`对象，而`CustomSql`类只是一个std::string的包装类。第二个不定参数代表绑定的参数，其行为于[execSqlAsync](CHN-08-1-数据库-Dbclient.md#execsqlasync)中的不定参数一致。
+构造函数的第一个参数是一个包含了占位符`$?`的`CustomSql`对象，而`CustomSql`类只是一个std::string的包装类。第二个不定参数代表绑定的参数，其行为于[execSqlAsync](/CHN/CHN-08-1-数据库-Dbclient.md#execsqlasync)中的不定参数一致。
 
 比如：
 
@@ -288,4 +288,4 @@ drogon_ctl还可以在创建model的同时，为每个model（或者说表）生
 
 鉴于这个功能不是那么被普遍需要，这里不做详细介绍了。
 
-# 08.4 [FastDbClient](CHN-08-4-数据库-FastDbClient)
+# 08.4 [FastDbClient](/CHN/CHN-08-4-数据库-FastDbClient)

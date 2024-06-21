@@ -1,4 +1,4 @@
-[English](ENG-19-Testing-Framework) | [简体中文](CHN-18-测试框架)
+[English](/ENG/ENG-19-Testing-Framework) | [简体中文](/CHN/CHN-18-测试框架)
 
 DrogonTest是一个内置在Drogon中的最小测试框架，可实现简单的异步测试和同步测试。 它用于Drogon自己的单元测试和集成测试。 但也可用于测试使用Drogon构建的应用程序。 DrogonTest的语法受到[GTest](https://github.com/google/googletest)和[Catch2](https://github.com/catchorg/Catch2)的启发。
 

@@ -1,4 +1,4 @@
-[English](ENG-12-drogon_ctl-Command) | [简体中文](CHN-11-drogon_ctl命令)
+[English](/ENG/ENG-12-drogon_ctl-Command) | [简体中文](/CHN/CHN-11-drogon_ctl命令)
 
 **Drogon**框架编译安装后，一个命令行程序 `drogon_ctl` 也同时被安装于系统，为了方便，还安装了一个完全一样的副本 `dg_ctl`。用户可以按喜好自行选用。
 
@@ -60,7 +60,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 * #### 视图创建
 
-  `dg_ctl create view`命令用于从csp文件生成源文件，参见[视图](CHN-06-视图)一节。一般情况下，该命令不需要直接使用，又cmake文件配置成自动执行是更好的方法。命令例子如下，假设csp文件是`UsersList.csp`.
+  `dg_ctl create view`命令用于从csp文件生成源文件，参见[视图](/CHN/CHN-06-视图)一节。一般情况下，该命令不需要直接使用，又cmake文件配置成自动执行是更好的方法。命令例子如下，假设csp文件是`UsersList.csp`.
 
   ```shell
   dg_ctl create view UsersList.csp
@@ -97,7 +97,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 * #### 过滤器创建
 
-  `dg_ctl create filter`命令用于帮助用户创建过滤器的源文件，参见[中间件和过滤器](CHN-05-中间件和过滤器)一节。
+  `dg_ctl create filter`命令用于帮助用户创建过滤器的源文件，参见[中间件和过滤器](/CHN/CHN-05-中间件和过滤器)一节。
 
   ```shell
   dg_ctl create filter LoginFilter
@@ -151,7 +151,7 @@ drogon_ctl create model <model_path> //create model classes in model_path
   #include "models/User.h"
   ```
 
-  注意要包含models目录名，这是为了区分同一个工程中多个数据源的情况。参见[ORM](CHN-08-3-数据库-ORM)。
+  注意要包含models目录名，这是为了区分同一个工程中多个数据源的情况。参见[ORM](/CHN/CHN-08-3-数据库-ORM)。
 
 ### 压力测试
 
@@ -169,4 +169,4 @@ dg_ctl press -n1000000 -t4 -c1000 -q http://localhost:8080/
 dg_ctl press -n 1000000 -t 4 -c 1000 https://www.domain.com/path/to/be/tested
 ```
 
-# 12 [AOP 面向切面编程](CHN-12-AOP面向切面编程)
+# 12 [AOP 面向切面编程](/CHN/CHN-12-AOP面向切面编程)

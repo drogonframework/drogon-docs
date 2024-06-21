@@ -1,4 +1,4 @@
-[English](ENG-15-Coz) | [简体中文](CHN-14-Coz分析)
+[English](/ENG/ENG-15-Coz) | [简体中文](/CHN/CHN-14-Coz分析)
 
 ## 使用coz进行因果分析
 
@@ -23,4 +23,4 @@ Coz还支持使用 `--source-scope <pattern>` 或 `-s <pattern>` 等其他方法
 - [Git repo](https://github.com/plasma-umass/coz)
 - [Coz whitepaper](https://arxiv.org/pdf/1608.03676v1.pdf)
 
-# 15 [Brotli 压缩](CHN-15-Brotil-压缩)
+# 15 [Brotli 压缩](/CHN/CHN-15-Brotil-压缩)

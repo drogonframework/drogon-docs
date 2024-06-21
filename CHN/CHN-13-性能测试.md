@@ -1,4 +1,4 @@
-[English](ENG-14-Benchmarks) | [简体中文](CHN-13-性能测试)
+[English](/ENG/ENG-14-Benchmarks) | [简体中文](/CHN/CHN-13-性能测试)
 
 作为C++的Http应用框架，性能应该是关注的重点之一，本节介绍Drogon的简单测试和成绩；
 
@@ -45,4 +45,4 @@ void BenchmarkCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req, std::funct
 
 ![测试截图](images/benchmark.png)
 
-# 14 [Coz 分析](CHN-14-Coz分析)
+# 14 [Coz 分析](/CHN/CHN-14-Coz分析)

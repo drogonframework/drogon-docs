@@ -1,4 +1,4 @@
-[English](ENG-18-Redis) | [简体中文](CHN-17-Redis)
+[English](/ENG/ENG-18-Redis) | [简体中文](/CHN/CHN-17-Redis)
 
 Drogon支持Redis，Redis是一种非常快速的内存数据存储。 可以用作数据库缓存或消息代理。 与Drogon中其他组件一樣，Redis的操作是异步的。 这确保了Drogon即使在重负载下也能以非常高的并发性运行。
 
@@ -101,7 +101,7 @@ redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
 
 ### 协程
 
-Redis客户端也支持协程. 需要GCC 11或者更新的编译器，并且使用`cmake -DCMAKE_CXX_FLAGS="-std=c++20"` 来使能它。見[协程](CHN-16-协程)取得细节
+Redis客户端也支持协程. 需要GCC 11或者更新的编译器，并且使用`cmake -DCMAKE_CXX_FLAGS="-std=c++20"` 来使能它。見[协程](/CHN/CHN-16-协程)取得细节
 
 ```c++
 try
@@ -117,4 +117,4 @@ catch(const std::exception& e)
 }
 ```
 
-# [测试框架](CHN-18-测试框架)
+# [测试框架](/CHN/CHN-18-测试框架)

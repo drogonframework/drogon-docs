@@ -1,4 +1,4 @@
-[English](ENG-11-Configuration-File) | [简体中文](CHN-10-配置文件)
+[English](/ENG/ENG-11-Configuration-File) | [简体中文](/CHN/CHN-10-配置文件)
 
 你可以通过DrogonAppFramework实例的多个接口配置各种参数来控制Http服务端的某些行为。不过，使用配置文件是更好的方式，原因如下：
 
@@ -108,7 +108,7 @@ int main()
   * `dbname`：字符串，数据库名字；
   * `user`：字符串，用户名；
   * `passwd`：字符串，密码；
-  * `is_fast`：bool，默认false，表明该客户端是否是[FastDbClient](CHN-08-4-数据库-FastDbClient)；
+  * `is_fast`：bool，默认false，表明该客户端是否是[FastDbClient](/CHN/CHN-08-4-数据库-FastDbClient)；
   * `connection_number`：到数据库服务端的连接数，至少是1，默认值也是1，影响数据读写的并发量；如果`is_fast`为真，该数值表示每个事件循环的连接数，否则表示总的连接数；
   * `filename`: sqlite3 数据库的文件名；
 
@@ -286,7 +286,7 @@ int main()
 
 * ### simple_controllers_map简单控制器映射
 
-  app子选项，JSON对象数组，每一项表示一个从Http路径到HttpSimpleController的映射，这种配置只是一个可选途径，并不是必须配置在这里，请参阅[HttpSimpleController](CHN-04-1-控制器-HttpSimpleController)。
+  app子选项，JSON对象数组，每一项表示一个从Http路径到HttpSimpleController的映射，这种配置只是一个可选途径，并不是必须配置在这里，请参阅[HttpSimpleController](/CHN/CHN-04-1-控制器-HttpSimpleController)。
   具体的配置如下：
 
   ```json
@@ -305,7 +305,7 @@ int main()
   * `path`：字符串，Http路径；
   * `controller`：字符串，HttpSimpleController的名字；
   * `http_methods`：字符串数组，支持的Http方法，这个列表之外的会被过滤掉，返回405错误；
-  * `filters`：字符串数组，路径上的filter列表，参见[中间件和过滤器](CHN-05-中间件和过滤器)；
+  * `filters`：字符串数组，路径上的filter列表，参见[中间件和过滤器](/CHN/CHN-05-中间件和过滤器)；
 
 * ### idle_connection_timeout空闲连接超时控制
 
@@ -329,7 +329,7 @@ int main()
   * `dynamic_views_path`：布尔值，默认值是false，当为true时，框架会在视图路径中搜索视图文件，并动态编译成so文件，然后加载进应用，当任何视图文件发生变化时，也会引起自动编译和重新加载；
   * `dynamic_views_path`：字符串数组，每一项表示动态视图的搜索路径，如果路径值不是`/`,`./`或`../`开始的，并且这个值也不是`.`或`..`，则这个路径是前面document_root项的相对路径，否则就是一个绝对路径或者当前目录的相对路径。
 
-  参见[视图](CHN-06-视图)。
+  参见[视图](/CHN/CHN-06-视图)。
 
 * ### server_header_field头字段
 
@@ -355,4 +355,4 @@ int main()
   "pipelining_requests": 0
   ```
 
-# 11 [drogon_ctl 命令](CHN-11-drogon_ctl命令)
+# 11 [drogon_ctl 命令](/CHN/CHN-11-drogon_ctl命令)

@@ -1,4 +1,4 @@
-[English](ENG-02-Installation) | [简体中文](CHN-02-安装)
+[English](/ENG/ENG-02-Installation) | [简体中文](/CHN/CHN-02-安装)
 
 本节以Ubuntu 18.04, CentOS 7.5, MacOS 12.2为例，简介安装过程，其它系统，大同小异；
 
@@ -472,4 +472,4 @@ pip install conan
   target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
   ```
 
-# 03 [快速开始](CHN-03-快速开始)
+# 03 [快速开始](/CHN/CHN-03-快速开始)

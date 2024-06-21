@@ -1,6 +1,6 @@
-[English](ENG-05-Middleware-and-Filter) | [简体中文](CHN-05-中间件和过滤器)
+[English](/ENG/ENG-05-Middleware-and-Filter) | [简体中文](/CHN/CHN-05-中间件和过滤器)
 
-中间件(middleware)和过滤器(filter)可以帮助用户提高编程效率，在HttpController的[例子](CHN-04-2-控制器-HttpController)中，getInfo方法在返回用户信息之前应该先校验用户是否登录，我们把这个逻辑写在getInfo方法里当然是可以的，但是，很显然，校验用户登录属于通用逻辑，很多接口都将用到，应该把它单独提取出来，再配置到调用handler之前，这就是filter的作用。
+中间件(middleware)和过滤器(filter)可以帮助用户提高编程效率，在HttpController的[例子](/CHN/CHN-04-2-控制器-HttpController)中，getInfo方法在返回用户信息之前应该先校验用户是否登录，我们把这个逻辑写在getInfo方法里当然是可以的，但是，很显然，校验用户登录属于通用逻辑，很多接口都将用到，应该把它单独提取出来，再配置到调用handler之前，这就是filter的作用。
 
 drogon的中间件采用了洋葱圈模型, 框架做完URL路径匹配后，会依次调用注册到该路径上的中间件，在每个中间件中，用户可以选择拦截或放行请求，并添加前置、后置处理逻辑。
 如果有一个中间件拦截了请求，该请求将不会继续深入洋葱圈内层，对应的handler也不会被调用，但是仍然会通过外层中间件的后置处理逻辑。
@@ -69,7 +69,7 @@ drogon内置了如下常用过滤器:
   };
   ```
 
-  你可以通过 `drogon_ctl` 命令创建过滤器, 见 [drogon_ctl](CHN-11-drogon_ctl命令#过滤器创建).
+  你可以通过 `drogon_ctl` 命令创建过滤器, 见 [drogon_ctl](/CHN/CHN-11-drogon_ctl命令#过滤器创建).
 
   我们需要重载父类的doFilter虚函数实现过滤器逻辑；
 
@@ -98,4 +98,4 @@ drogon内置了如下常用过滤器:
 
   > **注意: 如果中间件/过滤器定义在命名空间里，注册时必须把命名空间写全**
 
-# 06 [视图](CHN-06-视图)
+# 06 [视图](/CHN/CHN-06-视图)
