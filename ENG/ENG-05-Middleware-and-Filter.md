@@ -1,6 +1,6 @@
-##### Other languages: [简体中文](CHN-05-中间件和过滤器)
+##### Other languages: [简体中文](/CHN/CHN-05-中间件和过滤器)
 
-In HttpController's [example](ENG-04-2-Controller-HttpController), the getInfo method should check whether the user is logged in before returning the user's information. We can write this logic in the getInfo method, but obviously, checking the user's login membership is general logic which will be used by many interfaces, it should be extracted separately and configured before calling handler, which is what filters do.
+In HttpController's [example](/ENG/ENG-04-2-Controller-HttpController), the getInfo method should check whether the user is logged in before returning the user's information. We can write this logic in the getInfo method, but obviously, checking the user's login membership is general logic which will be used by many interfaces, it should be extracted separately and configured before calling handler, which is what filters do.
 
 Drogon's middleware uses the onion model. After the framework completes URL path matching, it sequentially invokes the middleware registered for that path. Within each middleware, users can choose to intercept or pass through the request and add pre-processing and post-processing logic.
 
@@ -71,7 +71,7 @@ Drogon contains the following common filters:
   };
   ```
 
-  You could create filter by the `drogon_ctl` command, see [drogon_ctl](ENG-11-drogon_ctl-command#Filter-creation).
+  You could create filter by the `drogon_ctl` command, see [drogon_ctl](/ENG/ENG-11-drogon_ctl-command#Filter-creation).
 
   You need to override the doFilter virtual function of the parent class to implement the filter logic;
 
@@ -100,4 +100,4 @@ Drogon contains the following common filters:
 
   > **Note: If the middleware/filter is defined in the namespace, you must write the namespace completely when you register it.**
 
-# Next: [View](ENG-06-View)
+# Next: [View](/ENG/ENG-06-View)

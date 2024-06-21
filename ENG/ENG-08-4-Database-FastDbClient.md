@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](CHN-08-4-数据库-FastDbClient)
+##### Other languages: [简体中文](/CHN/CHN-08-4-数据库-FastDbClient)
 
 As the name implies, FastDbClient will provide higher performance than the normal DbClient. Unlike DbClient has own event loop, it shares the event loop with network IO threads and the main thread of the web application, which makes the internal implementation of FastDbClient available in a lock-free mode and more efficient.
 
@@ -10,7 +10,7 @@ FastDbClient must be created automatically by the framework with the configurati
 
 The sub-option `is_fast` of the db_client option in the configuration file indicates if the client is a FastDbClient.Or user can create a FastDbClient by calling the app.createDbClient() method with the last parameter set to true.
 
-The framework creates a separate FastDbClient for each IO's event loop and the main event loop, and each FastDbClient manages several database connections internally. The number of event loop of IO is controlled by the framework's "threads_num" option, which is generally set to the number of CPU cores of the host. The number of the DB connections per event loop is the value of the DB client "connection_number" option. Please refer to [Configuration File](ENG-10-Configuration-File#db_clients). Therefore, the total number of DB connections held by FastDbClient is `(threads_num+1) * connection_number`.
+The framework creates a separate FastDbClient for each IO's event loop and the main event loop, and each FastDbClient manages several database connections internally. The number of event loop of IO is controlled by the framework's "threads_num" option, which is generally set to the number of CPU cores of the host. The number of the DB connections per event loop is the value of the DB client "connection_number" option. Please refer to [Configuration File](/ENG/ENG-10-Configuration-File#db_clients). Therefore, the total number of DB connections held by FastDbClient is `(threads_num+1) * connection_number`.
 
 The interface to get a FastDbClient is similar to the normal DbClient, as follows:
 
@@ -30,4 +30,4 @@ The use of FastDbClient is almost identical to that of the normal DbClient, exce
 - Synchronous transaction creation interfaces are likely to block (when all connections are busy), so FastDbClient's synchronous transaction creation interface returns null pointers directly. If you want to use transactions on FastDbClient, please use the asynchronous transaction creation interface.
 - After using the FastDbClient to create an Orm Mapper object, you should also use only asynchronous non-blocking interfaces of the mapper object.
 
-# Next: [Automatic batch mode](ENG-08-5-Database-auto_batch)
+# Next: [Automatic batch mode](/ENG/ENG-08-5-Database-auto_batch)

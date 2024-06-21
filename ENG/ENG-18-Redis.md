@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](CHN-17-Redis)
+##### Other languages: [简体中文](/CHN/CHN-17-Redis)
 
 Drogon supports Redis, a very fast, in-memory data store. Which could be used as a database cache or a message broker. Like everything in Drogon, Redis connections are asynchronous. Which ensures Drogon running with very high concurrency even under heavy load.
 
@@ -102,7 +102,7 @@ redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
 
 ### Coroutines
 
-Redis clients support coroutines. One should use the GCC 11 or a newer compiler and use `cmake -DCMAKE_CXX_FLAGS="-std=c++20"` to enable it. See the (coroutine)[ENG-16-Coroutines] section for more information.
+Redis clients support coroutines. One should use the GCC 11 or a newer compiler and use `cmake -DCMAKE_CXX_FLAGS="-std=c++20"` to enable it. See the (coroutine)[/ENG/ENG-16-Coroutines] section for more information.
 
 ```c++
 try
@@ -118,4 +118,4 @@ catch(const std::exception& e)
 }
 ```
 
-# 18 [Testing Framework](ENG-18-Testing-Framework)
+# 18 [Testing Framework](/ENG/ENG-18-Testing-Framework)

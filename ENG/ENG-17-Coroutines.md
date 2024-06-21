@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](CHN-16-协程)
+##### Other languages: [简体中文](/CHN/CHN-16-协程)
 
 Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a way to flatten the control flow of asynchronous calls, i.e. escaping the callback hell. With it, asynchronous programming becomes as easy as synchronous programming.
 
@@ -166,4 +166,4 @@ There are some common pitfalls you may encounter when using coroutines.
 
 [1]: https://en.cppreference.com/w/cpp/language/coroutines
 
-# 17 [Redis](ENG-17-Redis)
+# 17 [Redis](/ENG/ENG-17-Redis)

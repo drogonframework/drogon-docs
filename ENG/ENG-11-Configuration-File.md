@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](CHN-10-配置文件)
+##### Other languages: [简体中文](/CHN/CHN-10-配置文件)
 
 You can control various behaviors of the Http server by configuring various parameters through multiple interfaces of the DrogonAppFramework instance. However, using a configuration file is a better way for the following reasons:
 
@@ -108,7 +108,7 @@ After commenting out a configuration option, the framework initializes it with d
   - `dbname`：String, database name;
   - `user`：String, user name;
   - `passwd`：String, password;
-  - `is_fast`：bool，false by default, indicate if the client is a [FastDbClient](ENG-08-4-Database-FastDbClient)
+  - `is_fast`：bool，false by default, indicate if the client is a [FastDbClient](/ENG/ENG-08-4-Database-FastDbClient)
   - `connection_number`：A integer indicating the number of connections to the database server, at least 1, the default value is also 1, affecting the concurrent performance of data read and write; If the 'is_fast' is true, the number is the number of connections per event loop, otherwise it is the total number of all connections.
   - `filename`: The filename of sqlite3 database;
 
@@ -286,7 +286,7 @@ After commenting out a configuration option, the framework initializes it with d
 
 - ### simple_controllers_map
 
-  The `app` suboption, an array of JSON objects, each representing a mapping from the Http path to the HttpSimpleController, this configuration is just an alternative, not necessarily configured here, see [HttpSimpleController](ENG-04-1-Controller-HttpSimpleController).
+  The `app` suboption, an array of JSON objects, each representing a mapping from the Http path to the HttpSimpleController, this configuration is just an alternative, not necessarily configured here, see [HttpSimpleController](/ENG/ENG-04-1-Controller-HttpSimpleController).
   The specific configuration is as follows:
 
   ```json
@@ -305,7 +305,7 @@ After commenting out a configuration option, the framework initializes it with d
   - `path`：String, Http path;
   - `controller`：String, the name of the HttpSimpleController;
   - `http_methods`：An array of strings representing the supported Http methods. Requests outside this list will be filtered out, returning a 405 error.
-  - `filters`：String array, list of filters on the path, see [Middleware and Filter](ENG-05-Middleware-and-Filter);
+  - `filters`：String array, list of filters on the path, see [Middleware and Filter](/ENG/ENG-05-Middleware-and-Filter);
 
 - ### Idle connection timeout control
 
@@ -329,7 +329,7 @@ After commenting out a configuration option, the framework initializes it with d
   - `dynamic_views_path`：Boolean value, the default value is false. When it is true, the framework searches view files in the view path and dynamically compiles them into .so files, then loads them into the application. When any view file changes, it will also cause automatic compilation and re-loading;
   - `dynamic_views_path`：An array of strings, each of which represents the search path of the dynamic view. If the path value is not starting with `/`, `./` or `../`, and the value is not `.` or `..`, then This path is the relative path of the previous document_root entry, otherwise it is an absolute path or a relative path to the current directory.
 
-  See [View](ENG-06-View)
+  See [View](/ENG/ENG-06-View)
 
 - ### Server header field
 
@@ -355,4 +355,4 @@ After commenting out a configuration option, the framework initializes it with d
   "pipelining_requests": 0
   ```
 
-# Next: [Aspect Oriented Programming (AOP)](ENG-12-AOP-Aspect-Oriented-Programming)
+# Next: [Aspect Oriented Programming (AOP)](/ENG/ENG-12-AOP-Aspect-Oriented-Programming)

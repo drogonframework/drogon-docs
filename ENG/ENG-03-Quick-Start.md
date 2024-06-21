@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](CHN-03-快速开始)
+##### Other languages: [简体中文](/CHN//CHN/CHN-03-快速开始)
 
 ## Static Site
 
@@ -22,7 +22,7 @@ There are several useful folders in the project directory already:
 └── views                         The folder where view csp files are stored
 ```
 
-Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the `drogon_ctl` command. See [drogon_ctl](ENG-11-drogon_ctl-Command) for more details.
+Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the `drogon_ctl` command. See [drogon_ctl](/ENG/ENG-11-drogon_ctl-Command) for more details.
 
 Let's look at the main.cc file:
 
@@ -55,7 +55,7 @@ Now, we simply add one static file index.html to the Http root path:
 echo '<h1>Hello Drogon!</h1>' >>index.html
 ```
 
-The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
+The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](/ENG/ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
 
 ![Hello Drogon!](images/hellodrogon.png)
 
@@ -194,4 +194,4 @@ We see that adding a controller to an application is very simple. You only need 
 
 > **Note: Drogon has no restrictions on the location of the controller source files. You could also save them in "./" (the project root directory), or you could even define a new directory in `CMakeLists.txt`. It is recommended to use the controllers directory for the convenience of management.**
 
-# Next: [drogon_ctl Command](ENG-04-0-Controller-Introduction)
+# Next: [drogon_ctl Command](/ENG/ENG-04-0-Controller-Introduction)
