@@ -18,7 +18,7 @@
    *  libuuid，生成uuid的c库；
    *  zlib，用于支持压缩传输；
 *  可选
-   *  boost，版本**不低于1.61**，只在C++编译器不支持c++17或STL库不完整支持`std::filesystem`时才需要安装；
+   *  boost，版本**不低于1.61**，只在C++编译器不支持c++20或STL库不完整支持`std::filesystem`时才需要安装；
    *  OpenSSL，安装后drogon将支持HTTPS，否则drogon只支持HTTP；
    *  c-ares, 安装后drogon对DNS的支持会具有更好的性能；
    *  libbrotli，安装后drogon的HTTP响应会支持brotli压缩；
