@@ -1,6 +1,6 @@
-##### Other languages: [简体中文](/CHN//CHN//CHN/CHN-01-概述)
+##### Other languages: [简体中文](/CHN/CHN-01-概述)
 
-**Drogon** is a C++17/20-based HTTP application framework. Drogon can be used to easily build various types of web application server programs using C++.
+**Drogon** is a C++20-based HTTP application framework. Drogon can be used to easily build various types of web application server programs using C++.
 
 **Drogon** is the name of a dragon in the American TV series "Game of Thrones" that I really like.
 
@@ -31,4 +31,4 @@ Its main features are as follows:
 * Support plugins which can be installed by the configuration file at load time;
 * Support AOP with build-in joinpoints.
 
-# Next: [Install drogon](/ENG//ENG//ENG/ENG-02-Installation)
+# Next: [Install drogon](/ENG/ENG-02-Installation)

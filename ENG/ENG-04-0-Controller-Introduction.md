@@ -1,6 +1,6 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-04-控制器-简介)
+##### Other languages: [简体中文](/CHN/CHN-04-控制器-简介)
 
-The controller is very important in web application development. This is where we will define our URLs, which HTTP methods are allowed, which [filters](/ENG//ENG/ENG-06-Middleware-and-Filter) will be applied and how requests will be processed and responded to. The drogon framework has helped us to handle the network transmission, Http protocol analysis and so on. We only need to pay attention to the logic of the controller; each controller object can have one or more processing functions (generally called handlers), and the interface of the function is generally defined as follows:
+The controller is very important in web application development. This is where we will define our URLs, which HTTP methods are allowed, which [filters](/ENG/ENG-06-Middleware-and-Filter) will be applied and how requests will be processed and responded to. The drogon framework has helped us to handle the network transmission, Http protocol analysis and so on. We only need to pay attention to the logic of the controller; each controller object can have one or more processing functions (generally called handlers), and the interface of the function is generally defined as follows:
 
 ```c++
 Void handlerName(const HttpRequestPtr &req,
@@ -33,4 +33,5 @@ public:
 
 A controller registered to a drogon framework will have at most only one instance and will not be destroyed during the entire application run, so users can declare and use member variables in the controller class. Note that when the handler of the controller is called, it is in a multi-threaded environment (when the number of IO threads of the framework is configured to be greater than 1), if you need to access non-temporary variables, please do the concurrent protection work.
 
-# Next: [HttpSimpleController](/ENG//ENG/ENG-04-1-Controller-HttpSimpleController)
+
+# Next: [HttpSimpleController](/ENG/ENG-04-1-Controller-HttpSimpleController)

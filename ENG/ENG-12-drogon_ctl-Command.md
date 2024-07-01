@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-11-drogon_ctl命令)
+##### Other languages: [简体中文](/CHN/CHN-11-drogon_ctl命令)
 
 After the **Drogon** framework is compiled and installed, it is recommended to create your first project using the command line program `drogon_ctl` which is installed alongside the framework, for convenience there is the shortened command `dg_ctl`. Users can choose according to their preferences.
 
@@ -60,7 +60,11 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 - #### View creation
 
-  The `dg_ctl create view` command is used to generate source files from csp files, see the [View](/ENG//ENG/ENG-07-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
+
+  The `dg_ctl create view` command is used to generate source files from csp files, see the [View](/ENG/ENG-07-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
+=======
+  The `dg_ctl create view` command is used to generate source files from csp files, see the [View](/ENG/ENG-07-View) section. In general, this command does not need to be used directly. It is better practice to configure the cmake file to executed this command automatically. The command example is as follows, assuming the csp file is `UsersList.csp`.
+
 
   ```shell
   dg_ctl create view UsersList.csp
@@ -95,7 +99,11 @@ drogon_ctl create model <model_path> //create model classes in model_path
 
 - #### Filter creation
 
-  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Middleware and Filter](/ENG//ENG/ENG-06-Middleware-and-Filter) section.
+
+  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Middleware and Filter](/ENG/ENG-06-Middleware-and-Filter) section.
+=======
+  The `dg_ctl create filter` command is used to help the user create the source files for filters, see the [Middleware and Filter](/ENG/ENG-06-Middleware-and-Filter) section.
+
 
   ```shell
   dg_ctl create filter LoginFilter
@@ -151,7 +159,11 @@ drogon_ctl create model <model_path> //create model classes in model_path
   #include "models/User.h"
   ```
 
-  Note that the models directory name is included to distinguish between multiple data sources in the same project. See [ORM](/ENG//ENG/ENG-08-3-Database-ORM).
+
+  Note that the models directory name is included to distinguish between multiple data sources in the same project. See [ORM](/ENG/ENG-08-3-Database-ORM).
+=======
+  Note that the models directory name is included to distinguish between multiple data sources in the same project. See [ORM](/ENG/ENG-08-3-Database-ORM).
+
 
 ### Stress Testing
 
@@ -169,4 +181,5 @@ dg_ctl press -n1000000 -t4 -c1000 -q http://localhost:8080/
 dg_ctl press -n 1000000 -t 4 -c 1000 https://www.domain.com/path/to/be/tested
 ```
 
-# Next: [Controller Introduction](/ENG//ENG/ENG-05-0-Controller-Introduction)
+
+# Next: [Controller Introduction](/ENG/ENG-05-0-Controller-Introduction)
