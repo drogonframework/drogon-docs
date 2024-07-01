@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-2-数据库-事务)
+##### Other languages: [简体中文](/CHN/CHN-08-2-数据库-事务)
 
 > **Transactions** are an important feature of relational databases, and Drogon provides transaction support with the `Transaction` class.
 
@@ -83,4 +83,4 @@ For the simplest example, suppose there is a task table from which the user sele
 
 In this case, select for update is used to avoid concurrent modifications. The update statement is completed in the result callback of the select statement. The outermost braces are used to limit the scope of the transPtr so that it can be destroyed in time after the execution of sql to end the transaction.
 
-# Next: [ORM](/ENG//ENG/ENG-08-3-Database-ORM)
+# Next: [ORM](/ENG/ENG-08-3-Database-ORM)
