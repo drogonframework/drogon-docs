@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-08-5-数据库-自动批处理)
-=======
-##### Other languages: [简体中文](/CHN/CHN-08-5-数据库-自动批处理)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 The automatic batch mode is only valid for the client library of postgresql 14+ version, and will be ignored in other cases. Before talking about automatic batch processing, let's understand the pipeline mode first.
 
@@ -37,8 +33,5 @@ Therefore, automatic batch mode is helpful to improve performance, but it is not
 When using the newPgClient interface to create a client, set the third parameter to true to enable automatic batch mode;
 When using a configuration file to create a client, set the auto_batch option to true to enable automatic batch mode for the client;
 
-<<<<<<< HEAD
+
 # Next: [Request References](/ENG/ENG-09-0-References-request)
-=======
-# Next: [Request References](/ENG/ENG-09-0-References-request)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

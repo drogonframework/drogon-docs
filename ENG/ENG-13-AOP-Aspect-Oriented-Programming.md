@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-12-AOP面向切面编程)
-=======
-##### Other languages: [简体中文](/CHN/CHN-12-AOP面向切面编程)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 AOP(Aspect Oriented Programming) is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns(Quoted from Wikipedia).
 
@@ -34,8 +30,5 @@ The following figure shows the location of the above four joinpoints in the HTTP
 
 ![](images/AOP.png)
 
-<<<<<<< HEAD
+
 # 13 [Benchmarks](/ENG/ENG-13-Benchmarks)
-=======
-# 13 [Benchmarks](/ENG/ENG-13-Benchmarks)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

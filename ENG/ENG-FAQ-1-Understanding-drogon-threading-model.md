@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-FAQ-1-线程模型.md)
-=======
-##### Other languages: [简体中文](/CHN/CHN-FAQ-1-线程模型.md)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
+
 
 # Understanding Drogon's threading model
 

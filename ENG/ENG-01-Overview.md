@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-01-概述)
-=======
-##### Other languages: [简体中文](/CHN/CHN-01-概述)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 **Drogon** is a C++20-based HTTP application framework. Drogon can be used to easily build various types of web application server programs using C++.
 
@@ -35,8 +31,4 @@ Its main features are as follows:
 * Support plugins which can be installed by the configuration file at load time;
 * Support AOP with build-in joinpoints.
 
-<<<<<<< HEAD
 # Next: [Install drogon](/ENG/ENG-02-Installation)
-=======
-# Next: [Install drogon](/ENG/ENG-02-Installation)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

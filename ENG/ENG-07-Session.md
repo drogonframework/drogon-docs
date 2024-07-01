@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-07-会话)
-=======
-##### Other languages: [简体中文](/CHN/CHN-07-会话)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 `Session` is an important concept of the web application. It is used to save the state of the client on the server. Generally, it cooperates with the browser's `cookie`, and drogon provides support for the session. Drogon **close** the session selection by default, you can also close or open it through the following interface:
 
@@ -100,8 +96,5 @@ drogon::HttpAppFramework::instance().enableSession(1200);
 
 Recompile the entire project with CMake, run the target program webapp, and you can see the effect through the browser.
 
-<<<<<<< HEAD
+
 # Next: [Database](/ENG/ENG-08-0-Database-General)
-=======
-# Next: [Database](/ENG/ENG-08-0-Database-General)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

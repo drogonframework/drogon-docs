@@ -259,8 +259,5 @@ File parsing is extracting the file (or files) from a multipart-data POST reques
     }
     ```
 
-<<<<<<< HEAD
+
 # Next: [Plugins](/ENG/ENG-10-Plugins)
-=======
-# Next: [Plugins](/ENG/ENG-10-Plugins)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

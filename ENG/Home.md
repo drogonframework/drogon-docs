@@ -1,6 +1,6 @@
 [English](Home) | [简体中文](Home.zh-CN)
 
-<<<<<<< HEAD
+
 ### [Welcome to the drogon wiki!](/ENG/ENG-01-Overview)
 * [Overview](/ENG/ENG-01-Overview)
 * [Install drogon](/ENG/ENG-02-Installation)
@@ -154,6 +154,6 @@
 * [Testing Framework](/ENG/ENG-18-Testing-Framework)
 * [FAQ](/ENG/ENG-FAQ)
   * [Understanding drogon's threading model](/ENG/ENG-FAQ-1-Understanding-drogon-threading-model)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
+
 
 ### To contribute to the wiki, please visit the [drogon-docs](https://github.com/drogonframework/drogon-docs) repository.

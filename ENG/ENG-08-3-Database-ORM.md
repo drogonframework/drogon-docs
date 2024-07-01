@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-08-3-数据库-ORM)
-=======
-##### Other languages: [简体中文](/CHN/CHN-08-3-数据库-ORM)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 ### Model
 
@@ -34,11 +30,11 @@ The last parameter is the path to store model classes. There must be a configura
 }
 ```
 
-<<<<<<< HEAD
+
 The configured parameters are the same as the application's configuration file. Please refer to [Configuration File](/ENG/ENG-10-Configuration-File#db_clients).
 =======
 The configured parameters are the same as the application's configuration file. Please refer to [Configuration File](/ENG/ENG-10-Configuration-File#db_clients).
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
+
 
 The `tables` configuration option is unique to the model configuration. It is an array of strings. Each string represents the name of the table to be converted into a model class. If this option is empty, all tables will be used to generate model classes.
 
@@ -107,11 +103,11 @@ template <typename... Arguments>
 explicit Criteria(const CustomSql &sql, Arguments &&...args)
 ```
 
-<<<<<<< HEAD
+
 The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](/ENG/ENG-08-1-Database-DbClient.md#execSqlAsync).
 =======
 The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](/ENG/ENG-08-1-Database-DbClient.md#execSqlAsync).
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
+
 
 E.g:
 
@@ -298,8 +294,5 @@ drogon_ctl can also generate restful-style controllers for each model (or table)
 
 It should be noted that the controller of each table is designed to be composed of a base class and a subclass. Among them, the base class and the table are closely related, and the subclass is used to implement special business logic or modify the interface format. The advantage of this design is that when the table structure changes, users can update only the base class without overwriting the subclass(by setting the `generate_base_only` option to `true`).
 
-<<<<<<< HEAD
+
 # Next: [FastDbClient](/ENG/ENG-08-4-Database-FastDbClient)
-=======
-# Next: [FastDbClient](/ENG/ENG-08-4-Database-FastDbClient)
->>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
