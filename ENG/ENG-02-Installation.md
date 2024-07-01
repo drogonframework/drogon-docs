@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-02-安装)
+=======
+##### Other languages: [简体中文](/CHN/CHN-02-安装)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introduce the installation process. Other systems are similar;
 
@@ -291,7 +295,7 @@ Assuming that the above environment and library dependencies are all ready, the 
       mkdir build
       cd build
       conan profile detect --force
-      conan install .. -s compiler="msvc" -s compiler.version=193  -s compiler.cppstd=17 -s build_type=Debug  --output-folder . --build=missing
+      conan install .. -s compiler="msvc" -s compiler.version=193  -s compiler.cppstd=20 -s build_type=Debug  --output-folder . --build=missing
       ```
 
       > Modify `conanfile.txt` to change the version of dependencies.
@@ -481,4 +485,8 @@ Assuming that the above environment and library dependencies are all ready, the 
   target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
   ```
 
+<<<<<<< HEAD
 # Next: [Quick Start](/ENG/ENG-03-Quick-Start)
+=======
+# Next: [Quick Start](/ENG/ENG-03-Quick-Start)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

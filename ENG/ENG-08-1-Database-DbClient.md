@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-08-1-数据库-DbClient)
+=======
+##### Other languages: [简体中文](/CHN/CHN-08-1-数据库-DbClient)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 ### DbClient Object Construction
 
@@ -20,7 +24,11 @@ The object obtained by the above method, the user has to find a way to persist i
 - This will waste time creating connections and disconnections, increasing system latency;
 - The interface is also a non-blocking interface. That is to say, when the user gets the DbClient object, the connection managed by the it has not been established yet. The framework does not (intentionally) provide a callback interface for successful connection establishment. Do you still have to sleep before starting the query?? This is contrary to the original intention of the asynchronous framework.
 
+<<<<<<< HEAD
 Therefore, DbClient objects should be built at the beginning of the program and held and used throughout the life time. Obviously, this work can be done entirely by the framework. So the drogon framework provides the second build method, which is built by configuration file or the `createDbClient()` method. For the configuration method of the configuration file, see [db_clients](/ENG/ENG-10-Configuration-file#db_clients).
+=======
+Therefore, DbClient objects should be built at the beginning of the program and held and used throughout the life time. Obviously, this work can be done entirely by the framework. So the drogon framework provides the second build method, which is built by configuration file or the `createDbClient()` method. For the configuration method of the configuration file, see [db_clients](/ENG/ENG-10-Configuration-file#db_clients).
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 When needed, the DbClient smart pointer is obtained through the interface of the framework. The interface is as follows:
 
@@ -253,4 +261,8 @@ Each DbClient object has one or multiple its own EventLoop threads controlling t
 
 Blocking interfaces of DbClient only block the caller thread, as long as the caller thread is not the EventLoop thread, it will not affect the normal operation of the EventLoop thread. When the callback function is called, the program inside the callback is run on the EventLoop thread. Therefore, do not perform any blocking operations within the callback, otherwise it will affect the concurrency performance of database read and write. Anyone familiar with non-blocking I/O programming should understand this constraint.
 
+<<<<<<< HEAD
 # Next: [Transaction](/ENG/ENG-08-2-Database-Transaction)
+=======
+# Next: [Transaction](/ENG/ENG-08-2-Database-Transaction)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

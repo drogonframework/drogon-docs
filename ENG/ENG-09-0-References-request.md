@@ -87,7 +87,11 @@ The HttpRequest type pointer commonly named `req` in the examples in this docume
   path()
 
   #### Summary:
+<<<<<<< HEAD
   Function that returns the request path. Useful if you use an ADD_METHOD_VIA_REGEX or other type of dynamic URL in the [controller](/ENG/ENG-04-2-Controller-HttpController).
+=======
+  Function that returns the request path. Useful if you use an ADD_METHOD_VIA_REGEX or other type of dynamic URL in the [controller](/ENG/ENG-04-2-Controller-HttpController).
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
   #### Inputs:
   None.
@@ -265,6 +269,12 @@ void mycontroller::postfile(const HttpRequestPtr &req, std::function<void (const
     archive.saveAs("/tmp/" + archive.getFileName());
   }
 ```
+<<<<<<< HEAD
 For more information about parsing file: [File Handler](/ENG/ENG-09-1-File-Handler)
 
 # Next: [Plugins](/ENG/ENG-09-1-File-Handler)
+=======
+For more information about parsing file: [File Handler](/ENG/ENG-09-1-File-Handler)
+
+# Next: [Plugins](/ENG/ENG-09-1-File-Handler)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

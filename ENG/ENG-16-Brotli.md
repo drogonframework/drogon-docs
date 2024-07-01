@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-15-Brotli压缩)
+=======
+##### Other languages: [简体中文](/CHN/CHN-15-Brotli压缩)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 ## Brotli Info
 
@@ -13,4 +17,8 @@ if you want to dynamically compress with brotli you'll have to set `use_brotli` 
 Users who don't intend to use brotli static, might want to get rid of brotli extra 'sibling check'
 by setting `br_static` to `false` in `config.json`.
 
+<<<<<<< HEAD
 # 16 [Coroutines](/ENG/ENG-16-Coroutines)
+=======
+# 16 [Coroutines](/ENG/ENG-16-Coroutines)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1

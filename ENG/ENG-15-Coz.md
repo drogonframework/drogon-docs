@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ##### Other languages: [简体中文](/CHN/CHN-14-Coz分析)
+=======
+##### Other languages: [简体中文](/CHN/CHN-14-Coz分析)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
 
 ## Causal profiling with coz
 
@@ -23,4 +27,8 @@ For more information checkout:
 * [Git repo](https://github.com/plasma-umass/coz)
 * [Coz whitepaper](https://arxiv.org/pdf/1608.03676v1.pdf)
 
+<<<<<<< HEAD
 # 15 [Brotli compression](/ENG/ENG-15-Brotli)
+=======
+# 15 [Brotli compression](/ENG/ENG-15-Brotli)
+>>>>>>> 557192c59e37288b16a0d6dd1d9116101f5a08e1
