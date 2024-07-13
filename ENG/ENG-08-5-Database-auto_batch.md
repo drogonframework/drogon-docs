@@ -33,4 +33,4 @@ Therefore, automatic batch mode is helpful to improve performance, but it is not
 When using the newPgClient interface to create a client, set the third parameter to true to enable automatic batch mode;
 When using a configuration file to create a client, set the auto_batch option to true to enable automatic batch mode for the client;
 
-# Next: [Request References](/ENG//ENG/ENG-09-0-References-request)
+# Next: [Request References](/drogon-docs/#/ENG/ENG-09-0-References-request)

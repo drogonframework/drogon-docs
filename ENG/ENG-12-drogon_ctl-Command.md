@@ -169,4 +169,4 @@ dg_ctl press -n1000000 -t4 -c1000 -q http://localhost:8080/
 dg_ctl press -n 1000000 -t 4 -c 1000 https://www.domain.com/path/to/be/tested
 ```
 
-# Next: [Controller Introduction](/ENG//ENG/ENG-05-0-Controller-Introduction)
+# Next: [Controller Introduction](/drogon-docs/#/ENG/ENG-04-0-Controller-Introduction)

@@ -30,4 +30,4 @@ The use of FastDbClient is almost identical to that of the normal DbClient, exce
 - Synchronous transaction creation interfaces are likely to block (when all connections are busy), so FastDbClient's synchronous transaction creation interface returns null pointers directly. If you want to use transactions on FastDbClient, please use the asynchronous transaction creation interface.
 - After using the FastDbClient to create an Orm Mapper object, you should also use only asynchronous non-blocking interfaces of the mapper object.
 
-# Next: [Automatic batch mode](/ENG//ENG/ENG-08-5-Database-auto_batch)
+# Next: [Automatic batch mode](/drogon-docs/#/ENG/ENG-08-5-Database-auto_batch)

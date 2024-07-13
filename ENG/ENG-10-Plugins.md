@@ -74,4 +74,4 @@ Note that it is best to get the plugin after calling the framework's run() inter
 
 All plugins are initialized in the run() interface of the framework and are destroyed when the application exits. Therefore, the plugin's lifecycle is almost identical to the application, which is why the getPlugin() interface does not need to return a smart pointer.
 
-# Next: [Configuration File](/ENG//ENG/ENG-11-Configuration-File)
+# Next: [Configuration File](/drogon-docs/#/ENG/ENG-11-Configuration-File)

@@ -96,4 +96,4 @@ drogon::HttpAppFramework::instance().enableSession(1200);
 
 Recompile the entire project with CMake, run the target program webapp, and you can see the effect through the browser.
 
-# Next: [Database](/ENG//ENG/ENG-08-0-Database-General)
+# Next: [Database](/drogon-docs/#/ENG/ENG-08-0-Database-General)

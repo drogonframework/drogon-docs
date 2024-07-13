@@ -286,4 +286,4 @@ drogon_ctl can also generate restful-style controllers for each model (or table)
 
 It should be noted that the controller of each table is designed to be composed of a base class and a subclass. Among them, the base class and the table are closely related, and the subclass is used to implement special business logic or modify the interface format. The advantage of this design is that when the table structure changes, users can update only the base class without overwriting the subclass(by setting the `generate_base_only` option to `true`).
 
-# Next: [FastDbClient](/ENG//ENG/ENG-08-4-Database-FastDbClient)
+# Next: [FastDbClient](/drogon-docs/#/ENG/ENG-08-4-Database-FastDbClient)

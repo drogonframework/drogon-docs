@@ -166,4 +166,4 @@ There are some common pitfalls you may encounter when using coroutines.
 
 [1]: https://en.cppreference.com/w/cpp/language/coroutines
 
-# 17 [Redis](/ENG//ENG/ENG-17-Redis)
+# 17 [Redis](/drogon-docs/#/ENG/ENG-18-Redis)

@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN//CHN/CHN-02-安装)
+##### Other languages: [简体中文](drogon-docs/#/CHN/CHN-02-安装)
 
 This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introduce the installation process. Other systems are similar;
 
@@ -481,4 +481,4 @@ Assuming that the above environment and library dependencies are all ready, the 
   target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
   ```
 
-# Next: [Quick Start](/ENG//ENG//ENG/ENG-03-Quick-Start)
+# Next: [Quick Start](/drogon-docs/#/ENG/ENG-03-Quick-Start)

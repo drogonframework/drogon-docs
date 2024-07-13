@@ -33,4 +33,4 @@ public:
 
 A controller registered to a drogon framework will have at most only one instance and will not be destroyed during the entire application run, so users can declare and use member variables in the controller class. Note that when the handler of the controller is called, it is in a multi-threaded environment (when the number of IO threads of the framework is configured to be greater than 1), if you need to access non-temporary variables, please do the concurrent protection work.
 
-# Next: [HttpSimpleController](/ENG//ENG/ENG-04-1-Controller-HttpSimpleController)
+# Next: [HttpSimpleController](/drogon-docs/#/ENG/ENG-04-1-Controller-HttpSimpleController)
