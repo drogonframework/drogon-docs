@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-04-3-控制器-WebSocketController)
+##### Other languages: [简体中文](/CHN/CHN-04-3-控制器-WebSocketController)
 
 As the name implies, `WebSocketController` is used to process websocket logic. Websocket is a persistent HTTP-based connection scheme. At the beginning of the websocket, there is an HTTP format request and response exchange. After the websocket connection is established, all messages are transmitted on the websocket. The message is wrapped in a fixed format. There is no limit to the message content and the order in which messages are transmitted.
 
@@ -150,4 +150,4 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
     any *getMutableContext();
     ```
 
-# Next: [Middleware and Filter](/drogon-docs/#/ENG/ENG-05-Middleware-and-Filter)
+# Next: [Middleware and Filter](/ENG/ENG-05-Middleware-and-Filter)

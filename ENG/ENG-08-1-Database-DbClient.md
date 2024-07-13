@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-1-数据库-DbClient)
+##### Other languages: [简体中文](/CHN/CHN-08-1-数据库-DbClient)
 
 ### DbClient Object Construction
 
@@ -253,4 +253,4 @@ Each DbClient object has one or multiple its own EventLoop threads controlling t
 
 Blocking interfaces of DbClient only block the caller thread, as long as the caller thread is not the EventLoop thread, it will not affect the normal operation of the EventLoop thread. When the callback function is called, the program inside the callback is run on the EventLoop thread. Therefore, do not perform any blocking operations within the callback, otherwise it will affect the concurrency performance of database read and write. Anyone familiar with non-blocking I/O programming should understand this constraint.
 
-# Next: [Transaction](/drogon-docs/#/ENG/ENG-08-2-Database-Transaction)
+# Next: [Transaction](/ENG/ENG-08-2-Database-Transaction)

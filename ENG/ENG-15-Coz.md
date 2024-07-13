@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-14-Coz分析)
+##### Other languages: [简体中文](/CHN/CHN-14-Coz分析)
 
 ## Causal profiling with coz
 
@@ -23,4 +23,4 @@ For more information checkout:
 * [Git repo](https://github.com/plasma-umass/coz)
 * [Coz whitepaper](https://arxiv.org/pdf/1608.03676v1.pdf)
 
-# 15 [Brotli compression](/drogon-docs/#/ENG/ENG-16-Brotli)
+# 15 [Brotli compression](/ENG/ENG-16-Brotli)

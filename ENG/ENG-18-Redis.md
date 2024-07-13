@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-17-Redis)
+##### Other languages: [简体中文](/CHN/CHN-17-Redis)
 
 Drogon supports Redis, a very fast, in-memory data store. Which could be used as a database cache or a message broker. Like everything in Drogon, Redis connections are asynchronous. Which ensures Drogon running with very high concurrency even under heavy load.
 
@@ -118,4 +118,4 @@ catch(const std::exception& e)
 }
 ```
 
-# 18 [Testing Framework](/drogon-docs/#/ENG/ENG-19-Testing-Framework)
+# 18 [Testing Framework](/ENG/ENG-19-Testing-Framework)
