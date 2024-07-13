@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-04-1-控制器-HttpSimpleController)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-04-1-控制器-HttpSimpleController)
 
 You could use the `drogon_ctl` command line tool to quickly generate custom controller class source files based on `HttpSimpleController`. The command format is as bellow:
 
@@ -64,4 +64,4 @@ You could define an HttpResponse class variable, and then use the callback() to 
 
 > **The mapping from the above path to the handler is done at compile time. In fact, the drogon framework also provides an interface for runtime completion mapping. The runtime mapping allows the user to map or modify the mapping through configuration files or other user interfaces without recompiling this program (For performance reasons, it is forbidden to add any controller mapping after running the app().run() method).**
 
-# Next: [HttpController](/ENG//ENG/ENG-04-2-Controller-HttpController)
+# Next: [HttpController](/drogon-docs/#/ENG/ENG-04-2-Controller-HttpController)

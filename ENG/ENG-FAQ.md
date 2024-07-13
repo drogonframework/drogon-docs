@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-FAQ)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-FAQ)
 
 # FAQ
 
