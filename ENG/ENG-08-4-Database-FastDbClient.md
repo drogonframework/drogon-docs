@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-4-数据库-FastDbClient)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-4-数据库-FastDbClient)
 
 As the name implies, FastDbClient will provide higher performance than the normal DbClient. Unlike DbClient has own event loop, it shares the event loop with network IO threads and the main thread of the web application, which makes the internal implementation of FastDbClient available in a lock-free mode and more efficient.
 

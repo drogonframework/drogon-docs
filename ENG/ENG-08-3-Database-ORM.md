@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-3-数据库-ORM)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-3-数据库-ORM)
 
 ### Model
 

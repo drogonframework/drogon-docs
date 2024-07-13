@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-06-视图)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-06-视图)
 
 ### Views Introduction
 

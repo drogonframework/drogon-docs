@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-FAQ-1-线程模型.md)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-FAQ-1-线程模型)
 
 # Understanding Drogon's threading model
 

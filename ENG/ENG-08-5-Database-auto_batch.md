@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-5-数据库-自动批处理)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-5-数据库-自动批处理)
 
 The automatic batch mode is only valid for the client library of postgresql 14+ version, and will be ignored in other cases. Before talking about automatic batch processing, let's understand the pipeline mode first.
 

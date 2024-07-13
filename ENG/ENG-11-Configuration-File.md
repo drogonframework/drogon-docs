@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-10-配置文件)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-10-配置文件)
 
 You can control various behaviors of the Http server by configuring various parameters through multiple interfaces of the DrogonAppFramework instance. However, using a configuration file is a better way for the following reasons:
 

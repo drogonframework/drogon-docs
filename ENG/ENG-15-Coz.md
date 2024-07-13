@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-14-Coz分析)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-14-Coz分析)
 
 ## Causal profiling with coz
 

@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-09-插件)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-09-插件)
 
 Plugins are use to help users build complex applications. In Drogon, all plugins are built and installed into the application based on the configuration file. Plugins in Drogon are single-instance, and users can implement any functionality they want with plugins.
 

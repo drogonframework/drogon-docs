@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-05-中间件和过滤器)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-05-中间件和过滤器)
 
 In HttpController's [example](/ENG//ENG/ENG-04-2-Controller-HttpController), the getInfo method should check whether the user is logged in before returning the user's information. We can write this logic in the getInfo method, but obviously, checking the user's login membership is general logic which will be used by many interfaces, it should be extracted separately and configured before calling handler, which is what filters do.
 

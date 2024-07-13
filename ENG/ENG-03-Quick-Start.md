@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN//CHN/CHN-03-快速开始)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-03-快速开始)
 
 ## Static Site
 

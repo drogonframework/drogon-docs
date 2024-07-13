@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-16-协程)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-16-协程)
 
 Drogon supports [C++ coroutines][1] starting from version 1.4. They provide a way to flatten the control flow of asynchronous calls, i.e. escaping the callback hell. With it, asynchronous programming becomes as easy as synchronous programming.
 

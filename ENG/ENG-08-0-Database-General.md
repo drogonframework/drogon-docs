@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-0-数据库-概述)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-0-数据库-概述)
 
 ### General
 

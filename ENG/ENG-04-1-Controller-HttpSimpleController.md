@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-04-1-控制器-HttpSimpleController)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-04-1-控制器-HttpSimpleController)
 
 You could use the `drogon_ctl` command line tool to quickly generate custom controller class source files based on `HttpSimpleController`. The command format is as bellow:
 

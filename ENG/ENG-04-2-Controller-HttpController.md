@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-04-2-控制器-HttpController)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-04-2-控制器-HttpController)
 
 ### Generation
 

@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-11-drogon_ctl命令)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-11-drogon_ctl命令)
 
 After the **Drogon** framework is compiled and installed, it is recommended to create your first project using the command line program `drogon_ctl` which is installed alongside the framework, for convenience there is the shortened command `dg_ctl`. Users can choose according to their preferences.
 

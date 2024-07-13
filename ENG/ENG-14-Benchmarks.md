@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-13-性能测试)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-13-性能测试)
 
 As a C++ Http application framework, performance should be one of the focus of attention. This section introduces Drogon's simple tests and achievements;
 

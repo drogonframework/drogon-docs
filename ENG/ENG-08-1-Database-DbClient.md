@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-1-数据库-DbClient)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-1-数据库-DbClient)
 
 ### DbClient Object Construction
 

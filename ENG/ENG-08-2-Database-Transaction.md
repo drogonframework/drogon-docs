@@ -1,4 +1,4 @@
-##### Other languages: [简体中文](/CHN//CHN/CHN-08-2-数据库-事务)
+##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-08-2-数据库-事务)
 
 > **Transactions** are an important feature of relational databases, and Drogon provides transaction support with the `Transaction` class.
 
