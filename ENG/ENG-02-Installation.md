@@ -1,6 +1,8 @@
-##### Other languages: [简体中文](drogon-docs/#/CHN/CHN-02-安装)
+##### Other languages: [简体中文](/CHN/CHN-02-安装)
 
-This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introduce the installation process. Other systems are similar;
+# Installation
+
+This section takes Ubuntu 24.04, CentOS 7.5, MacOS 12.2 as an example to introduce the installation process. Other systems are similar;
 
 ## System Requirements
 
@@ -30,15 +32,12 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
 
 ## System Preparation Examples
 
-#### Ubuntu 18.04
+#### Ubuntu 24.04
 
 * Environment
 
   ```shell
-  sudo apt install git
-  sudo apt install gcc
-  sudo apt install g++
-  sudo apt install cmake
+  sudo apt install git gcc g++ cmake
   ```
 
 * jsoncpp
@@ -62,8 +61,39 @@ This section takes Ubuntu 18.04, CentOS 7.5, MacOS 12.2 as an example to introdu
 * OpenSSL (Optional, if you want to support HTTPS)
 
   ```shell
-  sudo apt install openssl
-  sudo apt install libssl-dev
+  sudo apt install openssl libssl-dev
+  ```
+
+#### Arch Linux
+
+* Environment
+
+  ```shell
+  sudo pacman -S git gcc make cmake
+  ```
+
+* jsoncpp
+
+  ```shell
+  sudo pacman -S jsoncpp
+  ```
+
+* uuid
+
+  ```shell
+  sudo pacman -S uuid
+  ```
+
+* zlib
+
+  ```shell
+  sudo pacman -S zlib
+  ```
+
+* OpenSSL (Optional, if you want to support HTTPS)
+
+  ```shell
+  sudo pacman -S openssl libssl
   ```
 
 #### CentOS 7.5
@@ -211,6 +241,8 @@ Create`conanfile.txt`and add the following content to it:
 
   * `ubuntu 16`: `sudo apt-get install postgresql-server-dev-all`
   * `ubuntu 18`: `sudo apt-get install postgresql-all`
+  * `ubuntu 24`: `sudo apt-get install postgresql-all`
+  * `arch`: `sudo pacman -S postgresql`
   * `centOS 7`: `yum install postgresql-devel`
   * `MacOS`: `brew install postgresql`
   * `Windows conanfile`: `libpq/13.4`
@@ -221,7 +253,9 @@ Create`conanfile.txt`and add the following content to it:
 
   MariaDB installation is as follows：
 
-  * `ubuntu`: `sudo apt install libmariadbclient-dev`
+  * `ubuntu 18.04`: `sudo apt install libmariadbclient-dev`
+  * `ubuntu 24.04`: `sudo apt install libmariadb-dev-compat libmariadb-dev`
+  * `arch`: `sudo pacman -S mariadb`
   * `centOS 7`: `yum install mariadb-devel`
   * `MacOS`: `brew install mariadb`
   * `Windows conanfile`: `libmariadb/3.1.13`
@@ -229,12 +263,14 @@ Create`conanfile.txt`and add the following content to it:
 * #### Sqlite3
 
   * `ubuntu`: `sudo apt-get install libsqlite3-dev`
+  * `arch`: `sudo pacman -S sqlite3`
   * `centOS`: `yum install sqlite-devel`
   * `MacOS`: `brew install sqlite3`
   * `Windows conanfile`: `sqlite3/3.36.0`
 
 * #### Redis
   * `ubuntu`: `sudo apt-get install libhiredis-dev`
+  * `ubuntu`: `sudo pacman -S redis`
   * `centOS`: `yum install hiredis-devel`
   * `MacOS`: `brew install hiredis`
   * `Windows conanfile`: `hiredis/1.0.0`
@@ -431,6 +467,7 @@ Assuming that the above environment and library dependencies are all ready, the 
     buildInputs = with pkgs; [
       drogon
     ];
+  
   }
   ```
 
@@ -481,4 +518,4 @@ Assuming that the above environment and library dependencies are all ready, the 
   target_link_libraries(${PROJECT_NAME} PRIVATE drogon)
   ```
 
-# Next: [Quick Start](/drogon-docs/#/ENG/ENG-03-Quick-Start)
+# Next: [Quick Start](/ENG/ENG-03-Quick-Start)

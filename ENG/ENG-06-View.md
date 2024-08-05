@@ -1,4 +1,6 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-06-视图)
+##### Other languages: [简体中文](/CHN/CHN-06-视图)
+
+# View
 
 ### Views Introduction
 
@@ -151,4 +153,4 @@ Obviously, this function depends on the development environment. If both drogon 
 
 > **Note: If a `symbol not found` error occurs while loading a dynamic view, please use the `cmake .. -DCMAKE_ENABLE_EXPORTS=on` to configure your project, or uncomment the last line (`set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)`) in your project's CMakeLists.txt, and then rebuild the project**
 
-# Next: [Session](/drogon-docs/#/ENG/ENG-07-Session)
+# Next: [Session](/ENG/ENG-07-Session)

@@ -1,4 +1,6 @@
-[English](/ENG/ENG-05-Middleware-and-Filter) | [简体中文](/CHN/CHN-05-中间件和过滤器)
+[English](/ENG/ENG-05-Middleware-and-Filter)
+
+# 中间件
 
 中间件(middleware)和过滤器(filter)可以帮助用户提高编程效率，在HttpController的[例子](/CHN/CHN-04-2-控制器-HttpController)中，getInfo方法在返回用户信息之前应该先校验用户是否登录，我们把这个逻辑写在getInfo方法里当然是可以的，但是，很显然，校验用户登录属于通用逻辑，很多接口都将用到，应该把它单独提取出来，再配置到调用handler之前，这就是filter的作用。
 
@@ -98,4 +100,4 @@ drogon内置了如下常用过滤器:
 
   > **注意: 如果中间件/过滤器定义在命名空间里，注册时必须把命名空间写全**
 
-# 06 [视图](/CHN/CHN-06-视图)
+# 下一个: [视图](/CHN/CHN-06-视图)

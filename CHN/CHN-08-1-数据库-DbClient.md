@@ -1,6 +1,6 @@
-[English](/ENG/ENG-08-1-Database-DbClient) | [简体中文](/CHN/CHN-08-1-数据库-DbClient)
+[English](/ENG/ENG-08-1-Database-DbClient)
 
-### 构建DbClient
+# 构建 DbClient
 
 构造DbClient对象有两种途径，一个是通过DbClient类的静态方法，在DbClient.h头文件可以看到定义，如下：
 
@@ -252,4 +252,4 @@ internal::SqlBinder operator<<(const std::string &sql);
 
 它虽然也提供阻塞的接口，这种接口只是阻塞调用者线程，只要调用者线程不是EventLoop线程，就不会影响EventLoop线程的正常运转。回调函数被调用时，回调内的程序是运行在EventLoop线程的，所以，不要在回调内部进行任何阻塞操作，否则会影响数据库的并发，熟悉non-blocking I/O编程的人都应该明白这个约束。
 
-# 08.2 [事务](/CHN/CHN-08-2-数据库-事务)
+# 下一个: [事务](/CHN/CHN-08-2-数据库-事务)

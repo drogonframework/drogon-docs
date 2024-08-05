@@ -1,4 +1,6 @@
-[English](/ENG/ENG-04-1-Controller-HttpSimpleController) | [简体中文](/CHN/CHN-04-1-控制器-HttpSimpleController)
+[English](/ENG/ENG-04-1-Controller-HttpSimpleController) 
+
+# 可以由 drogon_ctl
 
 可以由`drogon_ctl`命令行工具快速生成基于`HttpSimpleController`的自定义类的源文件，命令格式如下：
 
@@ -64,4 +66,4 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
 
 > **上述路径到处理函数的映射是在编译期完成的，事实上，drogon框架也提供了运行期完成映射的接口，运行期映射可以让用户通过配置文件或其它用户接口完成映射或修改映射关系而无需重新编译这个程序(出于性能的考虑，禁止在运行app().run()之后再注册任何映射)。**
 
-# 04.2 [HttpController](/CHN/CHN-04-2-控制器-HttpController)
+# 下一个: [HttpController](/CHN/CHN-04-2-控制器-HttpController)

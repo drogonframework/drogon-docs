@@ -1,4 +1,6 @@
-[English](/ENG/ENG-10-Plugins) | [简体中文](/CHN/CHN-09-插件)
+[English](/ENG/ENG-10-Plugins)
+
+# 插件
 
 插件可以帮助用户构建复杂的应用，在Drogon中，所有的插件都由框架根据配置文件统一构建并安装到应用程序中。Drogon中的插件都是单实例的，用户可以用插件实现任何他们想要的功能。
 
@@ -76,4 +78,4 @@ auto *pluginPtr=app().getPlugin<DataDictionary>();
 
 所有插件在run()接口内初始化完毕，在应用程序退出时才销毁，因此，插件的生命周期几乎和应用程序等同，这也是getPlugin()接口不需要返回智能指针的原因。
 
-# 10 [配置文件](/CHN/CHN-10-配置文件)
+# 下一个: [配置文件](/CHN/CHN-11-配置文件)

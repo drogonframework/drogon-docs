@@ -1,4 +1,4 @@
-[English](CHS-FAQ-1-Understanding-drogon-threading-model.md) | [简体中文](/CHN/CHN-FAQ-1-线程模型.md)
+[English](CHS-FAQ-1-Understanding-drogon-threading-model.md) 
 
 # 理解Drogon's的线程模型
 

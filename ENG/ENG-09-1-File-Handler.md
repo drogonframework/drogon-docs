@@ -1,3 +1,6 @@
+##### Other languages: [简体中文](/CHN/CHN-09-插件)
+
+# File Handler
 
 File parsing is extracting the file (or files) from a multipart-data POST request to an `HttpFile` object through `MultiPartParser`, here is some information about:
 
@@ -259,4 +262,4 @@ File parsing is extracting the file (or files) from a multipart-data POST reques
     }
     ```
 
-# Next: [Plugins](/drogon-docs/#/ENG/ENG-10-Plugins)
+# Next: [Plugins](/ENG/ENG-10-Plugins)

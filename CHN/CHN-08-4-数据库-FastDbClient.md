@@ -1,4 +1,6 @@
-[English](/ENG/ENG-08-4-Database-FastDbClient) | [简体中文](/CHN/CHN-08-4-数据库-FastDbClient)
+[English](/ENG/ENG-08-4-Database-FastDbClient)
+
+# 数据库 - FastDbClient
 
 顾名思义，FastDbClient会提供比普通的DbClient更高的性能。与DbClient拥有自己的EventLoop不同，它和Web应用的网络IO线程和主线程共用 EventLoop，这使得FastDbClient的内部实现可以采用无锁的方式进行，因而会更高效。
 
@@ -30,4 +32,4 @@ FastDbClient的使用与普通的DbClient几乎完全一致，除了下面这些
 * 同步的事务创建接口是有可能阻塞的（所有连接都忙的时候），所以FastDbClient的同步事务创建接口直接返回空指针，如果要在FastDbClient上使用事务，请使用异步的事务创建接口。
 * 使用FastDbClient创建Orm的Mapper对象后，使用时也要注意只能使用异步非阻塞接口。
 
-# 08.5 [自动批处理](/CHN/CHN-08-3-数据库-自动批处理)
+# 下一个: [自动批处理](/CHN/CHN-08-5-数据库-自动批处理)

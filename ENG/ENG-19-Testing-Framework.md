@@ -1,4 +1,6 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-18-测试框架)
+##### Other languages: [简体中文](/CHN/CHN-19-测试框架)
+
+## Testing Framework
 
 DrogonTest is a minimal testing framework built into drogon to enable easy asynchronous testing as well as synchronous ones. It is used for Drogon's own unittests and integration tests. But could also be used for testing applications built with Drogon. The syntax of DrogonTest is inspired by both [GTest](https://github.com/google/googletest) and [Catch2](https://github.com/catchorg/Catch2).
 

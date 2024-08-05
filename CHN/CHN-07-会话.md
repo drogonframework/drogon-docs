@@ -1,4 +1,6 @@
-[English](/ENG/ENG-07-Session) | [简体中文](/CHN/CHN-07-会话)
+[English](/ENG/ENG-07-Session)
+
+# 会话（Session）
 
 `会话（Session）`是web应用的重要概念，用于在服务端保存客户端的状态，一般和浏览器的`cookie`配合，drogon提供了对会话的支持。drogon默认**关闭**会话选择，你也可以通过如下接口关闭或打开：
 
@@ -97,4 +99,4 @@ drogon::HttpAppFramework::instance().enableSession(1200);
 
 用cmake重新编译整个工程，运行目标程序webapp，就可以通过浏览器看到效果了。
 
-# [数据库](/CHN/CHN-08-0-数据库-概述)
+# 下一个: [数据库](/CHN/CHN-08-0-数据库-概述)
