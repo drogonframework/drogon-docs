@@ -1,4 +1,4 @@
-## Documentation for the [Drogon](https://github.com/drogonframework/drogon) framework.
+# [Drogon](https://github.com/drogonframework/drogon) framework - Documentation.
 
 [Docsify](https://docsify.js.org/) is used to render the documentation.
 

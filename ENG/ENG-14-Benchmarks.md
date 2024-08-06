@@ -1,4 +1,6 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-13-性能测试)
+##### Other languages: [简体中文](/CHN/CHN-14-性能测试)
+
+## Benchmarks
 
 As a C++ Http application framework, performance should be one of the focus of attention. This section introduces Drogon's simple tests and achievements;
 
@@ -47,4 +49,4 @@ The image below is a screenshot of a test:
 
 ![Test Result](images/benchmark.png)
 
-# 14 [Causal profiling with coz](/drogon-docs/#/ENG/ENG-15-Coz)
+# Next: [Causal profiling with coz](/ENG/ENG-15-Coz)

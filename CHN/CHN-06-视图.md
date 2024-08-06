@@ -1,6 +1,6 @@
-[English](/ENG/ENG-06-View) | [简体中文](/CHN/CHN-06-视图)
+[English](/ENG/ENG-06-View)
 
-### 视图介绍
+# 视图介绍
 
 虽然目前前端渲染技术大行其道，使后端应用服务只需要返回相应数据给前端即可，不过，一个好的web框架还是应该提供后端渲染技术，使服务端程序可以动态生成HTML页面。视图（View）可以帮助使用者生成这些页面，顾名思义，它只负责做跟展示相关的工作，而复杂的业务逻辑都应该交给控制器完成。
 
@@ -155,4 +155,4 @@ void enableDynamicViewsLoading(const std::vector<std::string> &libPaths);
 
 > **注意: 如果加载时遇到`symbol not found`错误，请使用`cmake .. -DCMAKE_ENABLE_EXPORTS=on`或取消CMakeLists.txt最后一行对`set_property(TARGET ${PROJECT_NAME} PROPERTY ENABLE_EXPORTS ON)`的注释，并重新编译你的工程**
 
-# 07 [会话](/CHN/CHN-07-会话)
+# 下一个: [会话](/CHN/CHN-07-会话)

@@ -1,4 +1,6 @@
-[English](/ENG/ENG-12-drogon_ctl-Command) | [简体中文](/CHN/CHN-11-drogon_ctl命令)
+[English](/ENG/ENG-12-drogon_ctl-Command)
+
+# drogon_ctl
 
 **Drogon**框架编译安装后，一个命令行程序 `drogon_ctl` 也同时被安装于系统，为了方便，还安装了一个完全一样的副本 `dg_ctl`。用户可以按喜好自行选用。
 
@@ -169,4 +171,4 @@ dg_ctl press -n1000000 -t4 -c1000 -q http://localhost:8080/
 dg_ctl press -n 1000000 -t 4 -c 1000 https://www.domain.com/path/to/be/tested
 ```
 
-# 12 [AOP 面向切面编程](/CHN/CHN-12-AOP面向切面编程)
+# 下一个: [AOP 面向切面编程](/CHN/CHN-13-AOP面向切面编程)

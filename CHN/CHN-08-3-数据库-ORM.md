@@ -1,4 +1,6 @@
-[English](/ENG/ENG-08-3-Database-ORM) | [简体中文](/CHN/CHN-08-3-数据库-ORM)
+[English](/ENG/ENG-08-3-Database-ORM)
+
+# 数据库 - ORM
 
 ### Model
 
@@ -288,4 +290,4 @@ drogon_ctl还可以在创建model的同时，为每个model（或者说表）生
 
 鉴于这个功能不是那么被普遍需要，这里不做详细介绍了。
 
-# 08.4 [FastDbClient](/CHN/CHN-08-4-数据库-FastDbClient)
+# 下一个: [FastDbClient](/CHN/CHN-08-4-数据库-FastDbClient)

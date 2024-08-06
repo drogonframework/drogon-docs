@@ -1,4 +1,6 @@
-[English](/ENG/ENG-17-Coroutines) | [简体中文](/CHN/CHN-16-协程)
+[English](/ENG/ENG-17-Coroutines)
+
+# 协程
 
 Drogon从1.4版本开始支持[C++ coroutines][1]（协程）。 它提供了扁平化异步执行控制流的方法, 比如，避免著名的`回调地狱callback hell`. 通过协程, 异步编程将像同步编程一样简单（同时保持了异步程序的高性能）。
 
@@ -166,4 +168,4 @@ app.registerHandler("/num_users",
 
 [1]: https://en.cppreference.com/w/cpp/language/coroutines
 
-# 17 [Redis](/CHN/CHN-17-Redis)
+# 下一个: [Redis](/CHN/CHN-18-Redis)

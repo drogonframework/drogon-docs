@@ -1,4 +1,4 @@
-[English](/ENG/ENG-04-3-Controller-WebSocketController) | [简体中文](/CHN/CHN-04-3-控制器-WebSocketController)
+[English](/ENG/ENG-04-3-Controller-WebSocketController) 
 
 顾名思义，`WebSocketController`用于处理websocket逻辑。websocket是基于HTTP的一种长连接方案，在websocket建立之初，有一次HTTP格式的请求和应答交换，建立完成后，所有的消息在websocket上传输，消息由固定的格式包装，但消息的内容和收发次序没有任何要求，完全由用户定义。
 
@@ -148,4 +148,4 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
   any *getMutableContext();
   ```
 
-# 05 [中间件和过滤器](/CHN/CHN-05-中间件和过滤器)
+# 下一个: [中间件和过滤器](/CHN/CHN-05-中间件和过滤器)

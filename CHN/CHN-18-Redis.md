@@ -1,4 +1,6 @@
-[English](/ENG/ENG-18-Redis) | [简体中文](/CHN/CHN-17-Redis)
+[English](/ENG/ENG-18-Redis) 
+
+# Redis
 
 Drogon支持Redis，Redis是一种非常快速的内存数据存储。 可以用作数据库缓存或消息代理。 与Drogon中其他组件一樣，Redis的操作是异步的。 这确保了Drogon即使在重负载下也能以非常高的并发性运行。
 
@@ -117,4 +119,4 @@ catch(const std::exception& e)
 }
 ```
 
-# [测试框架](/CHN/CHN-18-测试框架)
+# 下一个: [测试框架](/CHN/CHN-19-测试框架)

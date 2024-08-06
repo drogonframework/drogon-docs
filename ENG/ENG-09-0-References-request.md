@@ -1,4 +1,6 @@
+##### Other languages: [简体中文](/CHN/CHN-09-插件)
 
+# References Request
 
 The HttpRequest type pointer commonly named `req` in the examples in this documentation represents the data contained in a request received or sent by drogon, below are the some methods by which you can interact with this object:
 
@@ -267,4 +269,4 @@ void mycontroller::postfile(const HttpRequestPtr &req, std::function<void (const
 ```
 For more information about parsing file: [File Handler](/ENG//ENG/ENG-09-1-File-Handler)
 
-# Next: [Plugins](/drogon-docs/#/ENG/ENG-09-1-File-Handler)
+# Next: [File Handler](/ENG/ENG-09-1-File-Handler)

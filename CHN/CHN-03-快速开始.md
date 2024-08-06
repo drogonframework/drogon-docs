@@ -1,6 +1,6 @@
-[English](/ENG/ENG-03-Quick-Start) | [简体中文](/CHN/CHN-03-快速开始)
+[English](/ENG/ENG-03-Quick-Start) 
 
-## 静态网站
+# 静态网站
 
 我们从一个最简单的例子开始，介绍drogon的使用，在这个例子中我们使用命令行工具`drogon_ctl`创建一个工程：
 
@@ -190,4 +190,4 @@ make
 
 > **注意: Drogon没有限制控制器（controller）源文件的位置，也可以放在工程目录下，甚至可以在`CMakeLists.txt`中指定到新的目录中，为了方便管理，建议将控制器源文件放在controllers目录。**
 
-# 04.0 [控制器简介](/CHN/CHN-04-0-控制器-简介)
+# 下一个: [控制器简介](/CHN/CHN-04-0-控制器-简介)

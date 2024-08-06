@@ -1,6 +1,6 @@
-[English](/ENG/ENG-16-Brotli) | [简体中文](/CHN/CHN-15-Brotli压缩)
+[English](/ENG/ENG-16-Brotli)
 
-## Brotli压缩
+# 压缩 - Brotli
 
 如果存在相应的brotli压缩文件，Drogon开箱即用地支持这些brotli静态压缩文件。
 
@@ -12,4 +12,4 @@
 
 不打算使用brotli静态压缩的用户，可能希望摆脱brotli额外的“同名文件检查”，可通过在“config.json”中将“br_static”设置为“false”。
 
-# 16 [协程]](/CHN/CHN-16-协程)
+# 下一个: [协程](/CHN/CHN-17-协程)

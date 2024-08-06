@@ -1,4 +1,6 @@
-##### Other languages: [简体中文](/drogon-docs/#/CHN/CHN-10-配置文件)
+##### Other languages: [简体中文](/CHN/CHN-11-配置文件)
+
+# Configuration File
 
 You can control various behaviors of the Http server by configuring various parameters through multiple interfaces of the DrogonAppFramework instance. However, using a configuration file is a better way for the following reasons:
 
@@ -355,4 +357,4 @@ After commenting out a configuration option, the framework initializes it with d
   "pipelining_requests": 0
   ```
 
-# Next: [Aspect Oriented Programming (AOP)](/drogon-docs/#/ENG/ENG-13-AOP-Aspect-Oriented-Programming)
+# Next: [Aspect Oriented Programming (AOP)](/ENG/ENG-12-drogon_ctl-Command)

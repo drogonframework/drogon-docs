@@ -1,4 +1,6 @@
-[English](/ENG/ENG-11-Configuration-File) | [简体中文](/CHN/CHN-10-配置文件)
+[English](/ENG/ENG-11-Configuration-File) 
+
+# 配置文件
 
 你可以通过DrogonAppFramework实例的多个接口配置各种参数来控制Http服务端的某些行为。不过，使用配置文件是更好的方式，原因如下：
 
@@ -355,4 +357,4 @@ int main()
   "pipelining_requests": 0
   ```
 
-# 11 [drogon_ctl 命令](/CHN/CHN-11-drogon_ctl命令)
+# 下一个: [drogon_ctl 命令](/CHN/CHN-12-drogon_ctl命令)
