@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Drogon Framework - Documentation</title>
@@ -9,16 +10,19 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <style>
     .sidebar-toggle {
-        background-color: transparent;
+      background-color: transparent;
     }
+
     .sidebar {
       padding-left: 20px;
       padding-right: 20px;
     }
   </style>
 </head>
+
 <body>
-  <div id="app">Please wait...</div>
+  <div id="app">Please wait...
+  </div>
   <script>
     window.$docsify = {
       coverpage: '_Cover.md',
@@ -33,10 +37,10 @@
       subMaxLevel: 1, // Generate a maximum of two levels of chapters in TOC
       repo: 'true', // set the docsify show the corner
       corner: {
-          // the icon link url to another site  
-          url: "https://github.com/drogonframework/drogon",
-          // the default preset icon in docsify-corner  
-          icon: "github"
+        // the icon link url to another site  
+        url: "https://github.com/drogonframework/drogon",
+        // the default preset icon in docsify-corner  
+        icon: "github"
       }
     }
   </script>
@@ -55,5 +59,40 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-corner/dist/docsify-corner.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/@alertbox/docsify-footer/dist/docsify-footer.min.js"></script>
+
+  <!-- Latest v2.x.x for clipboard -->
+  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+
+  <script>
+    window.$docsify = window.$docsify || {};
+    window.$docsify.plugins = window.$docsify.plugins || [];
+    // Add your custom plugin logic
+    window.$docsify.plugins.push(function (hook, vm) {
+      hook.doneEach(function () {
+        // Select all "Copy to clipboard" buttons
+        var buttons = document.querySelectorAll('.docsify-copy-code-button');
+
+        buttons.forEach(function (button) {
+          // Change the button text
+          var label = button.querySelector('.label');
+          if (label) {
+            label.innerText = 'Copy'; // Change this to your desired button text
+          }
+
+          // Optionally, change success or error message
+          var success = button.querySelector('.success');
+          if (success) {
+            success.innerText = 'Copied'; // Change success text here
+          }
+          var error = button.querySelector('.error');
+          if (error) {
+            error.innerText = 'Error'; // Change error text here
+          }
+        });
+      });
+    });
+  </script>
+  
 </body>
+
 </html>
