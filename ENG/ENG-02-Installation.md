@@ -395,7 +395,7 @@ Assuming that the above environment and library dependencies are all ready, the 
 
        `vcpkg list`
 
-     * use `vcpkg search` for what available.
+     * To use `drogon_ctl`, type `vcpkg install drogon[ctl]`(32-bit) or `vcpkg install drogon[ctl]:x64-windows`(64-bit). Type `vcpkg search drogon` for more installation feature options.
 
   2. To add **_drogon_ctl_** command and dependencies, you need to add some variables. By following this guide, you just need to add:
 
