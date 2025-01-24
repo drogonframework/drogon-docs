@@ -125,31 +125,31 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
 
 ### Interface
 
-    The common interfaces of the WebSocketConnection object are as follows:
+  The common interfaces of the WebSocketConnection object are as follows:
+  
+  ```c++
+  //Send a websocket message, the encoding and encapsulation
+  //of the message are the responsibility of the framework
+  void send(const char *msg,uint64_t len);
+  void send(const std::string &msg);
 
-    ```c++
-    //Send a websocket message, the encoding and encapsulation
-    //of the message are the responsibility of the framework
-    void send(const char *msg,uint64_t len);
-    void send(const std::string &msg);
+  //Local and remote addresses of the websocket
+  const trantor::InetAddress &localAddr() const;
+  const trantor::InetAddress &peerAddr() const;
 
-    //Local and remote addresses of the websocket
-    const trantor::InetAddress &localAddr() const;
-    const trantor::InetAddress &peerAddr() const;
+  //The connection state of the weosocket
+  bool connected() const;
+  bool disconnected() const;
 
-    //The connection state of the weosocket
-    bool connected() const;
-    bool disconnected() const;
+  //close websocket
+  void shutdown();//close write
+  void forceClose();//close
 
-    //close websocket
-    void shutdown();//close write
-    void forceClose();//close
-
-    //set up and get the context of the websocket, and store some business data from users.
-    //the any type means that you can store any type of object.
-    void setContext(const any &context);
-    const any &getContext() const;
-    any *getMutableContext();
-    ```
+  //set up and get the context of the websocket, and store some business data from users.
+  //the any type means that you can store any type of object.
+  void setContext(const any &context);
+  const any &getContext() const;
+  any *getMutableContext();
+  ```
 
 # Next: [Middleware and Filter](/ENG/ENG-05-Middleware-and-Filter)
