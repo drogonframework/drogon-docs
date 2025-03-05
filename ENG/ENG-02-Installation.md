@@ -200,7 +200,7 @@ This section takes Ubuntu 24.04, CentOS 7.5, MacOS 12.2 as an example to introdu
 ```
 pip install conan
 ```
-> of course you can download the installation file from `connan` [official website](https://conan.io/) to install it also.
+> of course you can download the installation file from `conan` [official website](https://conan.io/) to install it also.
 
 Create`conanfile.txt`and add the following content to it:
 
