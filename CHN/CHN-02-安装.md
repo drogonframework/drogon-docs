@@ -276,7 +276,8 @@ pip install conan
 * #### Windows 源码安装
 
   1. 下载Drogon源码
-
+      
+      打开Windows任务栏搜索框搜索x64 Native Tools，选择x64 Native Tools Command Prompt for VS 2019作为命令行工具;
       ```shell
       cd $WORK_PATH
       git clone https://github.com/drogonframework/drogon

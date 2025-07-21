@@ -312,6 +312,7 @@ Assuming that the above environment and library dependencies are all ready, the 
 
   1. Download drogon source
 
+      Open the Windows taskbar search box, search for ​x64 Native Tools, and select ​x64 Native Tools Command Prompt for VS 2019​ as your command-line tool.
       ```dos
       cd $WORK_PATH
       git clone https://github.com/drogonframework/drogon
