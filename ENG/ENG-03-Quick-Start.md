@@ -24,7 +24,7 @@ There are several useful folders in the project directory already:
 └── views                         The folder where view csp files are stored
 ```
 
-Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the `drogon_ctl` command. See [drogon_ctl](/ENG//ENG/ENG-11-drogon_ctl-Command) for more details.
+Users can put various files (such as controllers, filters, views, etc.) into the corresponding folders. For more convenience and less error, we strongly recommend that users create their own web application projects using the `drogon_ctl` command. See [drogon_ctl](/ENG/ENG-12-drogon_ctl-Command) for more details.
 
 Let's look at the main.cc file:
 
@@ -57,12 +57,12 @@ Now, we simply add one static file index.html to the Http root path:
 echo '<h1>Hello Drogon!</h1>' >>index.html
 ```
 
-The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](/ENG//ENG/ENG-10-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
+The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](/ENG/ENG-11-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
 
-![Hello Drogon!](images/hellodrogon.png)
+![Hello Drogon!](/images/hellodrogon.png)
 
 If the server cannot find the the page you have requested, it returns a 404 page:
-![404 page](images/notfound.png)
+![404 page](/images/notfound.png)
 
 > **Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.(Another way is to change your port from 80 to 1024(or above) in case you get the error message below):**
 
