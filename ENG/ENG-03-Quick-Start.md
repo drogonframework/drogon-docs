@@ -59,10 +59,10 @@ echo '<h1>Hello Drogon!</h1>' >>index.html
 
 The default root path is `"./"`, but could also be modified by config.json. See [Configuration File](/ENG/ENG-11-Configuration-File) for more details. Then you can visit this page by URL `"http://localhost"` or`"http://localhost/index.html"` (or the IP of the server where your wepapp is running).
 
-![Hello Drogon!](../images/hellodrogon.png)
+![Hello Drogon!](/images/hellodrogon.png)
 
 If the server cannot find the the page you have requested, it returns a 404 page:
-![404 page](../images/notfound.png)
+![404 page](/images/notfound.png)
 
 > **Note: Make sure your server firewall has allowed the 80 port. Otherwise, you won't see these pages.(Another way is to change your port from 80 to 1024(or above) in case you get the error message below):**
 
