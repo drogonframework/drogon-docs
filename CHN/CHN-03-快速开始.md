@@ -22,7 +22,7 @@ drogon_ctl create project your_project_name
 └── views                         存放视图csp文件的目录
 ```
 
-文件夹的名字就反应了它的用途，用户可以把各类文件(如控制器、过滤器、视图等等)分别放入对应的文件夹，方便项目管理，请读者自行实验。关于`drogon_ctl`的详细使用，可参见[drogon_ctl](/CHN/CHN-11-drogon_ctl命令)
+文件夹的名字就反应了它的用途，用户可以把各类文件(如控制器、过滤器、视图等等)分别放入对应的文件夹，方便项目管理，请读者自行实验。关于`drogon_ctl`的详细使用，可参见[drogon_ctl](/CHN/CHN-12-drogon_ctl命令)
 
 让我们看一下main.cc文件，内容如下：
 
@@ -55,12 +55,12 @@ make
 echo '<h1>Hello Drogon!</h1>' >>index.html
 ```
 
-Http根目录默认值是`"./"`， 也就是webapp程序运行的当前路径， Http根目录也可在config.json配置文件中进行更改，可参见[配置文件](/CHN/CHN-10-配置文件)， 然后在地址栏输入`http://localhost`或`http://localhost/index.html`(或者你的webapp所在服务器的ip)可以访问到这个页面：
-![Hello Drogon!](images/hellodrogon.png)
+Http根目录默认值是`"./"`， 也就是webapp程序运行的当前路径， Http根目录也可在config.json配置文件中进行更改，可参见[配置文件](/CHN/CHN-11-配置文件)， 然后在地址栏输入`http://localhost`或`http://localhost/index.html`(或者你的webapp所在服务器的ip)可以访问到这个页面：
+![Hello Drogon!](https://drogonframework.github.io/drogon-docs/images/hellodrogon.png)
 
 如果服务器找不到浏览器访问的页面，将返回404页面：
 
-![404页面](images/notfound.png)
+![404页面](https://drogonframework.github.io/drogon-docs/images/notfound.png)
 
 > **注意：请确认服务器的防火墙已经打开80端口，否则你看不到这些页面（或是将port改成1024以上以解决遇到以下错误讯息）：**
 

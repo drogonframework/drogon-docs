@@ -63,9 +63,9 @@ The construction of the Mapper object is very simple. The template parameter is 
 
 Like DbClient, Mapper also provides asynchronous and synchronous interfaces. The synchronous interface is blocked and may throw an exception. The returned future object is blocked in get() and may throw an exception. The normal asynchronous interface does not throw an exception, but returns the result through two callbacks (result callback and exception callback). The type of the exception callback is the same as that in the DbClient interface. The result callback is also divided into several categories according to the interface function. The list is as follows (T is the template parameter, which is the type of the model):
 
-![](images/mapper_method1_en.png)
-![](images/mapper_method2_en.png)
-![](images/mapper_method3_en.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method1_en.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method2_en.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method3_en.png)
 
 > **Note: When using a transaction, the exception does not necessarily cause a rollback. Transactions will not be rolled back in the following cases: When the findByPrimaryKey interface does not find a qualified row, when the findOne interface finds fewer or more than one record, the mapper will throw an exception or enter an exception callback, the exception type is UnexpectedRows. If the business logic needs to be rolled back in this condition, please explicitly call the rollback() interface.**
 

@@ -63,9 +63,9 @@ Mapper构造时很简单，模板参数就是你要存取的Model的类型，构
 
 象DbClient一样，Mapper也同时提供异步和同步接口。同步接口都阻塞并可能抛异常，返回的future对象在get()时阻塞并可能抛异常，一般的异步接口不会抛异常，而是通过两个回调（结果回调和异常回调）返回结果，其中，异常回调的类型和DbClient接口里的一致，结果回调根据接口功能的不同也分成几类。列表如下（T是模板参数，也就是Model的类型）：
 
-![](images/mapper_method1.png)
-![](images/mapper_method2.png)
-![](images/mapper_method3.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method1.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method2.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method3.png)
 
 > **注意: 使用事务时，异常不必然导致回滚，下面的情况是不会回滚的，当findByPrimaryKey接口未找到符合条件的行时，当findOne接口找到少于或多于一行记录时，会抛异常或进入异常回调，异常类型是UnexpectedRows。如果业务逻辑需要在这种情况下回滚，请显式调用rollback()接口。**
 

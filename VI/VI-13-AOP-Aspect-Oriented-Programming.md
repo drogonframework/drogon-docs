@@ -28,6 +28,6 @@ Drogon cung cấp bảy joinpoint cho người dùng. Khi ứng dụng chạy đ
 
 Hình sau đây cho thấy vị trí của bốn joinpoint ở trên trong luồng xử lý Yêu cầu HTTP, trong đó các chấm đỏ biểu thị các joinpoint và các mũi tên màu xanh lá cây biểu thị các cuộc gọi bất đồng bộ.
 
-![](images/AOP.png)
+![](https://drogonframework.github.io/drogon-docs/images/AOP.png)
 
 # 13 [Điểm chuẩn](VI-13-Benchmarks)

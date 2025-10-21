@@ -45,7 +45,7 @@ Dễ dàng nhận thấy Drogon có lợi thế rõ ràng hơn Nginx trong bài 
 
 Hình ảnh bên dưới là ảnh chụp màn hình của một bài kiểm tra:
 
-![Kết quả kiểm tra](images/benchmark.png)
+![Kết quả kiểm tra](https://drogonframework.github.io/drogon-docs/images/benchmark.png)
 
 # 14 [Hồ sơ nhân quả với coz](VI-14-Coz)
 

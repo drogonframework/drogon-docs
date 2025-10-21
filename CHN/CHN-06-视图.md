@@ -104,7 +104,7 @@ drogon_ctl create view ListParameters.csp
 
 用cmake重新编译整个工程，运行目标程序webapp，就可以在浏览器里测试效果了，在地址栏输入`http://localhost/list_para?p1=a&p2=b&p3=c`，就可以看到如下页面：
 
-![view页面](images/viewdemo.png)
+![view页面](https://drogonframework.github.io/drogon-docs/images/viewdemo.png)
 
 后端渲染的html页面就这样简单的加上了。虽然页面简陋点，但不影响我们说明视图的用法。
 

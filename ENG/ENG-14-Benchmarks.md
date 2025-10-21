@@ -47,6 +47,6 @@ It's easy to see that drogon has a clear advantage over nginx in the above test.
 
 The image below is a screenshot of a test:
 
-![Test Result](images/benchmark.png)
+![Test Result](https://drogonframework.github.io/drogon-docs/images/benchmark.png)
 
 # Next: [Causal profiling with coz](/ENG/ENG-15-Coz)

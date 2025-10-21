@@ -20,7 +20,7 @@ drogon_ctl create project ten_du_an_cua_ban
 └── views                         Thư mục lưu trữ các tệp CSP của view
 ```
 
-Người dùng có thể đặt các tệp khác nhau (chẳng hạn như bộ điều khiển, bộ lọc, view, v.v.) vào các thư mục tương ứng. Để thuận tiện hơn và ít lỗi hơn, chúng tôi khuyên người dùng nên tạo các dự án ứng dụng web của riêng mình bằng lệnh `drogon_ctl`. Xem [drogon_ctl](VI-11-drogon_ctl-Command) để biết thêm chi tiết.
+Người dùng có thể đặt các tệp khác nhau (chẳng hạn như bộ điều khiển, bộ lọc, view, v.v.) vào các thư mục tương ứng. Để thuận tiện hơn và ít lỗi hơn, chúng tôi khuyên người dùng nên tạo các dự án ứng dụng web của riêng mình bằng lệnh `drogon_ctl`. Xem [drogon_ctl](VI-12-drogon_ctl-Command) để biết thêm chi tiết.
 
 Hãy xem tệp `main.cc`:
 
@@ -53,12 +53,12 @@ Bây giờ, chúng ta chỉ cần thêm một tệp tĩnh `index.html` vào đư
 echo '<h1>Hello Drogon!</h1>' >> index.html
 ```
 
-Đường dẫn gốc mặc định là `"./"`, nhưng cũng có thể được sửa đổi bởi `config.json`. Xem [Tệp cấu hình](VI-10-Configuration-File) để biết thêm chi tiết. Sau đó, bạn có thể truy cập trang này bằng URL `"http://localhost"` hoặc `"http://localhost/index.html"` (hoặc IP của máy chủ nơi ứng dụng web của bạn đang chạy).
+Đường dẫn gốc mặc định là `"./"`, nhưng cũng có thể được sửa đổi bởi `config.json`. Xem [Tệp cấu hình](VI-11-Configuration-File) để biết thêm chi tiết. Sau đó, bạn có thể truy cập trang này bằng URL `"http://localhost"` hoặc `"http://localhost/index.html"` (hoặc IP của máy chủ nơi ứng dụng web của bạn đang chạy).
 
-![Hello Drogon!](images/hellodrogon.png)
+![Hello Drogon!](https://drogonframework.github.io/drogon-docs/images/hellodrogon.png)
 
 Nếu máy chủ không thể tìm thấy trang bạn đã yêu cầu, nó sẽ trả về trang 404:
-![404 page](images/notfound.png)
+![404 page](https://drogonframework.github.io/drogon-docs/images//notfound.png)
 
 > **Lưu ý: Đảm bảo tường lửa máy chủ của bạn đã cho phép cổng 80. Nếu không, bạn sẽ không thấy các trang này. (Một cách khác là thay đổi cổng của bạn từ 80 thành 1024 (hoặc cao hơn) trong trường hợp bạn nhận được thông báo lỗi bên dưới):**
 

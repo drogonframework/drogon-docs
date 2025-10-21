@@ -61,9 +61,9 @@ Việc xây dựng đối tượng `Mapper` rất đơn giản. Tham số templa
 
 Giống như `DbClient`, `Mapper` cũng cung cấp các giao diện bất đồng bộ và đồng bộ. Giao diện đồng bộ bị chặn và có thể ném ra ngoại lệ. Đối tượng future được trả về bị chặn trong `get()` và có thể ném ra ngoại lệ. Giao diện bất đồng bộ bình thường không ném ra ngoại lệ, nhưng trả về kết quả thông qua hai callback (callback kết quả và callback ngoại lệ). Loại callback ngoại lệ giống như trong giao diện `DbClient`. Callback kết quả cũng được chia thành nhiều loại theo hàm giao diện. Danh sách như sau (T là tham số template, là kiểu của mô hình):
 
-![](images/mapper_method1_en.png)
-![](images/mapper_method2_en.png)
-![](images/mapper_method3_en.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method1_en.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method2_en.png)
+![](https://drogonframework.github.io/drogon-docs/images/mapper_method3_en.png)
 
 > **Lưu ý: Khi sử dụng giao dịch, ngoại lệ không nhất thiết phải gây ra rollback. Giao dịch sẽ không được rollback trong các trường hợp sau: Khi giao diện `findByPrimaryKey` không tìm thấy một hàng đủ điều kiện, khi giao diện `findOne` tìm thấy ít hơn hoặc nhiều hơn một bản ghi, mapper sẽ ném ra ngoại lệ hoặc vào một callback ngoại lệ, kiểu ngoại lệ là `UnexpectedRows`. Nếu logic nghiệp vụ cần được rollback trong điều kiện này, vui lòng gọi rõ ràng giao diện `rollback()`.**
 

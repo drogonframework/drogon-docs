@@ -25,6 +25,6 @@ Drogon提供了7个插入点供用户使用，当应用程序运行至插入点�
 
 下图展示了上述的后面四个插入点在HTTP Request处理流程中的位置，其中的红色圆点代表插入点，绿色的箭头路径都代表异步调用。
 
-![](images/AOP.png)
+![](https://drogonframework.github.io/drogon-docs/images/AOP.png)
 
 # 下一个: [性能测试](/CHN/CHN-14-性能测试)

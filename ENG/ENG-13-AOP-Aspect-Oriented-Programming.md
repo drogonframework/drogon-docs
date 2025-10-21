@@ -30,6 +30,6 @@ Drogon provides seven joinpoints for users. When the application runs to the joi
 
 The following figure shows the location of the above four joinpoints in the HTTP Requests processing flow, where the red dots represent the joinpoints and the green arrows represent the asynchronous calls.
 
-![](images/AOP.png)
+![](https://drogonframework.github.io/drogon-docs/images/AOP.png)
 
 # Next: [Benchmarks](/ENG/ENG-14-Benchmarks)

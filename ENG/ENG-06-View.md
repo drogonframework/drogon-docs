@@ -104,7 +104,7 @@ After the operation is finished, two source files, ListParameters.h and ListPara
 
 Recompile the entire project with CMake, run the target program webapp, you can test the effect in the browser, enter `http://localhost/list_para?p1=a&p2=b&p3=c` in the address bar, you can see the following page :
 
-![view page](images/viewdemo.png)
+![view page](https://drogonframework.github.io/drogon-docs/images/viewdemo.png)
 
 The html page rendered by the backend is simply added.
 

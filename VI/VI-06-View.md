@@ -102,7 +102,7 @@ Sau khi thao tác kết thúc, hai tệp nguồn, `ListParameters.h` và `ListPa
 
 Biên dịch lại toàn bộ dự án bằng CMake, chạy chương trình mục tiêu webapp, bạn có thể kiểm tra hiệu ứng trong trình duyệt, nhập `http://localhost/list_para?p1=a&p2=b&p3=c` vào thanh địa chỉ, bạn có thể thấy trang sau:
 
-![view page](images/viewdemo.png)
+![view page](https://drogonframework.github.io/drogon-docs/images/viewdemo.png)
 
 Trang HTML được render bởi back-end được thêm vào một cách đơn giản.
 

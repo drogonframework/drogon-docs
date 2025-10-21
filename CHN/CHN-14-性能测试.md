@@ -45,6 +45,6 @@ void BenchmarkCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req, std::funct
 
 下图是某一次测试的截图：
 
-![测试截图](images/benchmark.png)
+![测试截图](https://drogonframework.github.io/drogon-docs/images/benchmark.png)
 
 # 下一个: [Coz 分析](/CHN/CHN-15-Coz分析)
