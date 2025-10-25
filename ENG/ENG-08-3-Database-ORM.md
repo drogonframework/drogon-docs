@@ -101,7 +101,7 @@ template <typename... Arguments>
 explicit Criteria(const CustomSql &sql, Arguments &&...args)
 ```
 
-The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](/ENG//ENG/ENG-08-1-Database-DbClient.md#execSqlAsync).
+The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](/ENG-08-1-Database-DbClient?id=execsqlasync).
 
 E.g:
 
