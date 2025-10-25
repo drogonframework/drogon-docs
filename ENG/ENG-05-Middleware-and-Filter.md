@@ -73,7 +73,7 @@ Drogon contains the following common filters:
   };
   ```
 
-  You could create filter by the `drogon_ctl` command, see [drogon_ctl](/ENG//ENG/ENG-11-drogon_ctl-command#Filter-creation).
+  You could create filter by the `drogon_ctl` command, see [drogon_ctl](/ENG/ENG-12-drogon_ctl-Command?id=filter-creation).
 
   You need to override the doFilter virtual function of the parent class to implement the filter logic;
 

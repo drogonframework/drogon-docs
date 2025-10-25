@@ -102,7 +102,7 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
   }
   ```
 
-  First, in this example, the controller is registered to the `/echo` path via the `WS_PATH_ADD` macro. The usage of the `WS_PATH_ADD` macro is similar to the macros of other controllers introduced earlier. One can also register the path with several [Filters](#/ENG/ENG-05-Middleware-and-Filter). Since websocket is handled separately in the framework, it can be repeated with the paths of the first two controllers（`HttpSimpleController` and `HttpApiController`） without affecting each other.
+  First, in this example, the controller is registered to the `/echo` path via the `WS_PATH_ADD` macro. The usage of the `WS_PATH_ADD` macro is similar to the macros of other controllers introduced earlier. One can also register the path with several [Filters](/ENG/ENG-05-Middleware-and-Filter). Since websocket is handled separately in the framework, it can be repeated with the paths of the first two controllers（`HttpSimpleController` and `HttpApiController`） without affecting each other.
 
   Secondly, in the implementation of the three virtual functions in this example, only the handleNewMessage has the substance, but simply sends the received message back to the client through the send interface.Compile this controller into the framework, you can see the effect, please test it yourself.
 
