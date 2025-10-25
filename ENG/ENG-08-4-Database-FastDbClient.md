@@ -12,7 +12,7 @@ FastDbClient must be created automatically by the framework with the configurati
 
 The sub-option `is_fast` of the db_client option in the configuration file indicates if the client is a FastDbClient.Or user can create a FastDbClient by calling the app.createDbClient() method with the last parameter set to true.
 
-The framework creates a separate FastDbClient for each IO's event loop and the main event loop, and each FastDbClient manages several database connections internally. The number of event loop of IO is controlled by the framework's "threads_num" option, which is generally set to the number of CPU cores of the host. The number of the DB connections per event loop is the value of the DB client "connection_number" option. Please refer to [Configuration File](/ENG//ENG/ENG-10-Configuration-File#db_clients). Therefore, the total number of DB connections held by FastDbClient is `(threads_num+1) * connection_number`.
+The framework creates a separate FastDbClient for each IO's event loop and the main event loop, and each FastDbClient manages several database connections internally. The number of event loop of IO is controlled by the framework's "threads_num" option, which is generally set to the number of CPU cores of the host. The number of the DB connections per event loop is the value of the DB client "connection_number" option. Please refer to [Configuration File](/ENG/ENG-11-Configuration-File?id=db_clients). Therefore, the total number of DB connections held by FastDbClient is `(threads_num+1) * connection_number`.
 
 The interface to get a FastDbClient is similar to the normal DbClient, as follows:
 
