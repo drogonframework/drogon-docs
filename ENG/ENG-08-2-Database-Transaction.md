@@ -38,7 +38,7 @@ The `Transaction` interface is almost identical to `DbClient`, except for the fo
 - `Transaction` provides a `rollback()` interface that allows the user to roll back the transaction under any circumstances. Sometimes, the transaction has been automatically rolled back, and then calling the `rollback()` interface has no negative impact, so explicitly using the rollback() interface is a good strategy to at least ensure that it is not committed incorrectly.
 - The user cannot call the transaction's `newTransaction()` interface, which is easy to understand. Although the database has the concept of a sub-transaction, the framework does not currently support it.
 
-In fact, `Transaction` is designed as a subclass of `DbClient`, in order to maintain the consistency of these interfaces, and at the same time, it also creates convenient conditions for the use of [ORM](ORM).
+In fact, `Transaction` is designed as a subclass of `DbClient`, in order to maintain the consistency of these interfaces, and at the same time, it also creates convenient conditions for the use of [ORM](/ENG/ENG-08-3-Database-ORM).
 
 The framework currently does not provide an interface to control transaction isolation levels, that is, the isolation level is the default level of the current database service.
 

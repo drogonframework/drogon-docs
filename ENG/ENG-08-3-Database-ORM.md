@@ -32,7 +32,7 @@ The last parameter is the path to store model classes. There must be a configura
 }
 ```
 
-The configured parameters are the same as the application's configuration file. Please refer to [Configuration File](/ENG//ENG/ENG-10-Configuration-File#db_clients).
+The configured parameters are the same as the application's configuration file. Please refer to [Configuration File](/ENG/ENG-11-Configuration-File?id=db_clients).
 
 The `tables` configuration option is unique to the model configuration. It is an array of strings. Each string represents the name of the table to be converted into a model class. If this option is empty, all tables will be used to generate model classes.
 
@@ -101,7 +101,7 @@ template <typename... Arguments>
 explicit Criteria(const CustomSql &sql, Arguments &&...args)
 ```
 
-The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](/ENG//ENG/ENG-08-1-Database-DbClient.md#execSqlAsync).
+The first argument is a `CustomSql` object of sql statements with `$?` placeholders, while the `CustomSql` class is just a wrapper of a std::string. The second indefinite argument is a parameter pack represents the bound parameter, which behaves just like the ones in [execSqlAsync](/ENG/ENG-08-1-Database-DbClient?id=execsqlasync).
 
 E.g:
 
