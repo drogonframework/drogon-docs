@@ -49,7 +49,7 @@ Each HttpSimpleController class can only define one Http request handler, and it
 
 The route (or called mapping) from the URL path to the handler is done by a macro. You could add multipath mappings with the `PATH_ADD` macro. All `PATH_ADD` statements should be set between the `PATH_LIST_BEGIN` and `PATH_LIST_END` macro statements.
 
-The first parameter is the path to be mapped, and parameters beyond the path are constraints on this path. Currently, two types of constraints are supported. One is the `HttpMethod` enum Type, which means the Http method allowed. The other type is the name of the `HttpFilter` class. One can configure any number of these two types of constraints, and there are no order requirements for them. For Filter, please refer to [Middleware and Filter](/ENG//ENG/ENG-05-Middleware-and-Filter).
+The first parameter is the path to be mapped, and parameters beyond the path are constraints on this path. Currently, two types of constraints are supported. One is the `HttpMethod` enum Type, which means the Http method allowed. The other type is the name of the `HttpFilter` class. One can configure any number of these two types of constraints, and there are no order requirements for them. For Filter, please refer to [Middleware and Filter](/ENG/ENG-05-Middleware-and-Filter).
 
 Users can register the same Simple Controller to multiple paths, or register multiple Simple Controllers on the same path (using different HTTP methods).
 

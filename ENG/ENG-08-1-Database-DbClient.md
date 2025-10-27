@@ -22,7 +22,7 @@ The object obtained by the above method, the user has to find a way to persist i
 - This will waste time creating connections and disconnections, increasing system latency;
 - The interface is also a non-blocking interface. That is to say, when the user gets the DbClient object, the connection managed by the it has not been established yet. The framework does not (intentionally) provide a callback interface for successful connection establishment. Do you still have to sleep before starting the query?? This is contrary to the original intention of the asynchronous framework.
 
-Therefore, DbClient objects should be built at the beginning of the program and held and used throughout the life time. Obviously, this work can be done entirely by the framework. So the drogon framework provides the second build method, which is built by configuration file or the `createDbClient()` method. For the configuration method of the configuration file, see [db_clients](/ENG//ENG/ENG-10-Configuration-file#db_clients).
+Therefore, DbClient objects should be built at the beginning of the program and held and used throughout the life time. Obviously, this work can be done entirely by the framework. So the drogon framework provides the second build method, which is built by configuration file or the `createDbClient()` method. For the configuration method of the configuration file, see [db_clients](/ENG/ENG-11-Configuration-File?id=db_clients).
 
 When needed, the DbClient smart pointer is obtained through the interface of the framework. The interface is as follows:
 

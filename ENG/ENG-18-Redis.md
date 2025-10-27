@@ -104,7 +104,7 @@ redisClient->newTransactionAsync([](const RedisTransactionPtr &transPtr) {
 
 ### Coroutines
 
-Redis clients support coroutines. One should use the GCC 11 or a newer compiler and use `cmake -DCMAKE_CXX_FLAGS="-std=c++20"` to enable it. See the (coroutine)[/ENG//ENG/ENG-16-Coroutines] section for more information.
+Redis clients support coroutines. One should use the GCC 11 or a newer compiler and use `cmake -DCMAKE_CXX_FLAGS="-std=c++20"` to enable it. See the [coroutine](/ENG/ENG-17-Coroutines) section for more information.
 
 ```c++
 try
