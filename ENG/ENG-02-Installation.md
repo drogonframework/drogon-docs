@@ -270,7 +270,7 @@ Create`conanfile.txt`and add the following content to it:
 
 * #### Redis
   * `ubuntu`: `sudo apt-get install libhiredis-dev`
-  * `ubuntu`: `sudo pacman -S redis`
+  * `arch`: `sudo pacman -S redis`
   * `centOS`: `yum install hiredis-devel`
   * `MacOS`: `brew install hiredis`
   * `Windows conanfile`: `hiredis/1.0.0`
