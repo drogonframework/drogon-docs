@@ -40,7 +40,7 @@ class EchoWebsock:public drogon::WebSocketController<EchoWebsock>
 
 ```c++
 #include "EchoWebsock.h"
-void EchoWebsock::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr,std::string &&message)
+void EchoWebsock::handleNewMessage(const WebSocketConnectionPtr &wsConnPtr,std::string &&message,const WebSocketMessageType &wsMsgType)
 {
     //write your application logic here
 }
@@ -133,7 +133,7 @@ void EchoWebsock::handleConnectionClosed(const WebSocketConnectionPtr &wsConnPtr
   const trantor::InetAddress &localAddr() const;
   const trantor::InetAddress &peerAddr() const;
 
-  //本weosocket的连接状态
+  //本websocket的连接状态
   bool connected() const;
   bool disconnected() const;
 

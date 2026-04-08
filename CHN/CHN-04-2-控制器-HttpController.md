@@ -170,7 +170,7 @@ void User::getInfo(const HttpRequestPtr &req,
   * {anystring}: 中间的字符串没有实际作用，但可以提高程序的可读性，与`{}`等价。
   * {1:anystring},{2:xxx}: 冒号前的数字表示位置，后面的字符串没有实际作用，但可以提高程序的可读性，与`{1}`,`{2}`等价。
 
-  推荐使用后两种写法，如果路径参数和函数参数顺序一直，使用第三种写法即可。容易知道，以下几种写法是等价的：
+  推荐使用后两种写法，如果路径参数和函数参数顺序一致，使用第三种写法即可。容易知道，以下几种写法是等价的：
 
   * "/users/{}/books/{}"
   * "/users/{}/books/{2}"
@@ -220,7 +220,7 @@ void User::getInfo(const HttpRequestPtr &req,
   }
   ```
 
-  有了上面的定义和模板特化，我们就可以向下面这样定义路径和handler:
+  有了上面的定义和模板特化，我们就可以像下面这样定义路径和handler:
 
   ```c++
   class UserController:public drogon::HttpController<UserController>
