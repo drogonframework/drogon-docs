@@ -12,7 +12,7 @@
 
 The basic class of Drogon's database is `DbClient` (this is an abstract class, the specific type depends on the interface that constructs it). Unlike a generic database interface, a `DbClient` object does not represent a single database connection. It can contain one or more database connections, so you can think of it as a **connection pool object**.
 
-`DbClient` provides both synchronous and asynchronous interfaces. The asynchronous interface also supports both blocking and non-blocking modes. Of course, for the cooperation with the Drogon asynchronous framework, it is recommended that you use the the asynchronous interface with non-blocking mode.
+`DbClient` provides both synchronous and asynchronous interfaces. The asynchronous interface also supports both blocking and non-blocking modes. Of course, for the cooperation with the Drogon asynchronous framework, it is recommended that you use the asynchronous interface with non-blocking mode.
 
 Usually, when an asynchronous interface is called, `DbClient` will randomly select one of the idle connections it manages to perform related query operations. When the result returns, `DbClient` will process the data and return it to the caller through the callback function object; Without an idle connection, the execution content will be cached. Once a connection has executed its own sql request, the pending command will be fetched from the cache to execute.
 
