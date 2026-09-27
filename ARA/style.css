@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Sans+Arabic:wght@100..900&family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* 1. [Clear basic text] User interfaces, applications, web paragraphs, and general reading. */
+  --font-body: 'Noto Sans', 'Noto Sans Arabic', sans-serif;
+
+  /* 2. [Headings] Large headlines H1, H2, banners, and widescreen displays. */
+  --font-display: 'Noto Sans Display', 'Noto Kufi Arabic', sans-serif;
+
+  /* 3. [Fixed-width] fonts for lines of code, code editor, and numeric tables. */
+  --font-code: 'Noto Sans Mono', 'Noto Sans Arabic', monospace;
+
+  /* 4. [Classic Formal] Classic paragraphs, quotes, printed articles, books, official and luxury IDs. */
+  --font-serif: 'Noto Serif', 'Noto Naskh Arabic', serif;
+}
+
+#rtl-content {
+  unicode-bidi: normal;
+  direction: rtl;
+}
+#rtl-content code {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+#rtl-content code span.comment {
+  direction: rtl;
+  display: inline-block;
+}
+#rtl-content .rtl-code code {
+  direction: rtl;
+  text-align: right;
+}
+#rtl-content .ltr-content {
+  direction: ltr;
+}
+#rtl-content .right-align {
+  text-align: right;
+}
+#rtl-content .left-align {
+  text-align: left;
+}
+#rtl-content .start-align {
+  text-align: start;
+}
+#rtl-content .end-align {
+  text-align: end;
+}
+#rtl-content .center-align {
+  text-align: center;
+}
+#rtl-content .p-0 {
+  padding: 0px;
+}
+#rtl-content * {
+  font-family: var(--font-body);
+  font-size: 18px;
+}
+
+#rtl-content h1, #rtl-content h2, #rtl-content h3, #rtl-content .title, #rtl-content .hero-title,
+#rtl-content h1 *, #rtl-content h2, #rtl-content h3 *, #rtl-content .title *, #rtl-content .hero-title * {
+  font-family: var(--font-display);
+  font-size: 22px;
+}
+
+#rtl-content code, #rtl-content pre, #rtl-content .terminal, #rtl-content .json-data
+#rtl-content code *, #rtl-content pre *, #rtl-content .terminal *, #rtl-content .json-data * {
+  font-family: var(--font-code);
+  font-size: 14px;
+}
+
+#rtl-content h2 code, #rtl-content h2 code * {
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+
+#rtl-content blockquote, #rtl-content .editorial-paragraph, #rtl-content .lead-story,
+#rtl-content blockquote *, #rtl-content .editorial-paragraph *, #rtl-content .lead-story * {
+/*   font-family: var(--font-serif); */
+  /*font-size: 18px;*/
+  line-height: 1.8;
+}
+
+#rtl-content blockquote {
+  border-left: initial;
+  border-right: 4px solid #42b983;
+  border-right: 4px solid var(--theme-color,#42b983);
+  padding-left: initial;
+  padding-right: 20px;
+}
+
+@media print {
+  /* Convert all texts and articles to a classic Serif font suitable for paper. */
+  #rtl-content * {
+/*     font-family: var(--font-serif) !important; */
+    color: #000 !important; /* Guaranteed pure black color for printing */
+    line-height: 1.6;
+  }
+
+  /* Keep codes in Mono font even during printing */
+  #rtl-content code, #rtl-content pre, #rtl-content .terminal, #rtl-content .json-data,
+  #rtl-content code *, #rtl-content pre *, #rtl-content .terminal *, #rtl-content .json-data * {
+    font-family: var(--font-code) !important;
+  }
+}
